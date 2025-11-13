@@ -135,6 +135,7 @@
   "auth": {
     "loginTitle": "Login to Book.ax",
     "registerTitle": "Create Account",
+    "signUp": "Đăng ký",
     "email": "Email Address",
     "password": "Password",
     "confirmPassword": "Confirm Password",

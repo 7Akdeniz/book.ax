@@ -135,6 +135,7 @@
   "auth": {
     "loginTitle": "Login to Book.ax",
     "registerTitle": "Create Account",
+    "signUp": "സൈൻ അപ്പ്",
     "email": "Email Address",
     "password": "Password",
     "confirmPassword": "Confirm Password",

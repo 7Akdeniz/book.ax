@@ -135,6 +135,7 @@
   "auth": {
     "loginTitle": "Bei Book.ax anmelden",
     "registerTitle": "Konto erstellen",
+    "signUp": "Registrieren",
     "email": "E-Mail-Adresse",
     "password": "Passwort",
     "confirmPassword": "Passwort bestätigen",
