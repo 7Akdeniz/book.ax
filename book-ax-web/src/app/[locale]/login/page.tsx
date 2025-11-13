@@ -3,9 +3,13 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 export default function LoginPage() {
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale as string;
   const t = useTranslations();
   
   const [email, setEmail] = useState('');
@@ -99,16 +103,16 @@ export default function LoginPage() {
         </form>
 
         <div className="mt-6 text-center">
-          <a href="/forgot-password" className="text-primary hover:underline text-sm">
+          <Link href={`/${locale}/forgot-password`} className="text-primary hover:underline text-sm">
             {t('auth.forgotPassword')}
-          </a>
+          </Link>
         </div>
 
         <div className="mt-4 text-center text-sm text-gray-600">
           {t('auth.noAccount')}{' '}
-          <a href="/register" className="text-primary hover:underline font-semibold">
+          <Link href={`/${locale}/register`} className="text-primary hover:underline font-semibold">
             {t('auth.signUp')}
-          </a>
+          </Link>
         </div>
       </div>
     </div>

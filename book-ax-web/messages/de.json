@@ -187,5 +187,24 @@
     "privacyPolicy": "Datenschutz",
     "cookiePolicy": "Cookie-Richtlinie",
     "copyright": "© 2025 Book.ax. Alle Rechte vorbehalten. Mit ❤️ für die Hotelbranche"
+  },
+  "bookings": {
+    "myBookings": "Meine Buchungen",
+    "noBookings": "Keine Buchungen vorhanden",
+    "noBookingsDescription": "Du hast noch keine Buchungen vorgenommen. Durchsuche unsere Hotels und finde deine perfekte Unterkunft!",
+    "searchHotels": "Hotels durchsuchen",
+    "unknownHotel": "Unbekanntes Hotel",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Gäste",
+    "guest": "Gast",
+    "guestsPlural": "Gäste",
+    "bookedOn": "Gebucht am",
+    "loadError": "Fehler beim Laden der Buchungen",
+    "status": {
+      "confirmed": "Bestätigt",
+      "pending": "Ausstehend",
+      "cancelled": "Storniert"
+    }
   }
 }

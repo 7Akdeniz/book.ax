@@ -187,5 +187,24 @@
     "privacyPolicy": "Политика Конфиденциальности",
     "cookiePolicy": "Политика Cookies",
     "copyright": "© 2025 Book.ax. Все права защищены. Создано с ❤️ для индустрии гостеприимства"
+  },
+  "bookings": {
+    "myBookings": "Мои Бронирования",
+    "noBookings": "Пока нет бронирований",
+    "noBookingsDescription": "У вас еще нет бронирований. Просмотрите наши отели и найдите идеальный вариант!",
+    "searchHotels": "Найти Отели",
+    "unknownHotel": "Неизвестный Отель",
+    "checkIn": "Заезд",
+    "checkOut": "Выезд",
+    "guests": "Гости",
+    "guest": "Гость",
+    "guestsPlural": "Гостей",
+    "bookedOn": "Забронировано",
+    "loadError": "Ошибка загрузки бронирований",
+    "status": {
+      "confirmed": "Подтверждено",
+      "pending": "Ожидается",
+      "cancelled": "Отменено"
+    }
   }
 }

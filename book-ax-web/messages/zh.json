@@ -187,5 +187,24 @@
     "privacyPolicy": "隐私政策",
     "cookiePolicy": "Cookie政策",
     "copyright": "© 2025 Book.ax. 版权所有。用 ❤️ 为酒店业打造"
+  },
+  "bookings": {
+    "myBookings": "我的预订",
+    "noBookings": "暂无预订",
+    "noBookingsDescription": "您还没有任何预订。浏览我们的酒店，找到您完美的住宿！",
+    "searchHotels": "搜索酒店",
+    "unknownHotel": "未知酒店",
+    "checkIn": "入住",
+    "checkOut": "退房",
+    "guests": "客人",
+    "guest": "客人",
+    "guestsPlural": "客人",
+    "bookedOn": "预订于",
+    "loadError": "加载预订时出错",
+    "status": {
+      "confirmed": "已确认",
+      "pending": "待处理",
+      "cancelled": "已取消"
+    }
   }
 }

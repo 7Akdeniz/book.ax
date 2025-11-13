@@ -187,5 +187,24 @@
     "privacyPolicy": "プライバシーポリシー",
     "cookiePolicy": "クッキーポリシー",
     "copyright": "© 2025 Book.ax. 全著作権所有。ホスピタリティ業界のために❤️を込めて作られました"
+  },
+  "bookings": {
+    "myBookings": "My Bookings",
+    "noBookings": "No bookings yet",
+    "noBookingsDescription": "You haven't made any bookings yet. Browse our hotels and find your perfect stay!",
+    "searchHotels": "Search Hotels",
+    "unknownHotel": "Unknown Hotel",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Guests",
+    "guest": "Guest",
+    "guestsPlural": "Guests",
+    "bookedOn": "Booked on",
+    "loadError": "Error loading bookings",
+    "status": {
+      "confirmed": "Confirmed",
+      "pending": "Pending",
+      "cancelled": "Cancelled"
+    }
   }
 }

@@ -187,5 +187,24 @@
     "privacyPolicy": "Gizlilik Politikası",
     "cookiePolicy": "Çerez Politikası",
     "copyright": "© 2025 Book.ax. Tüm hakları saklıdır. Konaklama sektörü için ❤️ ile yapılmıştır"
+  },
+  "bookings": {
+    "myBookings": "Rezervasyonlarım",
+    "noBookings": "Henüz rezervasyon yok",
+    "noBookingsDescription": "Henüz bir rezervasyon yapmadınız. Otellerimize göz atın ve mükemmel konaklamanızı bulun!",
+    "searchHotels": "Otel Ara",
+    "unknownHotel": "Bilinmeyen Otel",
+    "checkIn": "Giriş",
+    "checkOut": "Çıkış",
+    "guests": "Misafirler",
+    "guest": "Misafir",
+    "guestsPlural": "Misafirler",
+    "bookedOn": "Rezervasyon tarihi",
+    "loadError": "Rezervasyonlar yüklenirken hata",
+    "status": {
+      "confirmed": "Onaylandı",
+      "pending": "Beklemede",
+      "cancelled": "İptal Edildi"
+    }
   }
 }

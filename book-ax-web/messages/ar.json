@@ -187,5 +187,24 @@
     "privacyPolicy": "سياسة الخصوصية",
     "cookiePolicy": "سياسة ملفات تعريف الارتباط",
     "copyright": "© 2025 Book.ax. جميع الحقوق محفوظة. صنع بـ ❤️ لصناعة الضيافة"
+  },
+  "bookings": {
+    "myBookings": "حجوزاتي",
+    "noBookings": "لا توجد حجوزات بعد",
+    "noBookingsDescription": "لم تقم بأي حجوزات بعد. تصفح فنادقنا واعثر على إقامتك المثالية!",
+    "searchHotels": "ابحث عن الفنادق",
+    "unknownHotel": "فندق غير معروف",
+    "checkIn": "تسجيل الوصول",
+    "checkOut": "تسجيل المغادرة",
+    "guests": "الضيوف",
+    "guest": "ضيف",
+    "guestsPlural": "ضيوف",
+    "bookedOn": "تم الحجز في",
+    "loadError": "خطأ في تحميل الحجوزات",
+    "status": {
+      "confirmed": "مؤكد",
+      "pending": "قيد الانتظار",
+      "cancelled": "ملغى"
+    }
   }
 }

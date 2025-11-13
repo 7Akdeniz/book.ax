@@ -187,5 +187,24 @@
     "privacyPolicy": "गोपनीयता नीति",
     "cookiePolicy": "कुकी नीति",
     "copyright": "© 2025 Book.ax. सर्वाधिकार सुरक्षित। आतिथ्य उद्योग के लिए ❤️ से बनाया गया"
+  },
+  "bookings": {
+    "myBookings": "मेरी बुकिंग",
+    "noBookings": "अभी तक कोई बुकिंग नहीं",
+    "noBookingsDescription": "आपने अभी तक कोई बुकिंग नहीं की है। हमारे होटलों को ब्राउज़ करें और अपना परफेक्ट स्टे खोजें!",
+    "searchHotels": "होटल खोजें",
+    "unknownHotel": "अज्ञात होटल",
+    "checkIn": "चेक-इन",
+    "checkOut": "चेक-आउट",
+    "guests": "मेहमान",
+    "guest": "मेहमान",
+    "guestsPlural": "मेहमान",
+    "bookedOn": "बुक किया गया",
+    "loadError": "बुकिंग लोड करने में त्रुटि",
+    "status": {
+      "confirmed": "पुष्टि की गई",
+      "pending": "लंबित",
+      "cancelled": "रद्द"
+    }
   }
 }
