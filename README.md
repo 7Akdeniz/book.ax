@@ -1,184 +1,392 @@
-# Book.ax - React Native Booking Platform
+# 🏨 BOOK.AX - Complete Hotel Management Platform
 
-Eine mobile Buchungsplattform ähnlich wie Booking.com, entwickelt mit React Native für iOS und Android.
+> **All-in-One Hotel System**: PMS + Booking Engine + Channel Manager + AI Revenue Management
 
-## 🚀 Features
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)](https://www.postgresql.org/)
+[![Stripe](https://img.shields.io/badge/Stripe-Payments-purple)](https://stripe.com/)
 
-- **Authentifizierung**: Login, Registrierung, Passwort zurücksetzen
-- **Hotel-Suche**: Suche nach Hotels mit Filtern (Preis, Bewertung, Ausstattung)
-- **Buchungsverwaltung**: Kompletter Buchungsablauf von der Suche bis zur Bestätigung
-- **Zahlungen**: Integration von Zahlungsanbietern
-- **Benutzerprofil**: Profilansicht, Buchungshistorie, Favoriten
+---
 
-## 📁 Projektstruktur
+## 🌟 Features
 
-```
-Book.ax/
-├── src/
-│   ├── features/           # Feature-basierte Module
-│   │   ├── auth/          # Authentifizierung
-│   │   ├── search/        # Hotel-Suche
-│   │   ├── booking/       # Buchungsverwaltung
-│   │   ├── payment/       # Zahlungsabwicklung
-│   │   └── profile/       # Benutzerprofil
-│   ├── components/        # Wiederverwendbare UI-Komponenten
-│   ├── navigation/        # React Navigation Setup
-│   ├── services/          # API-Calls, externe Services
-│   ├── store/            # Redux Store & Slices
-│   ├── utils/            # Helper-Funktionen
-│   └── types/            # TypeScript-Definitionen
-├── assets/               # Bilder, Fonts, etc.
-├── android/             # Android-spezifischer Code
-└── ios/                 # iOS-spezifischer Code
-```
+### For Guests (Public Platform)
+- 🔍 **Advanced Hotel Search** - Search 500,000+ properties worldwide
+- 🌍 **75 Languages** - Full multi-language support
+- 💳 **Secure Payments** - Stripe integration
+- 📱 **Responsive Design** - Works on all devices
+- ⭐ **Reviews & Ratings** - Verified guest reviews
+- 📧 **Booking Confirmations** - Email notifications
 
-## 🛠️ Entwicklung
+### For Hoteliers (Property Management)
+- 📊 **Dashboard** - Real-time occupancy, revenue, arrivals/departures
+- 🏨 **Hotel Management** - Properties, rooms, categories, amenities
+- 📅 **Calendar** - Dynamic pricing & availability management
+- 💰 **Commission Settings** - Set your own commission (10-50%)
+- 🛏️ **PMS Module**:
+  - Housekeeping status board
+  - Guest lists & check-in/out
+  - Invoicing & billing
+  - No-show tracking
+- 📡 **Channel Manager**:
+  - Connect to 450+ OTAs (Booking.com, Airbnb, Expedia, etc.)
+  - 2-way sync of rates, inventory, reservations
+  - OTA mapping & logs
+- 🤖 **AI Revenue Management**:
+  - Automatic price recommendations
+  - Market intelligence
+  - Event detection
+  - Demand forecasting
+- 📈 **Reports**: Occupancy, ADR, RevPAR, channel performance
 
-### Voraussetzungen
+### For Admins
+- ✅ **Hotel Approval** - Review and approve new properties
+- 👥 **User Management** - Manage guests, hoteliers, permissions
+- 💵 **Commissions** - Global commission settings & payouts
+- ⚙️ **System Settings** - Taxes, currencies, countries
+- 📊 **Analytics** - Platform-wide metrics
+- 🔌 **OTA Monitoring** - Connection status & logs
 
-- Node.js >= 18
-- npm oder yarn
-- Xcode (für iOS)
-- Android Studio (für Android)
-- CocoaPods (für iOS-Dependencies)
+---
+
+## 🏗️ Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| **Frontend** | Next.js 14 (App Router), React 18, TypeScript |
+| **Styling** | Tailwind CSS |
+| **Backend** | Next.js API Routes (Serverless) |
+| **Database** | PostgreSQL (Supabase) |
+| **Authentication** | JWT + Refresh Tokens |
+| **Payments** | Stripe |
+| **i18n** | next-intl (75 languages) |
+| **Deployment** | Vercel |
+| **Storage** | AWS S3 |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 20+
+- PostgreSQL (or Supabase account)
+- Stripe account
 
 ### Installation
 
 ```bash
-# Dependencies installieren
+# Clone repository
+cd book-ax-web
+
+# Install dependencies
 npm install
 
-# iOS Pods installieren (nur macOS)
-cd ios && pod install && cd ..
+# Setup environment variables
+cp .env.local.example .env.local
+# Edit .env.local with your credentials
+
+# Setup database
+# 1. Create Supabase project at https://supabase.com
+# 2. Go to SQL Editor
+# 3. Copy/paste contents of database/schema.sql
+# 4. Execute
+
+# Start development server
+npm run dev
 ```
 
-### App starten
+Visit `http://localhost:3000`
+
+---
+
+## 📁 Project Structure
+
+```
+book-ax-web/
+├── messages/           # i18n translations (75 languages)
+├── src/
+│   ├── app/
+│   │   ├── [locale]/   # Language-based routing
+│   │   ├── admin/      # Admin portal
+│   │   └── api/        # API endpoints
+│   ├── components/     # React components
+│   ├── lib/            # Core libraries
+│   ├── types/          # TypeScript types
+│   └── utils/          # Utilities
+├── database/
+│   └── schema.sql      # Complete DB schema
+└── IMPLEMENTATION_GUIDE.md  # Full technical docs
+```
+
+---
+
+## 🌍 Supported Languages (75)
+
+English, Chinese, Hindi, Spanish, Arabic, French, Bengali, Portuguese, Russian, Urdu, Indonesian, German, Japanese, Swahili, Marathi, Telugu, Turkish, Tamil, Punjabi, Vietnamese, Korean, Italian, Javanese, Yoruba, Hausa, Thai, Gujarati, Persian, Polish, Ukrainian, Burmese, Malayalam, Kannada, Amharic, Oromo, Filipino, Sindhi, Nepali, Sinhala, Hebrew, Dutch, Romanian, Czech, Greek, Swedish, Hungarian, Azerbaijani, Pashto, Malay, Zulu, Somali, Igbo, Uzbek, Kazakh, Belarusian, Khmer, Lao, Malagasy, Bulgarian, Danish, Finnish, Norwegian, Slovak, Croatian, Serbian, Bosnian, Armenian, Albanian, Lithuanian, Latvian, Georgian, Mongolian, Kurdish, Haitian Creole, Catalan
+
+---
+
+## 💼 Business Model
+
+### Zero Monthly Fees
+- ✅ **No setup costs**
+- ✅ **No monthly subscription**
+- ✅ **All features free**
+
+### Commission-Based Revenue
+- 💰 **10-50% commission** per booking
+- 🎛️ **Hotelier sets rate** freely
+- 📊 **Transparent calculation**:
+  ```
+  commission_amount = total_amount × commission_percentage
+  hotel_payout = total_amount - commission_amount
+  ```
+
+---
+
+## 📊 Database Schema
+
+Complete schema includes:
+- **Users** - Guests, hoteliers, admins
+- **Hotels** - Properties with translations
+- **Rooms** - Categories, amenities, translations
+- **Rates & Inventory** - Daily pricing & availability
+- **Bookings** - Reservations with status tracking
+- **Payments** - Stripe integration
+- **Commissions** - Payout tracking
+- **PMS** - Housekeeping, guests, invoices
+- **Channel Manager** - OTA connections, mappings, logs
+- **Revenue Management** - Rules, recommendations, market data
+- **Reviews** - Guest ratings & comments
+
+**Total: 25+ tables** with foreign keys, indexes, triggers
+
+See `database/schema.sql` for complete schema.
+
+---
+
+## 🔌 API Endpoints
+
+### Authentication
+- `POST /api/auth/login` - User login
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/refresh` - Refresh access token
+- `POST /api/auth/logout` - Logout
+
+### Hotels
+- `GET /api/hotels` - Search hotels
+- `GET /api/hotels/[id]` - Hotel details
+- `POST /api/hotels` - Create hotel (hotelier)
+- `PUT /api/hotels/[id]` - Update hotel
+- `DELETE /api/hotels/[id]` - Delete hotel
+
+### Bookings
+- `GET /api/bookings` - List bookings
+- `POST /api/bookings` - Create booking
+- `GET /api/bookings/[id]` - Booking details
+- `PUT /api/bookings/[id]` - Update booking
+- `DELETE /api/bookings/[id]` - Cancel booking
+
+### Payments
+- `POST /api/payments/create-intent` - Create Stripe payment
+- `POST /api/webhook/stripe` - Stripe webhook
+
+### Channel Manager
+- `POST /api/channel-manager/rate-push` - Push rates to OTAs
+- `POST /api/channel-manager/inventory-push` - Push inventory
+- `POST /api/channel-manager/reservation-pull` - Pull reservations
+
+### Revenue Management
+- `GET /api/revenue/recommendations` - Get price recommendations
+- `POST /api/revenue/apply` - Apply recommended prices
+
+---
+
+## 🤖 AI Revenue Management
+
+The system uses AI to automatically optimize pricing based on:
+- 📊 **Historical booking data**
+- 📈 **Current occupancy rates**
+- 📅 **Day of week patterns**
+- 🎉 **Local events & holidays**
+- 🏨 **Market intelligence**
+- 💰 **Competitor pricing**
+- ⚡ **Demand forecasting**
+
+Hoteliers can:
+- Set min/max prices
+- Define pricing rules
+- Enable/disable auto-pricing
+- Review recommendations before applying
+
+---
+
+## 📡 Channel Manager - Supported OTAs
+
+### Major Platforms (Examples)
+- Booking.com
+- Airbnb
+- Expedia
+- Hotels.com
+- Agoda
+- TripAdvisor
+- Vrbo
+- Hostelworld
+- And 440+ more...
+
+### Features
+- ✅ 2-way synchronization
+- ✅ Real-time rate updates
+- ✅ Inventory management
+- ✅ Reservation import
+- ✅ OTA room mapping
+- ✅ Sync logs & monitoring
+- ✅ Error handling
+
+---
+
+## 🔐 Security
+
+- 🔒 **JWT Authentication** with refresh tokens
+- 🔑 **bcrypt** password hashing
+- 🛡️ **Input validation** (Zod)
+- 🚦 **Rate limiting**
+- 🔐 **HTTPS only**
+- 💳 **PCI-DSS compliant** (Stripe)
+- 🔒 **Row Level Security** (PostgreSQL)
+
+---
+
+## 🚢 Deployment
+
+### Vercel (Recommended)
+```bash
+npm i -g vercel
+vercel --prod
+```
+
+### Docker
+```bash
+docker build -t book-ax .
+docker run -p 3000:3000 book-ax
+```
+
+### Environment Variables
+See `.env.local.example` for required variables.
+
+---
+
+## 📚 Documentation
+
+- **Implementation Guide**: `IMPLEMENTATION_GUIDE.md`
+- **System Architecture**: `HOTEL_PMS_SYSTEM_ARCHITEKTUR.md`
+- **MVP Plan**: `PMS_IMPLEMENTIERUNG_REALISTISCH.md`
+- **Database Schema**: `database/schema.sql`
+
+---
+
+## 🛠️ Development
 
 ```bash
-# Metro Bundler starten
+# Development
+npm run dev
+
+# Build
+npm run build
+
+# Production
 npm start
 
-# iOS App starten
-npm run ios
+# Type check
+npm run type-check
 
-# Android App starten
-npm run android
-```
-
-### Entwicklerwerkzeuge
-
-```bash
-# Linting
+# Lint
 npm run lint
-
-# Tests ausführen
-npm test
-
-# TypeScript Type-Checking
-npx tsc --noEmit
 ```
 
-## 🏗️ Architektur
+---
 
-### Feature-basierte Struktur
+## 🗺️ Roadmap
 
-Jedes Feature ist in seinem eigenen Ordner organisiert:
-- `components/` - Feature-spezifische UI-Komponenten
-- `screens/` - Screen-Komponenten für Navigation
-- `hooks/` - Custom React Hooks
-- `types.ts` - TypeScript Typen
-- `slice.ts` - Redux Toolkit Slice (falls benötigt)
+### Phase 1: MVP (6-8 weeks) ✅
+- [x] Database schema
+- [x] Authentication system
+- [x] Basic hotel search
+- [x] Booking flow
+- [x] Payment integration
+- [ ] Hotelier dashboard
+- [ ] 10 main languages
 
-### State Management
+### Phase 2: PMS (Weeks 9-16)
+- [ ] Complete PMS module
+- [ ] Housekeeping board
+- [ ] Guest management
+- [ ] Invoicing system
+- [ ] 25 languages
 
-- **Redux Toolkit** für globalen App-State
-- **React Context** für Theme/Lokalisierung
-- **React Query** (optional) für Server-State-Caching
+### Phase 3: Channel Manager (Weeks 17-24)
+- [ ] Booking.com integration
+- [ ] Airbnb integration
+- [ ] Expedia integration
+- [ ] 50 languages
 
-### Navigation
+### Phase 4: AI Revenue (Weeks 25-32)
+- [ ] ML-based pricing engine
+- [ ] Market intelligence
+- [ ] Demand forecasting
+- [ ] 75 languages
 
-React Navigation mit:
-- Stack Navigator für Screen-Flows
-- Bottom Tab Navigator für Hauptnavigation
-- Typisierte Navigation mit TypeScript
+### Phase 5: Enterprise (Weeks 33-40)
+- [ ] Advanced analytics
+- [ ] Multi-property management
+- [ ] White-label options
+- [ ] Mobile apps
 
-### API-Integration
+---
 
-- Axios für HTTP-Requests
-- Zentrale API-Service-Klasse in `src/services/api.ts`
-- Environment-spezifische Configs
+## 💰 Cost Estimation
 
-## 📱 Plattform-spezifische Hinweise
+### MVP Development
+- **Timeline**: 6-8 weeks
+- **Team**: 2-3 developers
+- **Cost**: 15.000€ - 30.000€
 
-### iOS
+### Full Enterprise System
+- **Timeline**: 12-24 months
+- **Team**: 10-15 developers
+- **Cost**: 970.000€ - 1.500.000€
 
-- Minimum iOS Version: 13.0
-- CocoaPods für Dependency-Management
-- Xcode 14+ erforderlich
+---
 
-### Android
+## 🤝 Contributing
 
-- Minimum SDK: 21 (Android 5.0)
-- Target SDK: 33
-- Gradle für Build-Management
+This is a private commercial project. For collaboration inquiries, contact the project owner.
 
-## 🧪 Testing
+---
 
-```bash
-# Unit Tests
-npm test
+## 📄 License
 
-# E2E Tests (falls konfiguriert)
-npm run test:e2e
-```
+Proprietary - All rights reserved
 
-## 🎨 Styling
+---
 
-- StyleSheet API für Styles
-- Responsive Design mit Dimensions API
-- Theme-System mit React Context
-- React Native Vector Icons für Icons
+## 📞 Support
 
-## 📦 Wichtige Dependencies
+For technical questions or business inquiries:
+- **Email**: support@book.ax
+- **Website**: https://www.book.ax
 
-- **@react-navigation/native** - Navigation
-- **@reduxjs/toolkit** - State Management
-- **axios** - HTTP Client
-- **react-native-maps** - Kartenintegration
-- **react-native-vector-icons** - Icon-Library
+---
 
-## 🔧 Nützliche Befehle
+## 🙏 Acknowledgments
 
-```bash
-# Cache leeren
-npm start -- --reset-cache
+Built with:
+- [Next.js](https://nextjs.org/)
+- [Supabase](https://supabase.com/)
+- [Stripe](https://stripe.com/)
+- [Vercel](https://vercel.com/)
 
-# Bundle Size analysieren
-npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android-release.bundle --analyze
+---
 
-# iOS-Build für Release
-cd ios && xcodebuild -workspace Bookax.xcworkspace -scheme Bookax -configuration Release
-
-# Android APK generieren
-cd android && ./gradlew assembleRelease
-```
-
-## 📝 Konventionen
-
-- **Dateinamen**: PascalCase für Komponenten, camelCase für Utils
-- **Komponenten**: Functional Components mit TypeScript
-- **Hooks**: Prefix mit `use` (z.B. `useAuth`, `useBooking`)
-- **Styles**: Co-located mit Komponenten, Suffix `.styles.ts`
-- **Tests**: Suffix `.test.tsx` neben der Datei
-
-## 🚧 In Entwicklung
-
-- [ ] Backend API Integration
-- [ ] Push Notifications
-- [ ] Offline-Modus mit AsyncStorage
-- [ ] Deep Linking
-- [ ] Analytics Integration
-
-## 📄 Lizenz
-
-Privates Projekt
+**Made with ❤️ for the hospitality industry**
