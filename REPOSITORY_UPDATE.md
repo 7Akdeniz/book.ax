@@ -26,9 +26,9 @@ https://github.com/7Akdeniz/book.ax
 ```
 
 ### Vercel Dashboard URLs (aktualisiert):
-- Settings: https://vercel.com/7Akdeniz/book-ax/settings/environment-variables
-- Deployments: https://vercel.com/7Akdeniz/book-ax/deployments
-- Domains: https://vercel.com/7Akdeniz/book-ax/settings/domains
+- Settings: https://vercel.com/bookax/settings/environment-variables
+- Deployments: https://vercel.com/bookax/deployments
+- Domains: https://vercel.com/bookax/settings/domains
 
 ## Nächste Schritte
 

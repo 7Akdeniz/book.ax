@@ -12,7 +12,7 @@ Der Fehler kommt, weil Vercel die `i18n/request.ts` nicht findet.
 
 ### WICHTIG: Dies MUSS im Vercel Dashboard gemacht werden!
 
-1. Öffne: https://vercel.com/7Akdeniz/book-ax/settings
+1. Öffne: https://vercel.com/bookax/settings
 2. Scrolle zu **"Build & Development Settings"**
 3. Finde **"Root Directory"**
 4. Klicke **"Edit"** (Bleistift-Icon)

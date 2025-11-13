@@ -78,7 +78,7 @@ NEXT_PUBLIC_APP_URL=https://book-ax.vercel.app
 
 ### Environment Variables setzen:
 
-1. Gehe zu: https://vercel.com/7Akdeniz/book-ax/settings/environment-variables
+1. Gehe zu: https://vercel.com/bookax/settings/environment-variables
 2. Klicke auf "Add New"
 3. Füge jede Variable einzeln hinzu
 4. Wähle "Production", "Preview", "Development"
@@ -98,7 +98,7 @@ NEXT_PUBLIC_APP_URL=https://book-ax.vercel.app
 → Environment Variables im Vercel Dashboard setzen
 
 ### Fehler: "Build failed"
-→ Logs im Vercel Dashboard prüfen: https://vercel.com/7Akdeniz/book-ax/deployments
+→ Logs im Vercel Dashboard prüfen: https://vercel.com/bookax/deployments
 
 ### Fehler: "404 Not Found"
 → Prüfe ob `next.config.mjs` Rewrites korrekt sind
@@ -136,7 +136,7 @@ book.ax/                    ← React Native App (iOS/Android)
 
 ## Custom Domain (optional)
 
-1. Gehe zu: https://vercel.com/7Akdeniz/book-ax/settings/domains
+1. Gehe zu: https://vercel.com/bookax/settings/domains
 2. Klicke "Add Domain"
 3. Gib deine Domain ein (z.B. `book.ax`)
 4. Folge den DNS-Anweisungen von Vercel

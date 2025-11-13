@@ -44,7 +44,7 @@ case $REPLY in
         echo "📤 Pushe zu GitHub..."
         git push origin main
         echo "✅ Gepushed! Vercel deployed automatisch."
-        echo "📊 Check Status: https://vercel.com/7Akdeniz/book-ax/deployments"
+        echo "📊 Check Status: https://vercel.com/bookax/deployments"
         ;;
     2)
         echo "🚀 Starte Production Deployment..."
@@ -65,5 +65,5 @@ echo "✅ Fertig!"
 echo ""
 echo "🌐 URLs:"
 echo "   Production: https://book-ax.vercel.app"
-echo "   Dashboard:  https://vercel.com/7Akdeniz/book-ax"
+echo "   Dashboard:  https://vercel.com/bookax"
 echo ""

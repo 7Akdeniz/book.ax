@@ -36,7 +36,7 @@ echo "VERCEL_TOKEN=dein-token-hier" > .env.vercel
 
 Wenn du mir keinen Token geben willst (völlig OK!), kannst du auch einfach:
 
-1. Öffne: https://vercel.com/7Akdeniz/book-ax/deployments
+1. Öffne: https://vercel.com/bookax/deployments
 2. Sag mir den Status:
    - 🟢 "Ready"
    - 🟡 "Building..."

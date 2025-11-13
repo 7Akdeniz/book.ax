@@ -2,7 +2,7 @@
 
 ## 1️⃣ Variablen in Vercel eintragen
 
-Gehe zu: https://vercel.com/7Akdeniz/book-ax/settings/environment-variables
+Gehe zu: https://vercel.com/bookax/settings/environment-variables
 
 Füge hinzu (aus `.env.prod`):
 

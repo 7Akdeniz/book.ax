@@ -6,7 +6,7 @@ Vercel sucht das Next.js Projekt im Root-Verzeichnis, aber es ist in `book-ax-we
 ## Lösung: Root Directory in Vercel Dashboard setzen
 
 ### Schritt 1: Öffne Vercel Settings
-👉 https://vercel.com/7Akdeniz/book-ax/settings
+👉 https://vercel.com/bookax/settings
 
 ### Schritt 2: General Settings → Root Directory
 
@@ -17,7 +17,7 @@ Vercel sucht das Next.js Projekt im Root-Verzeichnis, aber es ist in `book-ax-we
 
 ### Schritt 3: Redeploy
 
-1. Gehe zu: https://vercel.com/7Akdeniz/book-ax/deployments
+1. Gehe zu: https://vercel.com/bookax/deployments
 2. Klicke auf das fehlgeschlagene Deployment
 3. Klicke **"⋮" (3 Punkte)** → **"Redeploy"**
 

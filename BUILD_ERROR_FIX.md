@@ -12,7 +12,7 @@ Die Environment Variables sind im Vercel Dashboard gesetzt, aber Vercel hat das 
 
 ### Schritt 1: Prüfe ob alle Variables gesetzt sind
 
-Gehe zu: https://vercel.com/7Akdeniz/book-ax/settings/environment-variables
+Gehe zu: https://vercel.com/bookax/settings/environment-variables
 
 Du solltest **MINDESTENS diese 5** sehen:
 
@@ -35,7 +35,7 @@ git push origin main
 
 **Option B: Manuelles Redeploy**
 
-1. Gehe zu: https://vercel.com/7Akdeniz/book-ax/deployments
+1. Gehe zu: https://vercel.com/bookax/deployments
 2. Klicke auf das **letzte Deployment** (mit dem Fehler)
 3. Klicke oben rechts auf **"⋮" (3 Punkte)**
 4. Wähle **"Redeploy"**

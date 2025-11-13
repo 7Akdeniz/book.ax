@@ -8,7 +8,7 @@ Deine Environment Variables sind bereits in `.env.prod` - du musst sie nur noch 
 ## Schritt 1: Vercel Environment Variables setzen
 
 ### Gehe zu:
-👉 https://vercel.com/7Akdeniz/book-ax/settings/environment-variables
+👉 https://vercel.com/bookax/settings/environment-variables
 
 ### Trage folgende Variablen ein (KOPIERE EINFACH!):
 
@@ -89,7 +89,7 @@ git push origin main
 ```
 
 ### Option B: Manuell neu deployen
-1. Gehe zu: https://vercel.com/7Akdeniz/book-ax/deployments
+1. Gehe zu: https://vercel.com/bookax/deployments
 2. Klicke auf die 3 Punkte beim letzten Deployment
 3. Klicke "Redeploy"
 
@@ -97,7 +97,7 @@ git push origin main
 
 ## Schritt 3: Warten & Testen
 
-1. Öffne: https://vercel.com/7Akdeniz/book-ax/deployments
+1. Öffne: https://vercel.com/bookax/deployments
 2. Warte bis Status **"Ready"** ist (~2-5 Min)
 3. Öffne: https://book-ax.vercel.app
 

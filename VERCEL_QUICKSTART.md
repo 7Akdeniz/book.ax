@@ -3,7 +3,7 @@
 ## 🎯 Was jetzt zu tun ist
 
 ### Schritt 1: Vercel Dashboard öffnen
-👉 https://vercel.com/7Akdeniz/book-ax/settings/environment-variables
+👉 https://vercel.com/bookax/settings/environment-variables
 
 ### Schritt 2: Environment Variables setzen
 
@@ -53,7 +53,7 @@ vercel --prod
 
 ### Schritt 4: Warten & Testen
 
-1. Gehe zu: https://vercel.com/7Akdeniz/book-ax/deployments
+1. Gehe zu: https://vercel.com/bookax/deployments
 2. Warte bis Status "Ready" ist (~2-5 Min)
 3. Öffne: https://book-ax.vercel.app
 
@@ -72,7 +72,7 @@ vercel --prod
 ## 🐛 Fehler?
 
 ### Build Fehler
-→ Logs checken: https://vercel.com/7Akdeniz/book-ax/deployments
+→ Logs checken: https://vercel.com/bookax/deployments
 
 ### 404 Error
 → Environment Variables fehlen
