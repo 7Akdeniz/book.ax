@@ -63,6 +63,7 @@ local.properties
 .env.local
 .env.development
 .env.production
+.env.prod
 
 # Misc
 .vscode/

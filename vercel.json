@@ -3,6 +3,7 @@
   "buildCommand": "cd book-ax-web && npm run build",
   "devCommand": "cd book-ax-web && npm run dev",
   "installCommand": "cd book-ax-web && npm install",
-  "framework": null,
-  "outputDirectory": "book-ax-web/.next"
+  "framework": "nextjs",
+  "outputDirectory": "book-ax-web/.next",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./book-ax-web"
 }
