@@ -1,0 +1,243 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [postgis]
+}
+
+model Continent {
+  id       String    @id @default(uuid()) @db.Uuid
+  code     String    @unique @db.VarChar(2)
+  nameEn   String    @map("name_en") @db.VarChar(100)
+  nameDe   String    @map("name_de") @db.VarChar(100)
+  nameFr   String    @map("name_fr") @db.VarChar(100)
+  nameEs   String    @map("name_es") @db.VarChar(100)
+  nameTr   String    @map("name_tr") @db.VarChar(100)
+  
+  countries Country[]
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("continents")
+}
+
+model Country {
+  id             String    @id @default(uuid()) @db.Uuid
+  continentId    String    @map("continent_id") @db.Uuid
+  iso2           String    @unique @db.VarChar(2)
+  iso3           String    @unique @db.VarChar(3)
+  numericCode    String?   @map("numeric_code") @db.VarChar(3)
+  nameOfficial   String    @map("name_official") @db.VarChar(255)
+  nameEn         String    @map("name_en") @db.VarChar(100)
+  nameDe         String    @map("name_de") @db.VarChar(100)
+  nameFr         String    @map("name_fr") @db.VarChar(100)
+  nameEs         String    @map("name_es") @db.VarChar(100)
+  nameTr         String    @map("name_tr") @db.VarChar(100)
+  capital        String?   @db.VarChar(100)
+  currencyCode   String?   @map("currency_code") @db.VarChar(3)
+  phoneCode      String?   @map("phone_code") @db.VarChar(10)
+  population     BigInt?
+  timezones      String[]  @db.VarChar(50)
+  boundingBox    Unsupported("geometry(Polygon, 4326)")? @map("bounding_box")
+  
+  continent      Continent @relation(fields: [continentId], references: [id], onDelete: Cascade)
+  regions        Region[]
+  cities         City[]
+  aliases        LocationAlias[]
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([iso2])
+  @@index([iso3])
+  @@index([nameEn, nameDe, nameEs, nameFr])
+  @@map("countries")
+}
+
+model Region {
+  id         String   @id @default(uuid()) @db.Uuid
+  countryId  String   @map("country_id") @db.Uuid
+  code       String   @db.VarChar(10)
+  name       String   @db.VarChar(255)
+  nameEn     String?  @map("name_en") @db.VarChar(255)
+  nameDe     String?  @map("name_de") @db.VarChar(255)
+  nameFr     String?  @map("name_fr") @db.VarChar(255)
+  nameEs     String?  @map("name_es") @db.VarChar(255)
+  nameTr     String?  @map("name_tr") @db.VarChar(255)
+  
+  country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  cities     City[]
+  aliases    LocationAlias[]
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([countryId, code])
+  @@index([name])
+  @@map("regions")
+}
+
+model City {
+  id            String   @id @default(uuid()) @db.Uuid
+  countryId     String   @map("country_id") @db.Uuid
+  regionId      String?  @map("region_id") @db.Uuid
+  name          String   @db.VarChar(255)
+  slug          String   @db.VarChar(255)
+  nameEn        String?  @map("name_en") @db.VarChar(255)
+  nameDe        String?  @map("name_de") @db.VarChar(255)
+  nameFr        String?  @map("name_fr") @db.VarChar(255)
+  nameEs        String?  @map("name_es") @db.VarChar(255)
+  nameTr        String?  @map("name_tr") @db.VarChar(255)
+  population    Int?
+  location      Unsupported("geometry(Point, 4326)")? 
+  timezone      String?  @db.VarChar(50)
+  isCapital     Boolean  @default(false) @map("is_capital")
+  isMajorCity   Boolean  @default(false) @map("is_major_city")
+  
+  country       Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  region        Region?  @relation(fields: [regionId], references: [id], onDelete: SetNull)
+  districts     District[]
+  pois          PointOfInterest[]
+  aliases       LocationAlias[]
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([countryId, slug])
+  @@index([name])
+  @@index([slug])
+  @@index([isMajorCity])
+  @@index([location], type: Gist)
+  @@map("cities")
+}
+
+model District {
+  id         String   @id @default(uuid()) @db.Uuid
+  cityId     String   @map("city_id") @db.Uuid
+  name       String   @db.VarChar(255)
+  slug       String   @db.VarChar(255)
+  nameEn     String?  @map("name_en") @db.VarChar(255)
+  nameDe     String?  @map("name_de") @db.VarChar(255)
+  nameFr     String?  @map("name_fr") @db.VarChar(255)
+  nameEs     String?  @map("name_es") @db.VarChar(255)
+  nameTr     String?  @map("name_tr") @db.VarChar(255)
+  location   Unsupported("geometry(Point, 4326)")?
+  
+  city       City     @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  pois       PointOfInterest[]
+  aliases    LocationAlias[]
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([cityId, slug])
+  @@index([name])
+  @@index([slug])
+  @@map("districts")
+}
+
+enum PoiType {
+  AIRPORT
+  TRAIN_STATION
+  BUS_STATION
+  PORT
+  ATTRACTION
+  MUSEUM
+  PARK
+  BEACH
+  SHOPPING
+  STADIUM
+  ARENA
+  UNIVERSITY
+  BUSINESS_DISTRICT
+  CONVENTION_CENTER
+  HOSPITAL
+  LANDMARK
+  MONUMENT
+  CASTLE
+  PALACE
+  CHURCH
+  MOSQUE
+  TEMPLE
+  RESTAURANT_AREA
+  NIGHTLIFE
+  MARKET
+  EXHIBITION_CENTER
+  THEATER
+  OPERA_HOUSE
+  ZOO
+  AQUARIUM
+  THEME_PARK
+  SKI_RESORT
+  GOLF_COURSE
+  CASINO
+  SPA
+
+  @@map("poi_type")
+}
+
+model PointOfInterest {
+  id               String   @id @default(uuid()) @db.Uuid
+  cityId           String   @map("city_id") @db.Uuid
+  districtId       String?  @map("district_id") @db.Uuid
+  type             PoiType
+  name             String   @db.VarChar(255)
+  slug             String   @db.VarChar(255)
+  descriptionShort String?  @map("description_short") @db.Text
+  location         Unsupported("geometry(Point, 4326)")
+  iataCode         String?  @unique @map("iata_code") @db.VarChar(3)
+  icaoCode         String?  @unique @map("icao_code") @db.VarChar(4)
+  externalId       String?  @map("external_id") @db.VarChar(100)
+  
+  city             City     @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  district         District? @relation(fields: [districtId], references: [id], onDelete: SetNull)
+  aliases          LocationAlias[]
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([cityId, slug])
+  @@index([type])
+  @@index([name])
+  @@index([slug])
+  @@index([location], type: Gist)
+  @@map("points_of_interest")
+}
+
+enum LocationTargetType {
+  COUNTRY
+  REGION
+  CITY
+  DISTRICT
+  POI
+
+  @@map("location_target_type")
+}
+
+model LocationAlias {
+  id             String             @id @default(uuid()) @db.Uuid
+  targetType     LocationTargetType @map("target_type")
+  targetId       String             @map("target_id") @db.Uuid
+  aliasName      String             @map("alias_name") @db.VarChar(255)
+  languageCode   String             @map("language_code") @db.VarChar(5)
+  useForSearch   Boolean            @default(true) @map("use_for_search")
+  
+  country        Country?           @relation(fields: [targetId], references: [id], onDelete: Cascade)
+  region         Region?            @relation(fields: [targetId], references: [id], onDelete: Cascade)
+  city           City?              @relation(fields: [targetId], references: [id], onDelete: Cascade)
+  district       District?          @relation(fields: [targetId], references: [id], onDelete: Cascade)
+  poi            PointOfInterest?   @relation(fields: [targetId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([aliasName])
+  @@index([targetType, targetId])
+  @@index([useForSearch])
+  @@map("location_aliases")
+}

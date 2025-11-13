@@ -243,5 +243,107 @@
     "supportEmail": "support@book.ax",
     "supportPhone": "+49 30 1234 5678",
     "businessHours": "Geschäftszeiten: Mo-Fr 9:00-18:00 Uhr"
+  },
+  "pricing": {
+    "hero": {
+      "title": "Book.ax – Preisübersicht",
+      "subtitle": "0 € Fixkosten – nur Provision pro Buchung",
+      "description": "Bei Book.ax entstehen keinerlei monatliche Kosten, keine Setup-Gebühren und keine versteckten Gebühren."
+    },
+    "commission": {
+      "title": "Provision ab 10 %",
+      "subtitle": "Hotels zahlen mindestens 10 % Provision pro Buchung.",
+      "rate": "ab 10 %",
+      "description": "Alle anderen Services sind vollständig kostenlos."
+    },
+    "freeServices": {
+      "title": "Alle Services inklusive – ohne Kosten",
+      "subtitle": "Profitieren Sie von unserem kompletten Service-Paket – alles kostenlos!",
+      "badge": "100 % KOSTENLOS"
+    },
+    "hotelierPortal": {
+      "title": "Hotelier-Portal (kostenlos)",
+      "features": [
+        "Hotelverwaltung",
+        "Zimmerkategorien & Preise",
+        "Verfügbarkeitskalender",
+        "PMS-System: Check-in, Check-out, Housekeeping, Gästelisten, Rechnungen",
+        "Buchungsverwaltung"
+      ]
+    },
+    "channelManager": {
+      "title": "Channel Manager (kostenlos)",
+      "features": [
+        "Verbindung zu Booking.com",
+        "Verbindung zu Expedia",
+        "Verbindung zu Airbnb",
+        "Preis- und Verfügbarkeits-Sync",
+        "OTA-Buchungen automatisch im PMS",
+        "Overbooking-Schutz"
+      ]
+    },
+    "revenueManagement": {
+      "title": "KI-Revenue-Management (kostenlos)",
+      "features": [
+        "Dynamische Preisvorschläge",
+        "Preisregeln",
+        "Nachfrageanalyse",
+        "Event- und Saisondaten",
+        "Automatische Optimierung"
+      ]
+    },
+    "guestFrontend": {
+      "title": "Gäste-Frontend (kostenlos)",
+      "features": [
+        "50 Sprachen",
+        "Globale Reichweite",
+        "Online-Zahlungen",
+        "Sofort-Bestätigung",
+        "Rechnungen & Stornierungen"
+      ]
+    },
+    "security": {
+      "title": "Sicherheit & Hosting (kostenlos)",
+      "features": [
+        "SSL/HTTPS",
+        "Backups",
+        "Monitoring",
+        "Hochverfügbarkeit",
+        "Sichere Zahlungsabwicklung"
+      ]
+    },
+    "admin": {
+      "title": "Admin-Service (kostenlos)",
+      "features": [
+        "Hotelprüfung",
+        "Finanzübersicht",
+        "OTA-Fehlerlogs",
+        "Systemeinstellungen",
+        "Übersetzungsmanagement"
+      ]
+    },
+    "table": {
+      "title": "Zusammenfassung",
+      "serviceColumn": "Service",
+      "priceColumn": "Preis",
+      "registration": "Registrierung",
+      "setup": "Setup",
+      "pms": "PMS",
+      "channelManager": "Channel Manager",
+      "bookingEngine": "Booking Engine",
+      "revenueManagement": "Revenue-Management",
+      "translations": "Übersetzungen",
+      "payments": "Zahlungsabwicklung",
+      "support": "Support",
+      "commission": "Provision pro Buchung",
+      "commissionPrice": "ab 10 %"
+    },
+    "finalCta": {
+      "title": "Book.ax – Das fairste Hotel-System der Welt",
+      "line1": "Keine Fixkosten. Keine Verträge. Keine Überraschungen.",
+      "line2": "Nur Provision ab 10 % – alles andere kostenlos.",
+      "highlight": "Nur Provision ab 10 % – alles andere kostenlos.",
+      "button": "Jetzt kostenlos registrieren"
+    }
   }
 }

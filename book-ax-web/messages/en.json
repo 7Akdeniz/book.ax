@@ -243,5 +243,107 @@
     "supportEmail": "support@book.ax",
     "supportPhone": "+49 30 1234 5678",
     "businessHours": "Business Hours: Mon-Fri 9:00-18:00"
+  },
+  "pricing": {
+    "hero": {
+      "title": "Book.ax – Pricing Overview",
+      "subtitle": "$0 Fixed Costs – Commission Only",
+      "description": "Book.ax has no monthly fees, no setup costs, and no hidden charges."
+    },
+    "commission": {
+      "title": "Commission from 10%",
+      "subtitle": "Hotels pay a minimum of 10% commission per booking.",
+      "rate": "from 10%",
+      "description": "All other services are completely free."
+    },
+    "freeServices": {
+      "title": "All Services Included – Free of Charge",
+      "subtitle": "Benefit from our complete service package – everything free!",
+      "badge": "100% FREE"
+    },
+    "hotelierPortal": {
+      "title": "Hotelier Portal (free)",
+      "features": [
+        "Hotel Management",
+        "Room Categories & Prices",
+        "Availability Calendar",
+        "PMS System: Check-in, Check-out, Housekeeping, Guest Lists, Invoices",
+        "Booking Management"
+      ]
+    },
+    "channelManager": {
+      "title": "Channel Manager (free)",
+      "features": [
+        "Connection to Booking.com",
+        "Connection to Expedia",
+        "Connection to Airbnb",
+        "Price and Availability Sync",
+        "OTA Bookings Automatically in PMS",
+        "Overbooking Protection"
+      ]
+    },
+    "revenueManagement": {
+      "title": "AI Revenue Management (free)",
+      "features": [
+        "Dynamic Pricing Suggestions",
+        "Pricing Rules",
+        "Demand Analysis",
+        "Event and Season Data",
+        "Automatic Optimization"
+      ]
+    },
+    "guestFrontend": {
+      "title": "Guest Frontend (free)",
+      "features": [
+        "50 Languages",
+        "Global Reach",
+        "Online Payments",
+        "Instant Confirmation",
+        "Invoices & Cancellations"
+      ]
+    },
+    "security": {
+      "title": "Security & Hosting (free)",
+      "features": [
+        "SSL/HTTPS",
+        "Backups",
+        "Monitoring",
+        "High Availability",
+        "Secure Payment Processing"
+      ]
+    },
+    "admin": {
+      "title": "Admin Service (free)",
+      "features": [
+        "Hotel Verification",
+        "Financial Overview",
+        "OTA Error Logs",
+        "System Settings",
+        "Translation Management"
+      ]
+    },
+    "table": {
+      "title": "Summary",
+      "serviceColumn": "Service",
+      "priceColumn": "Price",
+      "registration": "Registration",
+      "setup": "Setup",
+      "pms": "PMS",
+      "channelManager": "Channel Manager",
+      "bookingEngine": "Booking Engine",
+      "revenueManagement": "Revenue Management",
+      "translations": "Translations",
+      "payments": "Payment Processing",
+      "support": "Support",
+      "commission": "Commission per Booking",
+      "commissionPrice": "from 10%"
+    },
+    "finalCta": {
+      "title": "Book.ax – The Fairest Hotel System in the World",
+      "line1": "No fixed costs. No contracts. No surprises.",
+      "line2": "Only commission from 10% – everything else free.",
+      "highlight": "Only commission from 10% – everything else free.",
+      "button": "Register Free Now"
+    }
   }
 }
