@@ -227,11 +227,11 @@ model LocationAlias {
   languageCode   String             @map("language_code") @db.VarChar(5)
   useForSearch   Boolean            @default(true) @map("use_for_search")
   
-  country        Country?           @relation(fields: [targetId], references: [id], onDelete: Cascade)
-  region         Region?            @relation(fields: [targetId], references: [id], onDelete: Cascade)
-  city           City?              @relation(fields: [targetId], references: [id], onDelete: Cascade)
-  district       District?          @relation(fields: [targetId], references: [id], onDelete: Cascade)
-  poi            PointOfInterest?   @relation(fields: [targetId], references: [id], onDelete: Cascade)
+  country        Country?           @relation(fields: [targetId], references: [id], onDelete: Cascade, map: "location_alias_country_fkey")
+  region         Region?            @relation(fields: [targetId], references: [id], onDelete: Cascade, map: "location_alias_region_fkey")
+  city           City?              @relation(fields: [targetId], references: [id], onDelete: Cascade, map: "location_alias_city_fkey")
+  district       District?          @relation(fields: [targetId], references: [id], onDelete: Cascade, map: "location_alias_district_fkey")
+  poi            PointOfInterest?   @relation(fields: [targetId], references: [id], onDelete: Cascade, map: "location_alias_poi_fkey")
   
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
