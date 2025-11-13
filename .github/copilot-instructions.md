@@ -2,201 +2,395 @@
 
 ## Projektkontext
 
-Dies ist eine **React Native Buchungsplattform** (ähnlich Booking.com) für iOS und Android. Die App ermöglicht Hotel-Suche, Buchungen und Zahlungsabwicklung.
+Dies ist **Book.ax** - eine Multi-Platform Hotel-Buchungsplattform (ähnlich Booking.com):
 
-## Architektur
+### Zwei separate Projekte in einem Repository:
+
+1. **React Native Mobile App** (Root-Verzeichnis)
+   - iOS & Android Apps
+   - Expo für Development
+   - Für Hotel-Gäste unterwegs
+
+2. **Next.js Web App** (`book-ax-web/`)
+   - Responsive Web-Plattform
+   - 50+ Sprachen Support
+   - Deployed auf Vercel
+   - Live: https://book-ax.vercel.app
+
+**Gemeinsame Backend**: Beide Apps nutzen dieselbe Supabase Database
+
+---
+
+## Mobile App Architektur (React Native)
 
 ### Feature-basierte Struktur
-- **Organisation**: Code ist nach Features organisiert (`src/features/*`), nicht nach technischer Schicht
-- **Feature-Module** enthalten: `components/`, `screens/`, `hooks/`, `types.ts`, `slice.ts` (Redux)
+- **Organisation**: Code ist nach Features organisiert (`src/features/*`)
+- **Feature-Module**: `components/`, `screens/`, `hooks/`, `types.ts`, `slice.ts` (Redux)
 - **Shared Code**: Wiederverwendbare Komponenten in `src/components/`, Utils in `src/utils/`
 
 ### State Management
-- **Redux Toolkit** für globalen App-State (Authentifizierung, Buchungen, etc.)
+- **Redux Toolkit** für globalen App-State (Auth, Buchungen, etc.)
 - **React Context** für Theme und App-Konfiguration
 - Verwende `useSelector` und `useDispatch` Hooks, nicht `connect()`
 
 ### Navigation
 - **React Navigation v6** mit TypeScript
 - Stack Navigator für Feature-Flows, Bottom Tabs für Hauptnavigation
-- Typisierte Navigation: Definiere `RootStackParamList` in `src/navigation/types.ts`
-- Navigation-Props immer typisieren: `NavigationProp<RootStackParamList, 'ScreenName'>`
+- Typisierte Navigation: `RootStackParamList` in `src/navigation/types.ts`
 
-## TypeScript Patterns
-
-```typescript
-// Komponenten immer mit React.FC oder explizitem Return-Type
-const HotelCard: React.FC<HotelCardProps> = ({hotel, onPress}) => { ... };
-
-// Path Aliases verwenden (konfiguriert in tsconfig.json)
-import {Button} from '@components/Button';
-import {useAuth} from '@features/auth/hooks/useAuth';
-import {Hotel} from '@types/models';
-
-// Strikte Typisierung für API-Responses
-interface ApiResponse<T> {
-  data: T;
-  status: number;
-  message?: string;
-}
-```
-
-## Komponenten-Konventionen
-
-### Dateiorganisation
-```
-ComponentName/
-├── ComponentName.tsx          # Komponente
-├── ComponentName.styles.ts    # Styles
-├── ComponentName.test.tsx     # Tests
-└── index.ts                   # Export
-```
-
-### Styling
-- Verwende **StyleSheet.create()** für Performance
-- Co-locate Styles: `ComponentName.styles.ts` neben Komponente
-- Theme-Farben/Spacing aus zentralem Theme (Context)
-- Responsive mit `Dimensions.get('window')` oder `useWindowDimensions()`
-
-```typescript
-// ComponentName.styles.ts
-import {StyleSheet} from 'react-native';
-
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-});
-```
-
-### Custom Hooks Pattern
-```typescript
-// src/features/auth/hooks/useAuth.ts
-export const useAuth = () => {
-  const dispatch = useDispatch();
-  const user = useSelector(state => state.auth.user);
-  
-  const login = async (email: string, password: string) => {
-    // Implementation
-  };
-  
-  return {user, login, logout};
-};
-```
-
-## API-Integration
-
-### Service-Struktur
-- Zentrale API-Konfiguration in `src/services/api.ts`
-- Feature-spezifische Services: `src/features/*/services/`
-- Axios für HTTP mit Interceptors für Auth-Token
-
-```typescript
-// src/services/api.ts Pattern
-import axios from 'axios';
-
-const api = axios.create({
-  baseURL: __DEV__ ? 'http://localhost:3000/api' : 'https://api.production.com',
-});
-
-api.interceptors.request.use(config => {
-  const token = getStoredToken();
-  if (token) config.headers.Authorization = `Bearer ${token}`;
-  return config;
-});
-```
-
-## Entwickler-Workflows
-
-### App starten
+### Mobile App starten
 ```bash
-npm start              # Metro Bundler
+npm start              # Metro Bundler (Expo)
 npm run ios            # iOS Simulator
 npm run android        # Android Emulator
 ```
 
-### Häufige Issues
-- **Metro Cache**: `npm start -- --reset-cache` bei Build-Problemen
-- **iOS Pods**: `cd ios && pod install && cd ..` nach Package-Updates
-- **Android Clean**: `cd android && ./gradlew clean && cd ..`
+---
 
-### Debugging
-- **React DevTools**: Automatisch mit Metro
-- **Flipper**: Für Network-Debugging, Redux-State-Inspection
-- **Console Logs**: Vermeiden in Production - verwende `__DEV__` Flag
+## Web App Architektur (Next.js)
 
-## Feature-spezifische Patterns
+### Projekt-Struktur
+```
+book-ax-web/
+├── src/
+│   ├── app/               # Next.js 14 App Router
+│   │   └── [locale]/      # Multi-Language Routes
+│   ├── components/        # React Components
+│   │   ├── common/        # Shared Components (Header, Footer)
+│   │   ├── home/          # Homepage Components
+│   │   └── hotel/         # Hotel Components
+│   ├── lib/               # Utilities & Configs
+│   │   └── db/            # Supabase Client
+│   ├── i18n/              # Internationalization
+│   │   ├── config.ts      # Languages & Locales (50+ Sprachen)
+│   │   └── request.ts     # next-intl Request Config
+│   ├── middleware.ts      # Next.js Middleware (Language Detection)
+│   └── types/             # TypeScript Types
+├── messages/              # Translation Files (50+ .json)
+│   ├── de.json
+│   ├── en.json
+│   └── ...
+└── public/                # Static Assets
+```
 
-### Authentication Flow
-- Token in AsyncStorage speichern
-- Auto-Login bei App-Start in `App.tsx`
-- Protected Routes mit Navigation Guards
+### Internationalization (i18n)
+- **next-intl** für Multi-Language Support
+- **50 Sprachen**: Top 9 (de, en, zh, hi, es, ar, fr, tr, ru) + 41 weitere
+- **URL-basiert**: `/de`, `/en`, `/es`, etc.
+- **Config**: `src/i18n/config.ts` (Locales, Language Names)
+- **Request Config**: `src/i18n/request.ts` (verwendet `requestLocale` API)
 
-### Search Feature
-- Debounce bei Sucheingabe (300ms)
-- Filter-State in Redux für Persistenz
-- Lazy Loading mit FlatList für große Listen
+```typescript
+// i18n/config.ts - Language Configuration
+export const locales = ['de', 'en', 'zh', 'hi', 'es', ...] as const;
+export type Locale = (typeof locales)[number];
+export const languageNames: Record<Locale, string> = { ... };
 
-### Booking Flow
-- Multi-Step Form mit Navigation
-- State Persistence bei Navigation zurück
-- Validierung vor jedem Step-Übergang
+// i18n/request.ts - Next-Intl Request Config
+import {getRequestConfig} from 'next-intl/server';
 
-### Payments
-- Niemals Kreditkartendaten direkt speichern
-- Verwende Payment-Provider SDK (Stripe/PayPal)
-- PCI-DSS Compliance beachten
+export default getRequestConfig(async ({requestLocale}) => {
+  let locale = await requestLocale;
+  return {
+    locale,
+    messages: (await import(`../../messages/${locale}.json`)).default
+  };
+});
+```
+
+### Styling & UI
+- **Tailwind CSS** für Styling
+- **Responsive Design**: Mobile-first Approach
+- **Components**: Modular, wiederverwendbar
+- **No inline styles**: Immer Tailwind Classes verwenden
+
+### Web App starten
+```bash
+cd book-ax-web
+npm run dev            # Development Server (localhost:3000)
+npm run build          # Production Build
+npm start              # Production Server
+```
+
+---
+
+## Backend & Database
+
+### Supabase Integration
+- **Database**: PostgreSQL via Supabase
+- **Auth**: Supabase Auth (Row Level Security)
+- **Storage**: Supabase Storage für Bilder
+- **Real-time**: Supabase Realtime (optional)
+
+### Environment Variables
+```bash
+# Supabase (beide Projekte)
+NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbG...
+SUPABASE_SERVICE_ROLE_KEY=eyJhbG...  # Server-only!
+
+# JWT Secrets (Web)
+SUPABASE_JWT_SECRET=xxx
+
+# App URLs
+NEXT_PUBLIC_APP_URL=https://book-ax.vercel.app
+```
+
+### Supabase Client Pattern (Web)
+```typescript
+// src/lib/db/supabase.ts
+import { createClient } from '@supabase/supabase-js';
+
+// Browser Client (mit RLS)
+export const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'placeholder',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder'
+);
+
+// Admin Client (bypasses RLS, server-only!)
+export const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'placeholder',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder'
+);
+```
+
+---
+
+## Deployment & CI/CD
+
+### Vercel (Web App)
+- **Live URL**: https://book-ax.vercel.app
+- **Auto-Deploy**: Jeder `git push` deployed automatisch
+- **Dashboard**: https://vercel.com/bookax
+- **Root Directory**: `book-ax-web` (wichtig!)
+
+### Vercel Konfiguration
+```json
+// vercel.json (Root)
+{
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "outputDirectory": ".next"
+}
+```
+
+**WICHTIG**: Im Vercel Dashboard muss **Root Directory = `book-ax-web`** gesetzt sein!
+
+### Environment Variables in Vercel
+- Alle Env Vars im Vercel Dashboard setzen
+- **Production**, **Preview**, **Development** aktivieren
+- NIEMALS Secrets in Git committen!
+
+---
+
+## TypeScript Patterns
+
+### Mobile (React Native)
+```typescript
+// Komponenten mit React.FC
+const HotelCard: React.FC<HotelCardProps> = ({hotel, onPress}) => { ... };
+
+// Path Aliases
+import {Button} from '@components/Button';
+import {useAuth} from '@features/auth/hooks/useAuth';
+```
+
+### Web (Next.js)
+```typescript
+// Server Components (default in App Router)
+export default async function Page() {
+  const data = await fetchData();
+  return <div>{data}</div>;
+}
+
+// Client Components (mit 'use client')
+'use client';
+export function InteractiveComponent() { ... }
+
+// Typed Props
+interface PageProps {
+  params: { locale: string; id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+```
+
+---
+
+## Code-Qualität & Testing
+
+### ESLint Konfiguration
+- **Mobile**: `.eslintrc.mobile.js` (React Native Config)
+- **Web**: `book-ax-web/.eslintrc.json` (Next.js Config)
+
+```bash
+# Mobile
+npm run lint           # ESLint (Root)
+
+# Web
+cd book-ax-web
+npm run lint           # Next.js ESLint
+npm run type-check     # TypeScript Check
+```
+
+### Testing
+```bash
+# Mobile
+npm test               # Jest
+
+# Web
+cd book-ax-web
+npm test               # Jest (falls konfiguriert)
+```
+
+---
+
+## Git & Repository
+
+### Repository
+- **GitHub**: https://github.com/7Akdeniz/book.ax
+- **Owner**: 7Akdeniz
+- **Branch Strategy**: `main` für Production
+
+### Commit Messages (Best Practice)
+```
+feat: Add hotel booking flow
+fix: Resolve i18n language detection
+chore: Update dependencies
+docs: Update README with deployment instructions
+```
+
+---
+
+## Wichtige Dateien & Pfade
+
+### Mobile App
+```
+src/
+├── features/          # Feature-Module
+├── components/        # Shared Components
+├── navigation/        # Navigation Config
+├── services/          # API Services
+├── store/            # Redux Store
+├── types/            # TypeScript Types
+└── utils/            # Helper Functions
+```
+
+### Web App
+```
+book-ax-web/
+├── src/app/[locale]/  # Multi-Language Pages
+├── src/components/    # React Components
+├── src/i18n/         # i18n Config (WICHTIG!)
+├── src/lib/db/       # Supabase Client
+├── messages/         # Translations (50+ Sprachen)
+└── public/           # Static Files
+```
+
+---
+
+## Häufige Probleme & Lösungen
+
+### Mobile
+- **Metro Cache**: `npm start -- --reset-cache`
+- **iOS Pods**: `cd ios && pod install && cd ..`
+- **Android Build**: `cd android && ./gradlew clean`
+
+### Web
+- **Build Error**: Prüfe Environment Variables in Vercel Dashboard
+- **i18n Error**: Stelle sicher `src/i18n/request.ts` existiert
+- **Vercel Root Directory**: MUSS auf `book-ax-web` gesetzt sein!
+
+### Supabase
+- **Missing Env Vars**: Verwende Placeholders zur Build-Zeit
+- **RLS Errors**: Prüfe Row Level Security Policies
+- **CORS**: Füge Domain zu Supabase Allowed Origins hinzu
+
+---
 
 ## Performance Best Practices
 
-- **FlatList** statt ScrollView für lange Listen mit `getItemLayout` wenn möglich
+### Mobile
+- **FlatList** für lange Listen (mit `getItemLayout`)
 - **React.memo()** für teure Komponenten
-- **useMemo/useCallback** für Optimierungen, aber nicht überall
-- **Image-Optimierung**: Komprimierte Assets, `react-native-fast-image` für Remote-Images
-- **Bundle Size**: Nur benötigte Icons importieren (`react-native-vector-icons`)
+- **Image-Optimierung**: `react-native-fast-image`
 
-## Testing
+### Web
+- **Next.js Image**: `<Image />` statt `<img>`
+- **Dynamic Imports**: Code-Splitting für große Components
+- **Static Generation**: Nutze `generateStaticParams` wo möglich
 
+---
+
+## Nützliche Befehle
+
+### Mobile
 ```bash
-npm test               # Jest Unit Tests
-```
-
-- **Unit Tests** für Utils, Hooks, Redux Slices
-- **Component Tests** mit React Testing Library
-- Test-Files neben Source-Files: `Component.test.tsx`
-
-## Code-Qualität
-
-```bash
+npm start              # Start Expo
+npm run ios            # iOS Simulator
+npm run android        # Android Emulator
 npm run lint           # ESLint
-npx tsc --noEmit       # TypeScript Type-Check
 ```
 
-- **ESLint** mit React Native Config
-- **Prettier** für Formatierung (2 Spaces, Single Quotes)
-- Pre-commit Hooks (optional) für automatisches Linting
+### Web
+```bash
+cd book-ax-web
+npm run dev            # Development (localhost:3000)
+npm run build          # Production Build
+npm start              # Production Server
+npm run lint           # ESLint
+npm run type-check     # TypeScript
+```
 
-## Platform-Spezifisches
+### Deployment
+```bash
+git add .
+git commit -m "feat: Add new feature"
+git push origin main   # Auto-Deploy zu Vercel
+```
 
-### iOS
-- Minimum iOS 13.0
-- Permissions in `ios/Bookax/Info.plist` (Location, Camera, etc.)
-- Deep Linking: URL Schemes in Xcode konfigurieren
+---
 
-### Android
-- Minimum SDK 21 (Android 5.0)
-- Permissions in `android/app/src/main/AndroidManifest.xml`
-- Gradle Build Variants für Dev/Staging/Prod
+## Wichtige Links & Ressourcen
 
-## Wichtige Hinweise
+| Ressource | Link |
+|-----------|------|
+| **Live Web App** | https://book-ax.vercel.app |
+| **Vercel Dashboard** | https://vercel.com/bookax |
+| **GitHub Repo** | https://github.com/7Akdeniz/book.ax |
+| **Supabase** | https://supabase.com/dashboard |
+| **Next.js Docs** | https://nextjs.org/docs |
+| **Expo Docs** | https://docs.expo.dev |
 
-- **Keine Inline-Styles** in JSX - immer StyleSheet verwenden
-- **TypeScript Strict Mode** ist aktiviert - keine `any` Types
-- **Navigation** immer typisiert - verwende definierte Param-Lists
-- **AsyncStorage** für kleine Daten, Realm/SQLite für größere Datenmengen
-- **Environment Variables**: React Native Config für API-URLs, Keys
-- **Secrets**: Niemals API-Keys im Code - verwende `.env` Files (nicht committen)
+---
+
+## Sicherheit & Best Practices
+
+### Niemals committen:
+- `.env` Files mit Secrets
+- API Keys, Tokens
+- Supabase Service Role Key
+- Stripe Secret Keys
+
+### Immer .gitignore:
+```
+.env
+.env.local
+.env.production
+.env.prod
+*.key
+*.pem
+```
+
+### Environment Variables Handling:
+- **Development**: `.env.local` (nicht committen)
+- **Production**: Vercel Dashboard / Platform-Secrets
+- **Build-Time**: Verwende Placeholders wenn nötig
+
+---
+
+**Letzte Aktualisierung**: 13. November 2025  
+**Status**: ✅ Web App deployed, Mobile App in Development
 
 ## Nützliche Befehle für AI Agents
 
