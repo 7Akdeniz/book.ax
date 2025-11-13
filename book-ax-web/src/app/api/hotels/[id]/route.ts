@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/db/supabase';
 import { handleApiError, NotFoundError } from '@/utils/errors';
 
+// ✅ PERFORMANCE: Cache individual hotel details for 10 minutes
+// Hotel details change even less frequently than search results
+export const revalidate = 600; // 10 minutes
+
 export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }

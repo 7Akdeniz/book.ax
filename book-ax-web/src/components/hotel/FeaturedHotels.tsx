@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLocale } from 'next-intl';
 
 const featuredHotels = [
@@ -58,10 +59,14 @@ export function FeaturedHotels() {
           className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
         >
           <div className="aspect-[4/3] relative overflow-hidden">
-            <img
+            <Image
               src={hotel.image}
-              alt={hotel.name}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              alt={`${hotel.name} in ${hotel.city}`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              className="object-cover group-hover:scale-110 transition-transform duration-300"
+              loading="lazy"
+              quality={85}
             />
           </div>
           <div className="p-4">

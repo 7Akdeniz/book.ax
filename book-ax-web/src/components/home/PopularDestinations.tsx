@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLocale } from 'next-intl';
 
 const destinations = [
@@ -39,18 +40,25 @@ export function PopularDestinations() {
         <Link
           key={destination.name}
           href={`/${locale}/search?destination=${destination.name}`}
-          className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
+          className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-primary-500 focus:ring-offset-2 transition-all"
+          aria-label={`Explore ${destination.hotels} hotels in ${destination.name}, ${destination.country}`}
         >
           <div className="aspect-[4/3] relative">
-            <img
+            <Image
               src={destination.image}
-              alt={destination.name}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              alt={`${destination.name}, ${destination.country}`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              className="object-cover group-hover:scale-110 transition-transform duration-300"
+              loading="lazy"
+              quality={85}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
               <h3 className="text-xl font-bold">{destination.name}</h3>
-              <p className="text-sm opacity-90">{destination.hotels} Hotels</p>
+              <p className="text-sm opacity-90" aria-label={`${destination.hotels} hotels available`}>
+                {destination.hotels} Hotels
+              </p>
             </div>
           </div>
         </Link>

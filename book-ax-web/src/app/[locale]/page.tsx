@@ -2,22 +2,28 @@ import { useTranslations } from 'next-intl';
 import { SearchBar } from '@/components/common/SearchBar';
 import { FeaturedHotels } from '@/components/hotel/FeaturedHotels';
 import { PopularDestinations } from '@/components/home/PopularDestinations';
+import { OrganizationStructuredData, SearchActionStructuredData } from '@/components/seo/StructuredData';
 
 export default function HomePage() {
   const t = useTranslations('home');
 
   return (
-    <div className="w-full bg-white">
+    <>
+      {/* SEO: Structured Data */}
+      <OrganizationStructuredData />
+      <SearchActionStructuredData />
+      
+      <div className="w-full bg-white">
       {/* Hero Section - Full Width, Larger Text */}
       <section className="w-full bg-white py-16 px-6">
         <div className="w-full max-w-none">
           
           {/* Title and Subtitle - Larger */}
           <div className="text-center mb-10">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-gray-900">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
               {t('title')}
             </h1>
-            <p className="text-2xl md:text-3xl text-gray-600">
+            <p className="text-xl md:text-2xl text-gray-600">
               {t('subtitle')}
             </p>
           </div>
@@ -88,6 +94,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

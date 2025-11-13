@@ -3,6 +3,13 @@ import { supabaseAdmin } from '@/lib/db/supabase';
 import { searchSchema } from '@/utils/validation';
 import { handleApiError } from '@/utils/errors';
 
+// ✅ PERFORMANCE: Cache hotel search results for 5 minutes
+// Hotels don't change frequently, so we can cache the results
+export const revalidate = 300; // 5 minutes in seconds
+
+// ✅ PERFORMANCE: Enable Edge Runtime for faster response times
+// export const runtime = 'edge'; // Optional: Enable if needed
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);

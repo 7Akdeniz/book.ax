@@ -1,8 +1,23 @@
 import jwt from 'jsonwebtoken';
 import { User } from '@/types/models';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
-const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'your-refresh-secret-key';
+// ✅ SECURITY: Fail-fast if secrets are not configured
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET;
+
+if (!JWT_SECRET || JWT_SECRET.length < 32) {
+  throw new Error(
+    'FATAL: JWT_SECRET not configured or too short! ' +
+    'Set a strong JWT_SECRET (min. 32 characters) in environment variables.'
+  );
+}
+
+if (!JWT_REFRESH_SECRET || JWT_REFRESH_SECRET.length < 32) {
+  throw new Error(
+    'FATAL: JWT_REFRESH_SECRET not configured or too short! ' +
+    'Set a strong JWT_REFRESH_SECRET (min. 32 characters) in environment variables.'
+  );
+}
 
 const ACCESS_TOKEN_EXPIRY = '15m';
 const REFRESH_TOKEN_EXPIRY = '7d';
