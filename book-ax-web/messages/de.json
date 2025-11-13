@@ -345,5 +345,133 @@
       "highlight": "Nur Provision ab 10 % – alles andere kostenlos.",
       "button": "Jetzt kostenlos registrieren"
     }
+  },
+  "terms": {
+    "metaDescription": "Allgemeine Geschäftsbedingungen von Book.ax - Ihre Hotel-Buchungsplattform",
+    "title": "Allgemeine Geschäftsbedingungen (AGB)",
+    "lastUpdated": "Letzte Aktualisierung: 13. November 2025",
+    "section1": {
+      "title": "1. Geltungsbereich",
+      "intro": "Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung der Buchungsplattform Book.ax und regeln das Vertragsverhältnis zwischen:",
+      "party1": "Book.ax (nachfolgend \"wir\" oder \"Plattform\")",
+      "party2": "Hoteliers und Unterkunftsanbietern (nachfolgend \"Partner\")",
+      "party3": "Gästen und Buchenden (nachfolgend \"Nutzer\" oder \"Sie\")"
+    },
+    "section2": {
+      "title": "2. Leistungsbeschreibung",
+      "intro": "Book.ax ist eine Online-Buchungsplattform für Hotels und Unterkünfte. Wir bieten:",
+      "service1": "Vermittlung von Hotelzimmern und Unterkünften",
+      "service2": "Sichere Online-Buchung und Zahlungsabwicklung",
+      "service3": "Verwaltungstools für Hoteliers (Hotelier Dashboard)",
+      "service4": "Mehrsprachige Plattform (50+ Sprachen)",
+      "service5": "Kundenservice und Support",
+      "note": "Book.ax tritt als Vermittler zwischen Hotels und Gästen auf. Der eigentliche Beherbergungsvertrag wird zwischen Gast und Hotel geschlossen."
+    },
+    "section3": {
+      "title": "3. Buchungsprozess",
+      "guests": {
+        "title": "3.1 Für Gäste",
+        "rule1": "Die Auswahl eines Hotels stellt ein verbindliches Angebot dar",
+        "rule2": "Die Buchungsbestätigung erfolgt per E-Mail",
+        "rule3": "Es gelten die angegebenen Preise zum Zeitpunkt der Buchung",
+        "rule4": "Stornierungsbedingungen variieren je nach Hotel"
+      },
+      "hoteliers": {
+        "title": "3.2 Für Hoteliers",
+        "rule1": "Partner verpflichten sich, Zimmerverfügbarkeiten aktuell zu halten",
+        "rule2": "Buchungsbestätigungen müssen innerhalb von 24h erfolgen",
+        "rule3": "Falsche Angaben können zur Sperrung führen"
+      }
+    },
+    "section4": {
+      "title": "4. Preise und Zahlung",
+      "intro": "Alle Preise sind in Euro (€) angegeben und verstehen sich inklusive gesetzlicher Mehrwertsteuer, sofern nicht anders angegeben.",
+      "payment": {
+        "title": "4.1 Zahlungsmethoden",
+        "method1": "Kreditkarte (Visa, Mastercard, American Express)",
+        "method2": "PayPal",
+        "method3": "SEPA-Lastschrift",
+        "method4": "Vor-Ort-Zahlung (je nach Hotel)"
+      },
+      "commission": {
+        "title": "4.2 Provision",
+        "text": "Book.ax erhebt eine Provision von 10-50% (je nach Vereinbarung) auf erfolgreiche Buchungen. Die Provision wird automatisch vom Buchungsbetrag einbehalten."
+      }
+    },
+    "section5": {
+      "title": "5. Stornierung und Rückerstattung",
+      "intro": "Die Stornierungsbedingungen werden vom jeweiligen Hotel festgelegt und sind vor der Buchung einsehbar.",
+      "rulesTitle": "Typische Regelungen:",
+      "rule1": "Kostenlose Stornierung: Bis zu X Tage vor Anreise",
+      "rule2": "Teilweise Rückerstattung: Bei Stornierung innerhalb der Frist",
+      "rule3": "Keine Rückerstattung: Bei No-Show oder Stornierung am Anreisetag",
+      "refund": "Rückerstattungen erfolgen auf das ursprüngliche Zahlungsmittel innerhalb von 5-10 Werktagen."
+    },
+    "section6": {
+      "title": "6. Nutzerverhalten und Pflichten",
+      "prohibited": {
+        "title": "6.1 Verbotene Aktivitäten",
+        "activity1": "Missbrauch der Plattform für illegale Zwecke",
+        "activity2": "Falsche oder irreführende Informationen",
+        "activity3": "Manipulation von Bewertungen",
+        "activity4": "Verstoß gegen geltende Gesetze"
+      },
+      "consequences": {
+        "title": "6.2 Konsequenzen",
+        "intro": "Bei Verstößen gegen diese AGB behalten wir uns vor:",
+        "consequence1": "Buchungen zu stornieren",
+        "consequence2": "Nutzerkonten zu sperren",
+        "consequence3": "Schadensersatz geltend zu machen",
+        "consequence4": "Rechtliche Schritte einzuleiten"
+      }
+    },
+    "section7": {
+      "title": "7. Haftung",
+      "intro": "Book.ax haftet ausschließlich für die Vermittlung zwischen Hotel und Gast. Für die tatsächliche Leistungserbringung (Unterkunft, Service, etc.) ist das jeweilige Hotel verantwortlich.",
+      "disclaimerTitle": "Haftungsausschluss:",
+      "disclaimer1": "Keine Haftung für fehlerhafte Hotelangaben",
+      "disclaimer2": "Keine Haftung für Schäden während des Aufenthalts",
+      "disclaimer3": "Keine Haftung für technische Störungen (Force Majeure)",
+      "note": "Die Haftung für vorsätzliche oder grob fahrlässige Pflichtverletzungen bleibt unberührt."
+    },
+    "section8": {
+      "title": "8. Datenschutz",
+      "intro": "Der Schutz Ihrer persönlichen Daten ist uns wichtig. Ausführliche Informationen finden Sie in unserer",
+      "privacyLink": "Datenschutzerklärung",
+      "note": "Wir verarbeiten Ihre Daten ausschließlich im Rahmen der DSGVO und geltender Datenschutzgesetze."
+    },
+    "section9": {
+      "title": "9. Änderungen der AGB",
+      "text1": "Wir behalten uns vor, diese AGB jederzeit zu ändern. Änderungen werden 30 Tage vor Inkrafttreten auf der Website veröffentlicht.",
+      "text2": "Bei wesentlichen Änderungen werden registrierte Nutzer per E-Mail informiert."
+    },
+    "section10": {
+      "title": "10. Streitbeilegung und anwendbares Recht",
+      "law": {
+        "title": "10.1 Anwendbares Recht",
+        "text": "Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts."
+      },
+      "jurisdiction": {
+        "title": "10.2 Gerichtsstand",
+        "text": "Gerichtsstand für alle Streitigkeiten ist, soweit gesetzlich zulässig, der Sitz von Book.ax."
+      },
+      "odr": {
+        "title": "10.3 Online-Streitbeilegung",
+        "intro": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:"
+      }
+    },
+    "section11": {
+      "title": "11. Salvatorische Klausel",
+      "text": "Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen hiervon unberührt."
+    },
+    "section12": {
+      "title": "12. Kontakt",
+      "intro": "Bei Fragen zu diesen AGB oder unseren Dienstleistungen erreichen Sie uns:",
+      "company": "Book.ax",
+      "address1": "3171 Burnham Ave",
+      "address2": "Las Vegas, NV 89169, USA",
+      "email": "E-Mail: i@book.ax"
+    },
+    "footer": "Mit der Nutzung von Book.ax stimmen Sie diesen Allgemeinen Geschäftsbedingungen zu."
   }
 }
