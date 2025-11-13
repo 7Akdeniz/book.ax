@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { locales } from '@/i18n/config';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
+import Script from 'next/script';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -30,22 +31,23 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale}>
-      <head>
-        <title>Book.ax - Find Your Perfect Stay</title>
-        <meta name="description" content="Book hotels worldwide - Over 500,000 properties" />
-      </head>
-      <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      <Script
+        id="set-lang-attr"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.lang='${locale}'`
+        }}
+      />
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </div>
+      </NextIntlClientProvider>
+    </>
   );
 }
