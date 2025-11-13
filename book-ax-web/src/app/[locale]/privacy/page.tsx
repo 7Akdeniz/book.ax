@@ -52,10 +52,9 @@ export default function PrivacyPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="font-semibold">Book.ax</p>
-                <p>Musterstraße 123</p>
-                <p>12345 Musterstadt, Deutschland</p>
-                <p className="mt-2">E-Mail: privacy@book.ax</p>
-                <p>Telefon: +49 (0) 123 456789</p>
+                <p>3171 Burnham Ave</p>
+                <p>Las Vegas, NV 89169, USA</p>
+                <p className="mt-2">E-Mail: i@book.ax</p>
               </div>
               <p className="mt-3">
                 Bei Fragen zum Datenschutz können Sie sich jederzeit an uns wenden.
@@ -372,8 +371,9 @@ export default function PrivacyPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="font-semibold">Datenschutzbeauftragter Book.ax</p>
-                <p>E-Mail: privacy@book.ax</p>
-                <p>Telefon: +49 (0) 123 456789</p>
+                <p>3171 Burnham Ave</p>
+                <p>Las Vegas, NV 89169, USA</p>
+                <p className="mt-2">E-Mail: i@book.ax</p>
               </div>
             </div>
           </section>

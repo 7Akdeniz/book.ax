@@ -455,8 +455,10 @@ export default function CookiesPage() {
                 Bei Fragen zu Cookies kontaktieren Sie uns bitte:
               </p>
               <div className="bg-gray-50 p-4 rounded-lg mt-2">
-                <p>E-Mail: privacy@book.ax</p>
-                <p>Telefon: +49 (0) 123 456789</p>
+                <p className="font-semibold">Book.ax</p>
+                <p>3171 Burnham Ave</p>
+                <p>Las Vegas, NV 89169, USA</p>
+                <p className="mt-2">E-Mail: i@book.ax</p>
               </div>
             </div>
           </section>
