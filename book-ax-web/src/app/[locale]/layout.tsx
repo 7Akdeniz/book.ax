@@ -1,7 +1,7 @@
 import '@/app/globals.css';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { locales } from '@/i18n/request';
+import { locales } from '@/i18n/config';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 
