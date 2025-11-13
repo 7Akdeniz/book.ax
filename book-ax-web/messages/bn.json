@@ -1,19 +1,19 @@
 {
   "common": {
     "appName": "Book.ax",
-    "search": "Search",
-    "login": "Login",
-    "register": "Register",
-    "logout": "Logout",
-    "profile": "Profile",
-    "bookings": "My Bookings",
+    "search": "খুঁজুন",
+    "login": "লগইন",
+    "register": "নিবন্ধন",
+    "logout": "লগআউট",
+    "profile": "প্রোফাইল",
+    "bookings": "আমার বুকিং",
     "dashboard": "Dashboard",
     "admin": "Admin",
-    "loading": "Loading...",
+    "loading": "লোড হচ্ছে...",
     "error": "Error",
     "success": "Success",
-    "cancel": "Cancel",
-    "save": "Save",
+    "cancel": "বাতিল",
+    "save": "সংরক্ষণ",
     "delete": "Delete",
     "edit": "Edit",
     "back": "Back",
@@ -34,7 +34,10 @@
     "whyBookWithUs": "Why Book With Us",
     "bestPriceGuarantee": "Best Price Guarantee",
     "noCreditCardFees": "No Credit Card Fees",
-    "freeChangesCancellation": "Free Changes & Cancellation"
+    "freeChangesCancellation": "Free Changes & Cancellation",
+    "bestPriceGuaranteeDesc": "Find the best prices or we'll refund the difference",
+    "noCreditCardFeesDesc": "No hidden fees, pay exactly what you see",
+    "freeChangesCancellationDesc": "Flexible booking with free cancellation"
   },
   "search": {
     "results": "Search Results",
@@ -161,5 +164,28 @@
     "notFound": "Not found",
     "serverError": "Server error",
     "networkError": "Network error"
+  },
+  "header": {
+    "hotels": "Hotels",
+    "forHoteliers": "For Hoteliers",
+    "myBookings": "My Bookings",
+    "login": "Login",
+    "signUp": "Sign Up"
+  },
+  "footer": {
+    "tagline": "Your all-in-one hotel booking and management platform",
+    "forGuests": "For Guests",
+    "searchHotels": "Search Hotels",
+    "myBookings": "My Bookings",
+    "helpCenter": "Help Center",
+    "forHoteliers": "For Hoteliers",
+    "dashboard": "Dashboard",
+    "listYourProperty": "List Your Property",
+    "pricing": "Pricing",
+    "legal": "Legal",
+    "termsConditions": "Terms & Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
+    "copyright": "© 2025 Book.ax. All rights reserved. Made with ❤️ for the hospitality industry"
   }
 }

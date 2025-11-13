@@ -1,11 +1,12 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher';
 
 export function Header() {
   const locale = useLocale();
+  const t = useTranslations('header');
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -19,33 +20,37 @@ export function Header() {
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link href={`/${locale}/search`} className="text-gray-700 hover:text-primary-600">
-              Hotels
+              {t('hotels')}
             </Link>
             <Link href={`/${locale}/panel`} className="text-gray-700 hover:text-primary-600">
-              For Hoteliers
+              {t('forHoteliers')}
             </Link>
             <Link href={`/${locale}/my-bookings`} className="text-gray-700 hover:text-primary-600">
-              My Bookings
+              {t('myBookings')}
             </Link>
           </nav>
 
           {/* Right Side */}
-          <div className="flex items-center space-x-4">
-            <LanguageSwitcher />
+          <div className="flex items-center gap-8">
+            <div className="flex items-center space-x-4">
+              <Link 
+                href={`/${locale}/login`}
+                className="text-gray-700 hover:text-primary-600"
+              >
+                {t('login')}
+              </Link>
+              
+              <Link 
+                href={`/${locale}/register`}
+                className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700"
+              >
+                {t('signUp')}
+              </Link>
+            </div>
             
-            <Link 
-              href={`/${locale}/login`}
-              className="text-gray-700 hover:text-primary-600"
-            >
-              Login
-            </Link>
-            
-            <Link 
-              href={`/${locale}/register`}
-              className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700"
-            >
-              Sign Up
-            </Link>
+            <div className="ml-4">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
       </div>

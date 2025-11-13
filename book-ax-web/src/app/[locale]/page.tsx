@@ -63,7 +63,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-3xl font-semibold mb-4">{t('bestPriceGuarantee')}</h3>
-              <p className="text-gray-600 text-xl">Find the best prices or we&apos;ll refund the difference</p>
+              <p className="text-gray-600 text-xl">{t('bestPriceGuaranteeDesc')}</p>
             </div>
 
             <div className="text-center">
@@ -73,7 +73,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-3xl font-semibold mb-4">{t('noCreditCardFees')}</h3>
-              <p className="text-gray-600 text-xl">No hidden fees, pay exactly what you see</p>
+              <p className="text-gray-600 text-xl">{t('noCreditCardFeesDesc')}</p>
             </div>
 
             <div className="text-center">
@@ -83,7 +83,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-3xl font-semibold mb-4">{t('freeChangesCancellation')}</h3>
-              <p className="text-gray-600 text-xl">Flexible booking with free cancellation</p>
+              <p className="text-gray-600 text-xl">{t('freeChangesCancellationDesc')}</p>
             </div>
           </div>
         </div>

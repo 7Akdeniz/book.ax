@@ -34,7 +34,10 @@
     "whyBookWithUs": "Warum bei uns buchen",
     "bestPriceGuarantee": "Bestpreis-Garantie",
     "noCreditCardFees": "Keine Kreditkartengebühren",
-    "freeChangesCancellation": "Kostenlose Änderungen & Stornierung"
+    "freeChangesCancellation": "Kostenlose Änderungen & Stornierung",
+    "bestPriceGuaranteeDesc": "Finden Sie die besten Preise oder wir erstatten die Differenz",
+    "noCreditCardFeesDesc": "Keine versteckten Gebühren, zahlen Sie genau das, was Sie sehen",
+    "freeChangesCancellationDesc": "Flexible Buchung mit kostenloser Stornierung"
   },
   "search": {
     "results": "Suchergebnisse",
@@ -161,5 +164,28 @@
     "notFound": "Nicht gefunden",
     "serverError": "Serverfehler",
     "networkError": "Netzwerkfehler"
+  },
+  "header": {
+    "hotels": "Hotels",
+    "forHoteliers": "Für Hoteliers",
+    "myBookings": "Meine Buchungen",
+    "login": "Anmelden",
+    "signUp": "Registrieren"
+  },
+  "footer": {
+    "tagline": "Ihre All-in-One-Plattform für Hotelbuchung und -verwaltung",
+    "forGuests": "Für Gäste",
+    "searchHotels": "Hotels suchen",
+    "myBookings": "Meine Buchungen",
+    "helpCenter": "Hilfe-Center",
+    "forHoteliers": "Für Hoteliers",
+    "dashboard": "Dashboard",
+    "listYourProperty": "Unterkunft eintragen",
+    "pricing": "Preise",
+    "legal": "Rechtliches",
+    "termsConditions": "AGB",
+    "privacyPolicy": "Datenschutz",
+    "cookiePolicy": "Cookie-Richtlinie",
+    "copyright": "© 2025 Book.ax. Alle Rechte vorbehalten. Mit ❤️ für die Hotelbranche"
   }
 }

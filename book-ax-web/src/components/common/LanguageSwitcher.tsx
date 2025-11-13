@@ -4,9 +4,7 @@ import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { languageNames, locales, type Locale } from '@/i18n/config';
 
-// Flag emojis for all 50 languages
 const flagEmojis: Record<Locale, string> = {
-  // Top 9 languages
   de: '🇩🇪',
   en: '🇬🇧',
   zh: '🇨🇳',
@@ -14,50 +12,49 @@ const flagEmojis: Record<Locale, string> = {
   es: '🇪🇸',
   ar: '🇸🇦',
   fr: '🇫🇷',
-  tr: '🇷',
+  tr: '🇹🇷',
   ru: '🇷🇺',
-  // Remaining 41 languages (alphabetically)
-  am: '��',
-  az: '�🇿',
-  bn: '��',
-  my: '��',
-  ceb: '��',
-  cs: '��',
-  nl: '🇱',
-  fil: '��',
-  el: '�🇷',
-  gu: '🇮�',
-  he: '🇮�',
+  am: '🇪🇹',
+  az: '🇦🇿',
+  bn: '🇧🇩',
+  my: '🇲🇲',
+  ceb: '🇵🇭',
+  cs: '🇨🇿',
+  nl: '🇳🇱',
+  fil: '🇵🇭',
+  el: '🇬🇷',
+  gu: '🇮🇳',
+  he: '🇮🇱',
   ha: '🇳🇬',
-  id: '��',
-  it: '��',
-  ja: '��',
-  jv: '🇮�',
-  kn: '��',
-  ko: '��',
-  ms: '🇲�',
+  id: '🇮🇩',
+  it: '🇮🇹',
+  ja: '🇯🇵',
+  jv: '🇮🇩',
+  kn: '🇮🇳',
+  ko: '🇰🇷',
+  ms: '🇲🇾',
   ml: '🇮🇳',
   mr: '🇮🇳',
-  ne: '��',
+  ne: '🇳🇵',
   om: '🇪🇹',
-  fa: '��',
-  pl: '🇱',
-  pa: '🇮�',
+  fa: '🇮🇷',
+  pl: '🇵🇱',
+  pa: '🇮🇳',
   ro: '🇷🇴',
-  sr: '🇸',
-  sd: '��',
-  si: '��',
+  sr: '🇷🇸',
+  sd: '🇵🇰',
+  si: '🇱🇰',
   so: '🇸🇴',
-  sw: '�🇿',
-  ta: '��',
+  sw: '🇹🇿',
+  ta: '🇮🇳',
   te: '🇮🇳',
-  th: '��',
-  uk: '�🇦',
-  ur: '��',
+  th: '🇹🇭',
+  uk: '🇺🇦',
+  ur: '🇵🇰',
   vi: '🇻🇳',
   yo: '🇳🇬',
-  zu: '��',
-  pt: '�🇹',
+  zu: '🇿🇦',
+  pt: '🇵🇹',
 };
 
 export function LanguageSwitcher() {
@@ -66,18 +63,17 @@ export function LanguageSwitcher() {
   const pathname = usePathname();
 
   const switchLanguage = (newLocale: Locale) => {
-    // Replace current locale in path with new locale
     const segments = pathname.split('/');
     segments[1] = newLocale;
     const newPath = segments.join('/');
     
-    router.push(newPath);
-    
-    // Store in cookie
+    // Set cookie before navigation
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
+    
+    // Force full page reload to load new translations
+    window.location.href = newPath;
   };
 
-  // Keep the order from i18n.ts: Top 9 first, then alphabetically sorted
   const orderedLocales = locales;
 
   return (
