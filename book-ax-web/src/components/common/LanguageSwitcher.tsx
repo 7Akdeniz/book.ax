@@ -2,7 +2,7 @@
 
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
-import { languageNames, locales, type Locale } from '@/i18n';
+import { languageNames, locales, type Locale } from '@/i18n/request';
 
 // Flag emojis for all 50 languages
 const flagEmojis: Record<Locale, string> = {
