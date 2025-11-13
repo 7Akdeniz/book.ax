@@ -63,7 +63,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-3xl font-semibold mb-4">{t('bestPriceGuarantee')}</h3>
-              <p className="text-gray-600 text-xl">Find the best prices or we'll refund the difference</p>
+              <p className="text-gray-600 text-xl">Find the best prices or we&apos;ll refund the difference</p>
             </div>
 
             <div className="text-center">
