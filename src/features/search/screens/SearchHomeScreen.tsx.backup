@@ -1,0 +1,158 @@
+import React, {useState} from 'react';
+import {View, Text, TextInput, StyleSheet, ScrollView, Alert} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {SearchStackParamList} from '@navigation/types';
+import {Button} from '@components/Button';
+import {useSearch} from '../hooks/useSearch';
+import {colors, spacing, borderRadius, typography} from '@utils/theme';
+
+type Props = NativeStackScreenProps<SearchStackParamList, 'SearchHome'>;
+
+export const SearchHomeScreen: React.FC<Props> = ({navigation}) => {
+  const {filters, setFilters, searchHotels, isLoading} = useSearch();
+  const [destination, setDestination] = useState(filters.destination || '');
+  const [checkIn, setCheckIn] = useState(filters.checkIn || '');
+  const [checkOut, setCheckOut] = useState(filters.checkOut || '');
+  const [guests, setGuests] = useState(filters.guests?.toString() || '2');
+
+  const handleSearch = async () => {
+    if (!destination.trim()) {
+      Alert.alert('Fehler', 'Bitte geben Sie ein Reiseziel ein');
+      return;
+    }
+
+    // Update filters
+    setFilters({
+      destination: destination.trim(),
+      checkIn,
+      checkOut,
+      guests: parseInt(guests, 10) || 2,
+    });
+
+    // Perform search
+    const result = await searchHotels();
+
+    if (result.success) {
+      navigation.navigate('SearchResults', {
+        destination: destination.trim(),
+        checkIn,
+        checkOut,
+        guests: parseInt(guests, 10) || 2,
+      });
+    } else {
+      Alert.alert('Fehler', result.error || 'Suche fehlgeschlagen');
+    }
+  };
+
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <Text style={styles.title}>🏨 Hotels finden</Text>
+      <Text style={styles.subtitle}>Finden Sie Ihre perfekte Unterkunft</Text>
+
+      <View style={styles.form}>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Reiseziel</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="z.B. Berlin, Deutschland"
+            value={destination}
+            onChangeText={setDestination}
+            autoCapitalize="words"
+          />
+        </View>
+
+        <View style={styles.row}>
+          <View style={[styles.inputContainer, styles.halfWidth]}>
+            <Text style={styles.label}>Check-in</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="TT.MM.JJJJ"
+              value={checkIn}
+              onChangeText={setCheckIn}
+            />
+          </View>
+
+          <View style={[styles.inputContainer, styles.halfWidth]}>
+            <Text style={styles.label}>Check-out</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="TT.MM.JJJJ"
+              value={checkOut}
+              onChangeText={setCheckOut}
+            />
+          </View>
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Anzahl Gäste</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="2"
+            value={guests}
+            onChangeText={setGuests}
+            keyboardType="number-pad"
+          />
+        </View>
+
+        <Button
+          title="Hotels suchen"
+          onPress={handleSearch}
+          loading={isLoading}
+          style={styles.searchButton}
+        />
+      </View>
+    </ScrollView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  content: {
+    padding: spacing.lg,
+  },
+  title: {
+    ...typography.h1,
+    textAlign: 'center',
+    marginBottom: spacing.sm,
+    marginTop: spacing.xl,
+  },
+  subtitle: {
+    ...typography.h3,
+    textAlign: 'center',
+    color: colors.textSecondary,
+    marginBottom: spacing.xl,
+  },
+  form: {
+    width: '100%',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  inputContainer: {
+    marginBottom: spacing.lg,
+  },
+  halfWidth: {
+    width: '48%',
+  },
+  label: {
+    ...typography.body,
+    fontWeight: '600',
+    marginBottom: spacing.xs,
+    color: colors.textPrimary,
+  },
+  input: {
+    ...typography.body,
+    borderWidth: 1,
+    borderColor: colors.gray300,
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
+    backgroundColor: colors.white,
+  },
+  searchButton: {
+    marginTop: spacing.md,
+  },
+});

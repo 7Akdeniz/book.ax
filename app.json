@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "Book.ax",
+    "slug": "bookax",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.svg",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.svg",
+      "resizeMode": "contain",
+      "backgroundColor": "#9C27B0"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bookax.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Book.ax benötigt Zugriff auf die Kamera für Profilbilder.",
+        "NSPhotoLibraryUsageDescription": "Book.ax benötigt Zugriff auf Ihre Fotos."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.svg",
+        "backgroundColor": "#9C27B0"
+      },
+      "package": "com.bookax.app",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.svg",
+      "bundler": "metro"
+    },
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "bookax-app"
+      }
+    }
+  },
+  "name": "bookax"
+}

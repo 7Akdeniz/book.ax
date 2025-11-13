@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book.ax QR-Codes - Testsuite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #9C27B0 0%, #673AB7 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+        
+        .qr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .qr-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .qr-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .qr-card h2 {
+            color: #9C27B0;
+            font-size: 24px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .qr-card .emoji {
+            font-size: 32px;
+        }
+        
+        .qr-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .qr-image-container {
+            background: #f5f5f5;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .qr-image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .qr-url {
+            background: #f0f0f0;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            word-break: break-all;
+            color: #9C27B0;
+            margin-bottom: 15px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: #9C27B0;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background: #7B1FA2;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .info-box h2 {
+            color: #9C27B0;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-box li {
+            color: #666;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-box li:last-child {
+            border-bottom: none;
+        }
+        
+        .status-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 Book.ax QR-Codes</h1>
+        <p class="subtitle">Scanne die QR-Codes mit deinem Smartphone zum Testen</p>
+        
+        <div class="qr-grid">
+            <!-- Localhost QR-Code -->
+            <div class="qr-card">
+                <h2>
+                    <span class="emoji">🏠</span>
+                    Localhost (Testen)
+                </h2>
+                <p>Für lokales Testen. Stelle sicher, dass dein Handy im selben WLAN ist wie dein Computer.</p>
+                <div class="qr-image-container">
+                    <img src="/qr-codes/book-ax-localhost.png" alt="Book.ax Localhost QR-Code">
+                </div>
+                <div class="qr-url">http://localhost:3001/en</div>
+                <a href="/qr-codes/book-ax-localhost.png" download class="download-btn">PNG herunterladen</a>
+                <a href="/qr-codes/book-ax-localhost.svg" download class="download-btn" style="margin-left: 10px;">SVG herunterladen</a>
+            </div>
+            
+            <!-- Production QR-Code -->
+            <div class="qr-card">
+                <h2>
+                    <span class="emoji">🌐</span>
+                    Production
+                </h2>
+                <p>Für die Live-Website. Funktioniert sobald Book.ax online ist.</p>
+                <div class="qr-image-container">
+                    <img src="/qr-codes/book-ax-production.png" alt="Book.ax Production QR-Code">
+                </div>
+                <div class="qr-url">https://book.ax</div>
+                <a href="/qr-codes/book-ax-production.png" download class="download-btn">PNG herunterladen</a>
+            </div>
+            
+            <!-- Print QR-Code -->
+            <div class="qr-card">
+                <h2>
+                    <span class="emoji">🖨️</span>
+                    Druck-Version
+                </h2>
+                <p>Hochauflösender QR-Code (800x800px) für Flyer, Poster und Visitenkarten.</p>
+                <div class="qr-image-container">
+                    <img src="/qr-codes/book-ax-print.png" alt="Book.ax Print QR-Code">
+                </div>
+                <div class="qr-url">https://book.ax (High-Res)</div>
+                <a href="/qr-codes/book-ax-print.png" download class="download-btn">High-Res PNG herunterladen</a>
+            </div>
+        </div>
+        
+        <!-- Info Box -->
+        <div class="info-box">
+            <h2>📋 Anleitung zum Testen</h2>
+            <ul>
+                <li>
+                    <span style="font-size: 24px;">1️⃣</span>
+                    <div>
+                        <strong>Server läuft?</strong> 
+                        <span class="status-badge">✓ Server läuft auf Port 3001</span>
+                    </div>
+                </li>
+                <li>
+                    <span style="font-size: 24px;">2️⃣</span>
+                    <div>
+                        <strong>WLAN-Verbindung:</strong> Dein Smartphone muss im selben WLAN sein wie dein Mac
+                    </div>
+                </li>
+                <li>
+                    <span style="font-size: 24px;">3️⃣</span>
+                    <div>
+                        <strong>QR-Code scannen:</strong> Öffne die Kamera-App auf deinem iPhone/Android
+                    </div>
+                </li>
+                <li>
+                    <span style="font-size: 24px;">4️⃣</span>
+                    <div>
+                        <strong>Auf Benachrichtigung tippen:</strong> Du solltest zu Book.ax weitergeleitet werden
+                    </div>
+                </li>
+                <li>
+                    <span style="font-size: 24px;">💡</span>
+                    <div>
+                        <strong>Tipp:</strong> Falls es nicht funktioniert, versuche statt "localhost" die IP-Adresse deines Macs zu verwenden
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div style="margin-top: 30px; text-align: center;">
+            <p style="color: white; opacity: 0.8;">
+                🎨 QR-Codes in Book.ax Primary Color (#9C27B0)
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-refresh wenn Server neu startet
+        console.log('📱 Book.ax QR-Code Test Suite geladen');
+        console.log('🎨 QR-Codes generiert mit Primary Color: #9C27B0');
+    </script>
+</body>
+</html>
