@@ -68,3 +68,4 @@ local.properties
 # Misc
 .vscode/
 .idea/
+.vercel
