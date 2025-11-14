@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/db/supabase';
-import { handleApiError, ValidationError } from '@/utils/errors';
+import { handleApiErrorResponse, ValidationError } from '@/utils/errors';
 
 export async function POST(req: NextRequest) {
   try {
@@ -72,6 +72,6 @@ export async function POST(req: NextRequest) {
     );
 
   } catch (error) {
-    return handleApiError(error);
+    return handleApiErrorResponse(error);
   }
 }

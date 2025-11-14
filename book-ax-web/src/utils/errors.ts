@@ -80,6 +80,18 @@ export const handleApiError = (error: unknown): { error: string; status: number 
   };
 };
 
+// Error response handler for Next.js API routes (returns NextResponse)
+export const handleApiErrorResponse = (error: unknown) => {
+  const { error: message, status } = handleApiError(error);
+  
+  const NextResponse = require('next/server').NextResponse;
+  
+  return NextResponse.json(
+    { error: message },
+    { status }
+  );
+};
+
 // Format error for client response
 export const formatErrorResponse = (error: unknown) => {
   const { error: message, status } = handleApiError(error);
