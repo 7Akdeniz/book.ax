@@ -541,23 +541,167 @@
     }
   },
   "admin": {
-    "adminPanel": "Admin Panel",
-    "hotels": "Hotels",
-    "users": "Benutzer",
-    "commissions": "Provisionen",
-    "finances": "Finanzen",
-    "systemSettings": "Systemeinstellungen",
-    "otaConnections": "OTA-Verbindungen",
-    "systemLogs": "Systemprotokolle",
-    "analytics": "Analysen",
-    "approveHotel": "Hotel freischalten",
-    "rejectHotel": "Hotel ablehnen",
-    "suspendUser": "Benutzer sperren",
-    "activateUser": "Benutzer aktivieren",
-    "globalCommission": "Globale Provisionseinstellungen",
-    "taxSettings": "Steuereinstellungen",
-    "currencySettings": "Währungseinstellungen",
-    "countrySettings": "Ländereinstellungen"
+    "title": "Admin Panel",
+    "subtitle": "System administration and management",
+    "accessDenied": "Access Denied - Admin privileges required",
+    "loading": "Loading admin data...",
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "welcome": "Welcome, Administrator",
+      "overview": "System Overview",
+      "stats": {
+        "totalHotels": "Total Hotels",
+        "pendingApprovals": "Pending Approvals",
+        "totalUsers": "Total Users",
+        "totalRevenue": "Total Revenue",
+        "activeBookings": "Active Bookings",
+        "systemHealth": "System Health"
+      }
+    },
+    "hotels": {
+      "title": "Hotel Management",
+      "all": "All Hotels",
+      "pending": "Pending Approvals",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "suspended": "Suspended",
+      "approve": "Approve Hotel",
+      "reject": "Reject Hotel",
+      "suspend": "Suspend Hotel",
+      "reactivate": "Reactivate Hotel",
+      "viewDetails": "View Details",
+      "approvalDate": "Approval Date",
+      "status": "Status",
+      "commission": "Commission Rate",
+      "actions": "Actions",
+      "confirmApprove": "Are you sure you want to approve this hotel?",
+      "confirmReject": "Are you sure you want to reject this hotel? This action cannot be undone.",
+      "confirmSuspend": "Are you sure you want to suspend this hotel? All bookings will be affected.",
+      "success": {
+        "approved": "Hotel approved successfully",
+        "rejected": "Hotel rejected successfully",
+        "suspended": "Hotel suspended successfully",
+        "reactivated": "Hotel reactivated successfully"
+      },
+      "errors": {
+        "loadFailed": "Failed to load hotels",
+        "approveFailed": "Failed to approve hotel",
+        "rejectFailed": "Failed to reject hotel",
+        "suspendFailed": "Failed to suspend hotel"
+      }
+    },
+    "users": {
+      "title": "User Management",
+      "all": "All Users",
+      "guests": "Guests",
+      "hoteliers": "Hoteliers",
+      "admins": "Administrators",
+      "active": "Active",
+      "suspended": "Suspended",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "registeredAt": "Registered",
+      "lastLogin": "Last Login",
+      "actions": "Actions",
+      "suspend": "Suspend User",
+      "activate": "Activate User",
+      "changeRole": "Change Role",
+      "viewActivity": "View Activity",
+      "confirmSuspend": "Are you sure you want to suspend this user?",
+      "confirmActivate": "Are you sure you want to activate this user?",
+      "confirmRoleChange": "Are you sure you want to change this user's role? This is a critical security action.",
+      "success": {
+        "suspended": "User suspended successfully",
+        "activated": "User activated successfully",
+        "roleChanged": "User role changed successfully"
+      },
+      "errors": {
+        "loadFailed": "Failed to load users",
+        "suspendFailed": "Failed to suspend user",
+        "activateFailed": "Failed to activate user",
+        "roleChangeFailed": "Failed to change user role",
+        "cannotSuspendSelf": "You cannot suspend your own account",
+        "cannotChangeOwnRole": "You cannot change your own role"
+      }
+    },
+    "finances": {
+      "title": "Financial Reports",
+      "overview": "Financial Overview",
+      "totalRevenue": "Total Revenue",
+      "totalCommissions": "Total Commissions",
+      "pendingPayouts": "Pending Payouts",
+      "completedPayouts": "Completed Payouts",
+      "dateRange": "Date Range",
+      "filterByHotel": "Filter by Hotel",
+      "export": "Export Report",
+      "bookingId": "Booking ID",
+      "hotel": "Hotel",
+      "amount": "Amount",
+      "commission": "Commission",
+      "hotelPayout": "Hotel Payout",
+      "date": "Date",
+      "status": "Status",
+      "errors": {
+        "loadFailed": "Failed to load financial data",
+        "exportFailed": "Failed to export report"
+      }
+    },
+    "settings": {
+      "title": "System Settings",
+      "general": "General Settings",
+      "commission": "Commission Settings",
+      "tax": "Tax Settings",
+      "currency": "Currency Settings",
+      "email": "Email Settings",
+      "api": "API Settings",
+      "globalCommission": "Global Commission Rate",
+      "minCommission": "Minimum Commission",
+      "maxCommission": "Maximum Commission",
+      "defaultCurrency": "Default Currency",
+      "taxRate": "Tax Rate",
+      "smtpServer": "SMTP Server",
+      "apiKey": "API Key",
+      "webhookUrl": "Webhook URL",
+      "save": "Save Settings",
+      "saving": "Saving...",
+      "success": {
+        "saved": "Settings saved successfully"
+      },
+      "errors": {
+        "loadFailed": "Failed to load settings",
+        "saveFailed": "Failed to save settings",
+        "invalidValue": "Invalid value - please check your input"
+      }
+    },
+    "security": {
+      "title": "Security & Access Control",
+      "adminOnly": "ADMIN ONLY - Unauthorized access will be logged",
+      "auditLog": "Audit Log",
+      "recentActions": "Recent Admin Actions",
+      "timestamp": "Timestamp",
+      "admin": "Admin",
+      "action": "Action",
+      "resource": "Resource",
+      "ipAddress": "IP Address",
+      "status": "Status",
+      "errors": {
+        "unauthorized": "Unauthorized - Admin access required",
+        "forbidden": "Forbidden - Insufficient permissions",
+        "sessionExpired": "Admin session expired - please login again",
+        "suspiciousActivity": "Suspicious activity detected - action blocked"
+      }
+    },
+    "navigation": {
+      "dashboard": "Dashboard",
+      "hotels": "Hotels",
+      "users": "Users",
+      "finances": "Finances",
+      "settings": "Settings",
+      "security": "Security",
+      "logout": "Logout"
+    }
   },
   "auth": {
     "loginTitle": "Bei Book.ax anmelden",
