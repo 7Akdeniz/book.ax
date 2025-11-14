@@ -310,6 +310,54 @@
           "success": "Hotel registered successfully! Redirecting...",
           "error": "Failed to register hotel. Please try again."
         }
+      },
+      "rooms": {
+        "title": "Room Categories",
+        "subtitle": "Manage your room types and pricing",
+        "loading": "Loading room categories...",
+        "addRoom": "Add Room Category",
+        "edit": "Edit",
+        "delete": "Delete",
+        "confirmDelete": "Are you sure you want to delete this room category?",
+        "empty": {
+          "title": "No Room Categories Yet",
+          "description": "Add your first room category to start accepting bookings",
+          "button": "Add First Room Category"
+        },
+        "card": {
+          "basePrice": "Base Price",
+          "maxOccupancy": "Max Occupancy",
+          "totalRooms": "Total Rooms",
+          "size": "Size",
+          "amenities": "Amenities"
+        },
+        "modal": {
+          "addTitle": "Add Room Category",
+          "editTitle": "Edit Room Category",
+          "name": "Room Category Name",
+          "basePrice": "Base Price per Night",
+          "maxOccupancy": "Max Occupancy",
+          "totalRooms": "Number of Rooms",
+          "size": "Room Size (m²)",
+          "bedType": "Bed Type",
+          "englishName": "English Name",
+          "englishDescription": "English Description",
+          "amenities": "Room Amenities",
+          "cancel": "Cancel",
+          "save": "Save Room Category",
+          "saving": "Saving..."
+        },
+        "success": {
+          "created": "Room category created successfully!",
+          "updated": "Room category updated successfully!",
+          "deleted": "Room category deleted successfully!"
+        },
+        "errors": {
+          "loadFailed": "Failed to load room categories",
+          "createFailed": "Failed to create room category",
+          "updateFailed": "Failed to update room category",
+          "deleteFailed": "Failed to delete room category"
+        }
       }
     }
   },
