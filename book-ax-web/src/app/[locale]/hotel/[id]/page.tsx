@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { formatCurrency } from '@/utils/formatting';
 
 interface RoomCategory {
@@ -107,24 +108,28 @@ export default function HotelPage() {
       {/* Image Gallery */}
       <div className="container mx-auto px-4 py-6">
           <div className="grid grid-cols-4 gap-2 h-96">
-            <div className="col-span-3">
-              <img
+            <div className="col-span-3 relative">
+              <Image
                 src={mainImage}
                 alt={hotel.name}
-                className="w-full h-full object-cover rounded-lg"
+                fill
+                className="object-cover rounded-lg"
+                priority
               />
             </div>
             <div className="grid grid-rows-4 gap-2">
               {hotel.images.slice(0, 4).map((image, index) => (
-                <img
-                  key={index}
-                  src={image.url}
-                  alt={image.alt_text || hotel.name}
-                  className={`w-full h-full object-cover rounded-lg cursor-pointer ${
-                    selectedImage === index ? 'ring-2 ring-primary' : ''
-                  }`}
-                  onClick={() => setSelectedImage(index)}
-                />
+                <div key={index} className="relative">
+                  <Image
+                    src={image.url}
+                    alt={image.alt_text || hotel.name}
+                    fill
+                    className={`object-cover rounded-lg cursor-pointer ${
+                      selectedImage === index ? 'ring-2 ring-primary' : ''
+                    }`}
+                    onClick={() => setSelectedImage(index)}
+                  />
+                </div>
               ))}
             </div>
           </div>

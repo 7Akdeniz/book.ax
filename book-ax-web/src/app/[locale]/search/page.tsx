@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface Hotel {
   id: string;
@@ -92,10 +93,11 @@ export default function SearchPage() {
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
               >
                 <div className="relative h-48">
-                  <img
+                  <Image
                     src={hotel.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400'}
                     alt={hotel.name}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                   {hotel.starRating && (
                     <div className="absolute top-2 right-2 bg-white px-2 py-1 rounded text-sm font-semibold">
