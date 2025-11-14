@@ -8,11 +8,11 @@ const CheckIcon = () => (
 );
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const t = await getTranslations({ locale: params.locale });
+  const t = await getTranslations({ locale: params.locale, namespace: 'pricing' });
   
   return {
-    title: `${t('pricing.title')} - Book.ax`,
-    description: t('pricing.subtitle'),
+    title: `${t('hero.title')} - Book.ax`,
+    description: t('hero.subtitle'),
   };
 }
 
