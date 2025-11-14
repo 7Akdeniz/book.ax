@@ -39,11 +39,11 @@ export default function LoginPage() {
         
         // Redirect based on role
         if (data.user.role === 'hotelier') {
-          router.push('/panel');
+          router.push(`/${locale}/panel`);
         } else if (data.user.role === 'admin') {
-          router.push('/admin');
+          router.push(`/${locale}/admin`);
         } else {
-          router.push('/');
+          router.push(`/${locale}`);
         }
       } else {
         setError(data.error || t('auth.loginFailed'));

@@ -18,7 +18,44 @@ npm start
 
 ---
 
-## 📊 Vercel CLI - Deployment & Monitoring
+## �️ Supabase CLI - Database Management
+
+### Setup (Einmalig)
+```bash
+# Supabase CLI ist bereits installiert ✅
+# Verbinde dein Projekt mit Production:
+./setup-supabase-cli.sh
+```
+
+### Schema Deployment
+```bash
+# Schema nach Production deployen
+./deploy-schema.sh
+
+# Nur RLS Policies deployen
+supabase db execute --file database/rls-policies.sql
+```
+
+### Database Management
+```bash
+# Database Status prüfen
+./db-status.sh
+
+# Interaktive SQL Session
+supabase db psql
+
+# SQL-Datei ausführen
+supabase db execute --file your-file.sql
+
+# Backup erstellen
+supabase db dump -f backup-$(date +%Y%m%d).sql
+```
+
+**Mehr Infos:** Siehe [SUPABASE_CLI_GUIDE.md](./SUPABASE_CLI_GUIDE.md)
+
+---
+
+## �📊 Vercel CLI - Deployment & Monitoring
 
 ### Setup (Einmalig)
 ```bash

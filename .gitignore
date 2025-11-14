@@ -69,3 +69,4 @@ local.properties
 .vscode/
 .idea/
 .vercel
+book-ax-web/supabase/.temp
