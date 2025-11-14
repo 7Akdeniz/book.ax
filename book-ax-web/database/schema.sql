@@ -661,9 +661,13 @@ INSERT INTO amenities (code, icon, category) VALUES
 ('24hr_reception', 'clock', 'service');
 
 -- Insert default admin user (password: Admin123!)
--- Hash: $2a$10$... (you need to generate this)
+-- Hash generated with bcrypt (10 rounds)
 INSERT INTO users (email, password_hash, first_name, last_name, role, email_verified) 
-VALUES ('admin@book.ax', '$2a$10$YourHashedPasswordHere', 'Admin', 'User', 'admin', TRUE);
+VALUES ('admin@book.ax', '$2a$10$z1wL8JooKL4FwBEmtM0rmOohB8RlfDVUfrr314UPBtPMm2SsuJDi', 'Admin', 'User', 'admin', TRUE)
+ON CONFLICT (email) DO UPDATE SET 
+  password_hash = EXCLUDED.password_hash,
+  email_verified = EXCLUDED.email_verified,
+  status = 'active';
 
 -- Insert default system settings
 INSERT INTO system_settings (key, value, description) VALUES

@@ -14,13 +14,18 @@ const intlMiddleware = createIntlMiddleware({
 });
 
 export default function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  
+  // Skip middleware for API routes (except media subdomain)
+  if (pathname.startsWith('/api/')) {
+    return NextResponse.next();
+  }
+
   // Check if request is from media.book.ax subdomain
   const hostname = request.headers.get('host') || '';
   
   if (hostname.startsWith('media.')) {
     // Rewrite all media.book.ax requests to /api/media/[...path]
-    const pathname = request.nextUrl.pathname;
-    
     // Remove leading slash if present
     const path = pathname.startsWith('/') ? pathname.slice(1) : pathname;
     
@@ -37,7 +42,7 @@ export default function middleware(request: NextRequest) {
 export const config = {
   // Match all pathnames except for
   // - … if they start with `/_next` or `/_vercel`
+  // - … if they start with `/api` (API routes, except media subdomain)
   // - … the ones containing a dot in the first segment (e.g. `favicon.ico`)
-  // Note: We removed /api exclusion so media.book.ax can be handled
-  matcher: ['/((?!_next|_vercel|.*\\..*).*)', '/api/media/:path*']
+  matcher: ['/((?!_next|_vercel|api(?!/media)|.*\\..*).*)', '/api/media/:path*']
 };
