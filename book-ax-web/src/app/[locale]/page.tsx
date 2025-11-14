@@ -36,9 +36,9 @@ export default function HomePage() {
       </section>
 
       {/* Popular Destinations */}
-      <section className="py-20 bg-white w-full px-6">
+      <section className="py-8 bg-white w-full px-6">
         <div className="w-full">
-          <h2 className="text-5xl font-bold mb-12 text-center text-gray-900">
+          <h2 className="text-5xl font-bold mb-8 text-center text-gray-900">
             {t('popularDestinations')}
           </h2>
           <PopularDestinations />
@@ -46,9 +46,9 @@ export default function HomePage() {
       </section>
 
       {/* Featured Hotels */}
-      <section className="py-20 bg-white w-full px-6">
+      <section className="py-8 bg-white w-full px-6">
         <div className="w-full">
-          <h2 className="text-5xl font-bold mb-12 text-center text-gray-900">
+          <h2 className="text-5xl font-bold mb-8 text-center text-gray-900">
             {t('featuredHotels')}
           </h2>
           <FeaturedHotels />
@@ -56,9 +56,9 @@ export default function HomePage() {
       </section>
 
       {/* Why Book With Us */}
-      <section className="py-20 bg-white w-full px-6">
+      <section className="py-8 bg-white w-full px-6">
         <div className="w-full">
-          <h2 className="text-5xl font-bold mb-16 text-center text-gray-900">
+          <h2 className="text-5xl font-bold mb-12 text-center text-gray-900">
             {t('whyBookWithUs')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
