@@ -46,6 +46,12 @@ export interface Hotel {
   updated_at: string;
   approved_at?: string;
   approved_by?: string;
+  // Computed/joined fields
+  name?: string; // from translations
+  description?: string; // from translations
+  image?: string; // primary image URL
+  average_rating?: number;
+  total_reviews?: number;
 }
 
 export interface HotelTranslation {

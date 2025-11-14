@@ -18,8 +18,8 @@ export function Header() {
             <Image 
               src="/logo.svg" 
               alt="Book.ax" 
-              width={150} 
-              height={45}
+              width={100} 
+              height={30}
               priority
             />
           </Link>

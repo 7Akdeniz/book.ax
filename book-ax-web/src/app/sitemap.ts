@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next';
 import { locales } from '@/i18n/config';
+import { getHotelsForSitemap } from '@/lib/db/queries';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://book-ax.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://book.ax';
   
   // Static pages for all locales
   const staticPages = [
@@ -26,21 +27,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   );
 
-  // TODO: Add dynamic hotel pages when hotels are available in production
-  // Example:
-  // const { data: hotels } = await supabase
-  //   .from('hotels')
-  //   .select('id, updated_at')
-  //   .eq('status', 'active');
-  // 
-  // const hotelRoutes = hotels?.flatMap(hotel =>
-  //   locales.map(locale => ({
-  //     url: `${baseUrl}/${locale}/hotel/${hotel.id}`,
-  //     lastModified: new Date(hotel.updated_at),
-  //     changeFrequency: 'weekly' as const,
-  //     priority: 0.6,
-  //   }))
-  // ) || [];
+  // ✅ Fetch dynamic hotel pages from database
+  const hotels = await getHotelsForSitemap();
+  
+  const hotelRoutes = hotels.flatMap(hotel =>
+    locales.map(locale => ({
+      url: `${baseUrl}/${locale}/hotel/${hotel.id}`,
+      lastModified: new Date(hotel.updated_at),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }))
+  );
 
-  return [...staticRoutes];
+  console.log(`✅ Sitemap generated: ${staticRoutes.length} static + ${hotelRoutes.length} hotel pages`);
+
+  return [...staticRoutes, ...hotelRoutes];
 }

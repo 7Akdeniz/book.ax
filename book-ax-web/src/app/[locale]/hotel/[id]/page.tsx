@@ -1,306 +1,184 @@
-'use client';
-
-import { useParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
+import { Metadata } from 'next';
+import { getHotelById } from '@/lib/db/queries';
+import { HotelImageGallery } from '@/components/hotel/HotelImageGallery';
+import { BookingCard } from '@/components/hotel/BookingCard';
+import { HotelStructuredData } from '@/components/seo/StructuredData';
 import { formatCurrency } from '@/utils/formatting';
 
-interface RoomCategory {
-  id: string;
-  name: string;
-  description?: string;
-  maxOccupancy: number;
-  basePrice: number;
-  totalRooms: number;
-  sizeSqm?: number;
-  bedType?: string;
-  smokingAllowed: boolean;
-}
-
-interface Hotel {
-  id: string;
-  name: string;
-  description?: string;
-  propertyType: string;
-  address: {
-    street: string;
-    city: string;
-    country: string;
-  };
-  checkInTime: string;
-  checkOutTime: string;
-  starRating?: number;
-  averageRating: number;
-  totalReviews: number;
-  images: Array<{ url: string; alt_text?: string }>;
-  amenities: Array<{ code: string; icon?: string }>;
-  roomCategories: RoomCategory[];
-  reviews: Array<{
+interface PageProps {
+  params: {
     id: string;
-    rating: number;
-    comment?: string;
-    guestName: string;
-    createdAt: string;
-  }>;
+    locale: string;
+  };
 }
 
-export default function HotelPage() {
-  const params = useParams();
-  const t = useTranslations();
-  const locale = params.locale as string;
-  
-  const [hotel, setHotel] = useState<Hotel | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState(0);
-
-  useEffect(() => {
-    const fetchHotel = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`/api/hotels/${params.id}?locale=${locale}`);
-        const data = await response.json();
-        
-        if (response.ok) {
-          setHotel(data);
-        }
-      } catch (error) {
-        console.error('Failed to load hotel:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (params.id) {
-      fetchHotel();
-    }
-  }, [params.id, locale]);
-
-  if (loading) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="animate-pulse">
-          <div className="bg-gray-200 h-96 rounded-lg mb-6" />
-          <div className="bg-gray-200 h-8 w-1/2 rounded mb-4" />
-          <div className="bg-gray-200 h-4 w-1/3 rounded mb-8" />
-        </div>
-      </div>
-    );
-  }
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const hotel = await getHotelById(params.id, params.locale);
 
   if (!hotel) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center py-12">
-          <h1 className="text-2xl font-bold mb-4">{t('hotel.notFound')}</h1>
-          <a href="/" className="text-primary hover:underline">
-            {t('common.backHome')}
-          </a>
-        </div>
-      </div>
-    );
+    return { title: 'Hotel Not Found' };
   }
 
-  const mainImage = hotel.images[selectedImage]?.url || hotel.images[0]?.url || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800';
+  const minPrice = hotel.room_categories[0]?.base_price;
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://book.ax';
+
+  return {
+    title: `\${hotel.name} - \${hotel.address_city} | Book.ax`,
+    description: hotel.description?.substring(0, 160) || `Book \${hotel.name} in \${hotel.address_city}, \${hotel.address_country}. \${hotel.star_rating}-star hotel with \${hotel.total_reviews} reviews.`,
+    keywords: [hotel.name, hotel.address_city, hotel.address_country, hotel.property_type, 'hotel booking'],
+    alternates: {
+      canonical: `\${baseUrl}/\${params.locale}/hotel/\${params.id}`,
+      languages: {
+        'de-DE': `\${baseUrl}/de/hotel/\${params.id}`,
+        'en-US': `\${baseUrl}/en/hotel/\${params.id}`,
+      },
+    },
+    openGraph: {
+      title: `\${hotel.name} - \${hotel.address_city}`,
+      description: hotel.description?.substring(0, 200) || `Book \${hotel.name}`,
+      url: `\${baseUrl}/\${params.locale}/hotel/\${params.id}`,
+      siteName: 'Book.ax',
+      images: [{ url: hotel.images[0]?.url || '/og-image.jpg', width: 1200, height: 630, alt: hotel.name }],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `\${hotel.name} - \${hotel.address_city}`,
+      description: hotel.description?.substring(0, 160) || `Book \${hotel.name}`,
+      images: [hotel.images[0]?.url || '/og-image.jpg'],
+    },
+  };
+}
+
+export default async function HotelPage({ params }: PageProps) {
+  const t = await getTranslations();
+  const hotel = await getHotelById(params.id, params.locale);
+
+  if (!hotel) {
+    notFound();
+  }
 
   return (
     <>
-      {/* Image Gallery */}
-      <div className="container mx-auto px-4 py-6">
-          <div className="grid grid-cols-4 gap-2 h-96">
-            <div className="col-span-3 relative">
-              <Image
-                src={mainImage}
-                alt={hotel.name}
-                fill
-                className="object-cover rounded-lg"
-                priority
-              />
-            </div>
-            <div className="grid grid-rows-4 gap-2">
-              {hotel.images.slice(0, 4).map((image, index) => (
-                <div key={index} className="relative">
-                  <Image
-                    src={image.url}
-                    alt={image.alt_text || hotel.name}
-                    fill
-                    className={`object-cover rounded-lg cursor-pointer ${
-                      selectedImage === index ? 'ring-2 ring-primary' : ''
-                    }`}
-                    onClick={() => setSelectedImage(index)}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <HotelStructuredData
+        name={hotel.name}
+        description={hotel.description || ''}
+        url={`\${process.env.NEXT_PUBLIC_APP_URL}/\${params.locale}/hotel/\${params.id}`}
+        image={hotel.images.map(img => img.url)}
+        address={{
+          streetAddress: hotel.address_street || '',
+          addressLocality: hotel.address_city,
+          addressRegion: hotel.address_state || '',
+          postalCode: hotel.address_postal_code || '',
+          addressCountry: hotel.address_country,
+        }}
+        geo={hotel.latitude && hotel.longitude ? { latitude: hotel.latitude, longitude: hotel.longitude } : undefined}
+        aggregateRating={hotel.total_reviews > 0 ? { ratingValue: hotel.average_rating, reviewCount: hotel.total_reviews } : undefined}
+        starRating={hotel.star_rating || undefined}
+        telephone={hotel.phone}
+        email={hotel.email}
+        amenityFeature={hotel.amenities.map(a => a.code)}
+        checkInTime={hotel.check_in_time}
+        checkOutTime={hotel.check_out_time}
+      />
 
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Left Column - Details */}
-            <div className="lg:col-span-2">
-              {/* Header */}
-              <div className="mb-6">
-                <div className="flex items-center gap-2 mb-2">
-                  {hotel.starRating && (
-                    <span className="text-yellow-500 text-xl">
-                      {'★'.repeat(hotel.starRating)}
-                    </span>
-                  )}
-                  <span className="text-sm text-gray-500 uppercase">{hotel.propertyType}</span>
-                </div>
-                <h1 className="text-4xl font-bold mb-2">{hotel.name}</h1>
-                <p className="text-gray-600">
-                  {hotel.address.street}, {hotel.address.city}, {hotel.address.country}
-                </p>
-                {hotel.averageRating > 0 && (
-                  <div className="flex items-center gap-2 mt-3">
-                    <span className="bg-primary text-white px-3 py-1 rounded font-bold">
-                      {hotel.averageRating.toFixed(1)}
-                    </span>
-                    <span className="text-gray-700 font-semibold">
-                      {t('hotel.excellent')}
-                    </span>
-                    <span className="text-gray-500">
-                      · {hotel.totalReviews} {t('hotel.reviews')}
-                    </span>
-                  </div>
-                )}
+      <HotelImageGallery images={hotel.images} hotelName={hotel.name} />
+
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-2">
+                {hotel.star_rating && <span className="text-yellow-500 text-xl">{'★'.repeat(hotel.star_rating)}</span>}
+                <span className="text-sm text-gray-500 uppercase">{hotel.property_type}</span>
               </div>
-
-              {/* Description */}
-              {hotel.description && (
-                <div className="mb-8">
-                  <h2 className="text-2xl font-bold mb-3">{t('hotel.aboutProperty')}</h2>
-                  <p className="text-gray-700 leading-relaxed">{hotel.description}</p>
+              <h1 className="text-4xl font-bold mb-2">{hotel.name}</h1>
+              <p className="text-gray-600">{hotel.address_street}, {hotel.address_city}, {hotel.address_country}</p>
+              {hotel.average_rating > 0 && (
+                <div className="flex items-center gap-2 mt-3">
+                  <span className="bg-primary-600 text-white px-3 py-1 rounded font-bold">{hotel.average_rating.toFixed(1)}</span>
+                  <span className="text-gray-700 font-semibold">{t('hotel.excellent')}</span>
+                  <span className="text-gray-500">· {hotel.total_reviews} {t('hotel.reviews')}</span>
                 </div>
               )}
+            </div>
 
-              {/* Amenities */}
-              {hotel.amenities.length > 0 && (
-                <div className="mb-8">
-                  <h2 className="text-2xl font-bold mb-3">{t('hotel.amenities')}</h2>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {hotel.amenities.map((amenity) => (
-                      <div key={amenity.code} className="flex items-center gap-2">
-                        <span className="text-primary text-xl">{amenity.icon || '✓'}</span>
-                        <span className="text-gray-700 capitalize">{amenity.code.replace('_', ' ')}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Room Categories */}
+            {hotel.description && (
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">{t('hotel.availableRooms')}</h2>
-                <div className="space-y-4">
-                  {hotel.roomCategories.map((room) => (
-                    <div key={room.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex justify-between items-start">
-                        <div className="flex-1">
-                          <h3 className="text-xl font-semibold mb-1">{room.name}</h3>
-                          {room.description && (
-                            <p className="text-gray-600 text-sm mb-2">{room.description}</p>
-                          )}
-                          <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                            <span>👥 Max {room.maxOccupancy} {t('hotel.guests')}</span>
-                            {room.sizeSqm && <span>📏 {room.sizeSqm} m²</span>}
-                            {room.bedType && <span>🛏️ {room.bedType}</span>}
-                            <span>{room.smokingAllowed ? '🚬 ' + t('hotel.smokingAllowed') : '🚭 ' + t('hotel.nonSmoking')}</span>
-                          </div>
-                        </div>
-                        <div className="text-right ml-4">
-                          <p className="text-2xl font-bold text-primary">
-                            {formatCurrency(room.basePrice, 'EUR', locale)}
-                          </p>
-                          <p className="text-sm text-gray-600">{t('hotel.perNight')}</p>
-                          <button className="mt-2 bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors">
-                            {t('hotel.bookNow')}
-                          </button>
-                        </div>
-                      </div>
+                <h2 className="text-2xl font-bold mb-3">{t('hotel.aboutProperty')}</h2>
+                <p className="text-gray-700 leading-relaxed">{hotel.description}</p>
+              </div>
+            )}
+
+            {hotel.amenities.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold mb-3">{t('hotel.amenities')}</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {hotel.amenities.map((amenity) => (
+                    <div key={amenity.code} className="flex items-center gap-2">
+                      <span className="text-primary-600 text-xl">{amenity.icon || '✓'}</span>
+                      <span className="text-gray-700 capitalize">{amenity.code.replace('_', ' ')}</span>
                     </div>
                   ))}
                 </div>
               </div>
+            )}
 
-              {/* Reviews */}
-              {hotel.reviews.length > 0 && (
-                <div>
-                  <h2 className="text-2xl font-bold mb-4">{t('hotel.guestReviews')}</h2>
-                  <div className="space-y-4">
-                    {hotel.reviews.slice(0, 5).map((review) => (
-                      <div key={review.id} className="border-b pb-4">
-                        <div className="flex items-center justify-between mb-2">
-                          <div>
-                            <p className="font-semibold">{review.guestName}</p>
-                            <p className="text-sm text-gray-500">
-                              {new Date(review.createdAt).toLocaleDateString(locale)}
-                            </p>
-                          </div>
-                          <span className="bg-primary text-white px-3 py-1 rounded font-bold">
-                            {review.rating.toFixed(1)}
-                          </span>
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold mb-4">{t('hotel.availableRooms')}</h2>
+              <div className="space-y-4">
+                {hotel.room_categories.map((room) => (
+                  <div key={room.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold mb-1">{room.name}</h3>
+                        {room.description && <p className="text-gray-600 text-sm mb-2">{room.description}</p>}
+                        <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                          <span>👥 Max {room.max_occupancy} {t('hotel.guests')}</span>
+                          {room.size_sqm && <span>📏 {room.size_sqm} m²</span>}
+                          {room.bed_type && <span>🛏️ {room.bed_type}</span>}
+                          <span>{room.smoking_allowed ? '🚬 ' + t('hotel.smokingAllowed') : '🚭 ' + t('hotel.nonSmoking')}</span>
                         </div>
-                        {review.comment && (
-                          <p className="text-gray-700">{review.comment}</p>
-                        )}
                       </div>
-                    ))}
+                      <div className="text-right ml-4">
+                        <p className="text-2xl font-bold text-primary-600">{formatCurrency(room.base_price, 'EUR', params.locale)}</p>
+                        <p className="text-sm text-gray-600">{t('hotel.perNight')}</p>
+                        <button className="mt-2 bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">{t('hotel.bookNow')}</button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-
-            {/* Right Column - Booking Card */}
-            <div className="lg:col-span-1">
-              <div className="bg-white border rounded-lg shadow-lg p-6 sticky top-4">
-                <h3 className="text-xl font-bold mb-4">{t('hotel.bookYourStay')}</h3>
-                
-                <div className="mb-4">
-                  <label className="block text-sm font-medium mb-1">{t('common.checkIn')}</label>
-                  <input
-                    type="date"
-                    className="w-full px-3 py-2 border rounded-lg"
-                    min={new Date().toISOString().split('T')[0]}
-                  />
-                </div>
-
-                <div className="mb-4">
-                  <label className="block text-sm font-medium mb-1">{t('common.checkOut')}</label>
-                  <input
-                    type="date"
-                    className="w-full px-3 py-2 border rounded-lg"
-                    min={new Date().toISOString().split('T')[0]}
-                  />
-                </div>
-
-                <div className="mb-4">
-                  <label className="block text-sm font-medium mb-1">{t('common.guests')}</label>
-                  <input
-                    type="number"
-                    min="1"
-                    max="10"
-                    defaultValue="2"
-                    className="w-full px-3 py-2 border rounded-lg"
-                  />
-                </div>
-
-                <div className="mb-4 p-3 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-600 mb-1">{t('hotel.checkInTime')}:</p>
-                  <p className="font-semibold">{hotel.checkInTime}</p>
-                  <p className="text-sm text-gray-600 mt-2 mb-1">{t('hotel.checkOutTime')}:</p>
-                  <p className="font-semibold">{hotel.checkOutTime}</p>
-                </div>
-
-                <button className="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-600 transition-colors">
-                  {t('hotel.checkAvailability')}
-                </button>
+                ))}
               </div>
             </div>
+
+            {hotel.reviews.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold mb-4">{t('hotel.guestReviews')}</h2>
+                <div className="space-y-4">
+                  {hotel.reviews.slice(0, 5).map((review) => (
+                    <div key={review.id} className="border-b pb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <div>
+                          <p className="font-semibold">{review.guestName}</p>
+                          <p className="text-sm text-gray-500">{new Date(review.created_at).toLocaleDateString(params.locale)}</p>
+                        </div>
+                        <span className="bg-primary-600 text-white px-3 py-1 rounded font-bold">{review.rating.toFixed(1)}</span>
+                      </div>
+                      {review.comment && <p className="text-gray-700">{review.comment}</p>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="lg:col-span-1">
+            <BookingCard checkInTime={hotel.check_in_time} checkOutTime={hotel.check_out_time} hotelId={hotel.id} />
           </div>
         </div>
+      </div>
     </>
   );
 }
