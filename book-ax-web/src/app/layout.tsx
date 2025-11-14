@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     description: 'Book hotels worldwide - Over 500,000 properties with the best prices',
     images: [
       {
-        url: '/og-image.jpg', // TODO: Create this image (1200x630px)
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Book.ax - Hotel Booking Platform',
@@ -56,8 +56,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Book.ax - Find Your Perfect Stay',
     description: 'Book hotels worldwide with the best prices',
-    // creator: '@bookax', // TODO: Add when Twitter account exists
-    images: ['/twitter-image.jpg'], // TODO: Create this image (1200x600px)
+    images: ['/og-image.jpg'],
   },
   
   // Robots
