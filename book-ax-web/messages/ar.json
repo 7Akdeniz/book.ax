@@ -591,38 +591,42 @@
     },
     "users": {
       "title": "User Management",
-      "all": "All Users",
-      "guests": "Guests",
-      "hoteliers": "Hoteliers",
-      "admins": "Administrators",
-      "active": "Active",
-      "suspended": "Suspended",
-      "name": "Name",
-      "email": "Email",
-      "role": "Role",
-      "status": "Status",
-      "registeredAt": "Registered",
-      "lastLogin": "Last Login",
-      "actions": "Actions",
-      "suspend": "Suspend User",
-      "activate": "Activate User",
-      "changeRole": "Change Role",
-      "viewActivity": "View Activity",
-      "confirmSuspend": "Are you sure you want to suspend this user?",
-      "confirmActivate": "Are you sure you want to activate this user?",
-      "confirmRoleChange": "Are you sure you want to change this user's role? This is a critical security action.",
-      "success": {
-        "suspended": "User suspended successfully",
-        "activated": "User activated successfully",
-        "roleChanged": "User role changed successfully"
+      "allUsers": "All Users",
+      "filterByRole": "Filter by Role",
+      "filterByStatus": "Filter by Status",
+      "allStatuses": "All Statuses",
+      "loading": "Loading users",
+      "noUsers": "No users found",
+      "table": {
+        "user": "User",
+        "role": "Role",
+        "status": "Status",
+        "joined": "Joined",
+        "lastLogin": "Last Login",
+        "actions": "Actions"
       },
-      "errors": {
-        "loadFailed": "Failed to load users",
-        "suspendFailed": "Failed to suspend user",
-        "activateFailed": "Failed to activate user",
-        "roleChangeFailed": "Failed to change user role",
-        "cannotSuspendSelf": "You cannot suspend your own account",
-        "cannotChangeOwnRole": "You cannot change your own role"
+      "roles": {
+        "guest": "Guest",
+        "hotelier": "Hotelier",
+        "admin": "Administrator"
+      },
+      "status": {
+        "active": "Active",
+        "suspended": "Suspended"
+      },
+      "actions": {
+        "suspend": "Suspend",
+        "activate": "Activate",
+        "changeRole": "Change Role",
+        "suspendConfirm": "Are you sure you want to suspend {email}?",
+        "activateConfirm": "Are you sure you want to activate {email}?",
+        "changeRoleConfirm": "Are you sure you want to change the role of {email} to {role}? This is a critical security action.",
+        "suspendSuccess": "User suspended successfully",
+        "activateSuccess": "User activated successfully",
+        "changeRoleSuccess": "User role changed successfully",
+        "suspendError": "Failed to suspend user",
+        "activateError": "Failed to activate user",
+        "changeRoleError": "Failed to change user role"
       }
     },
     "finances": {
@@ -677,7 +681,11 @@
     "security": {
       "title": "Security & Access Control",
       "adminOnly": "ADMIN ONLY - Unauthorized access will be logged",
-      "auditLog": "Audit Log",
+      "verifying": "Verifying admin access",
+      "auditLog": {
+        "title": "Audit Log",
+        "enabled": "Audit logging enabled"
+      },
       "recentActions": "Recent Admin Actions",
       "timestamp": "Timestamp",
       "admin": "Admin",
@@ -685,12 +693,10 @@
       "resource": "Resource",
       "ipAddress": "IP Address",
       "status": "Status",
-      "errors": {
-        "unauthorized": "Unauthorized - Admin access required",
-        "forbidden": "Forbidden - Insufficient permissions",
-        "sessionExpired": "Admin session expired - please login again",
-        "suspiciousActivity": "Suspicious activity detected - action blocked"
-      }
+      "unauthorized": "Unauthorized - Admin access required",
+      "forbidden": "Forbidden - Insufficient permissions",
+      "sessionExpired": "Admin session expired - please login again",
+      "suspiciousActivity": "Suspicious activity detected - action blocked"
     },
     "navigation": {
       "dashboard": "Dashboard",
