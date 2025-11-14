@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Generated Content (optional - kann auch committed werden)
+generated-content/*.md
+generated-content/*.json
+
+# Aber behalte Beispiele
+!generated-content/examples/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temp Files
+*.tmp
+.temp/

@@ -1,0 +1,22 @@
+{
+  "name": "bookax-content-automation",
+  "version": "1.0.0",
+  "description": "AIO Content Automation für Book.ax - SEO, Social, Ads, Blog, Landing Pages",
+  "main": "generator.js",
+  "type": "module",
+  "scripts": {
+    "generate": "node generator.js",
+    "blog": "node generator.js --type=blog",
+    "landing": "node generator.js --type=landing",
+    "social": "node generator.js --type=social",
+    "ads": "node generator.js --type=ads",
+    "all": "node generator.js --type=all"
+  },
+  "keywords": ["book.ax", "content", "seo", "automation", "aio"],
+  "author": "Book.ax Team",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^11.0.0",
+    "js-yaml": "^4.1.0"
+  }
+}
