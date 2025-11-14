@@ -4,15 +4,9 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "outputDirectory": ".next",
-  "rewrites": [
-    {
-      "source": "/media/:path*",
-      "destination": "/api/media/:path*"
-    }
-  ],
   "headers": [
     {
-      "source": "/media/:path*",
+      "source": "/api/media/:path*",
       "headers": [
         {
           "key": "Cache-Control",
