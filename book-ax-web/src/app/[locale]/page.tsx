@@ -1,11 +1,15 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { SearchBar } from '@/components/common/SearchBar';
 import { FeaturedHotels } from '@/components/hotel/FeaturedHotels';
 import { PopularDestinations } from '@/components/home/PopularDestinations';
 import { OrganizationStructuredData, SearchActionStructuredData } from '@/components/seo/StructuredData';
 
-export default function HomePage() {
-  const t = useTranslations('home');
+interface HomePageProps {
+  params: { locale: string };
+}
+
+export default async function HomePage({ params }: HomePageProps) {
+  const t = await getTranslations('home');
 
   return (
     <>
@@ -41,7 +45,7 @@ export default function HomePage() {
           <h2 className="text-5xl font-bold mb-8 text-center text-gray-900">
             {t('popularDestinations')}
           </h2>
-          <PopularDestinations />
+          <PopularDestinations locale={params.locale} />
         </div>
       </section>
 
@@ -51,7 +55,7 @@ export default function HomePage() {
           <h2 className="text-5xl font-bold mb-8 text-center text-gray-900">
             {t('featuredHotels')}
           </h2>
-          <FeaturedHotels />
+          <FeaturedHotels locale={params.locale} />
         </div>
       </section>
 

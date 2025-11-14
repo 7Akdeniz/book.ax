@@ -1,8 +1,5 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
-import { useLocale } from 'next-intl';
 
 const featuredHotels = [
   {
@@ -47,8 +44,11 @@ const featuredHotels = [
   },
 ];
 
-export function FeaturedHotels() {
-  const locale = useLocale();
+interface FeaturedHotelsProps {
+  locale: string;
+}
+
+export function FeaturedHotels({ locale }: FeaturedHotelsProps) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
