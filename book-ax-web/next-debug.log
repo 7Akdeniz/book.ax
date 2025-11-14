@@ -1,0 +1,654 @@
+Debugger listening on ws://127.0.0.1:9229/a661965a-e0e0-41b5-a3cc-16e0ed7fc37a
+For help, see: https://nodejs.org/en/docs/inspector
+
+> book-ax-web@1.0.0 dev
+> next dev
+
+Starting inspector on 127.0.0.1:9229 failed: address already in use
+Debugger listening on ws://127.0.0.1:9230/af72a99b-0d8b-469a-8bb7-31b4cc59e971
+For help, see: https://nodejs.org/en/docs/inspector
+   the --inspect option was detected, the Next.js router server should be inspected at port 9230.
+  ▲ Next.js 14.2.33
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1303ms
+ ✓ Compiled /src/middleware in 131ms (103 modules)
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 1964ms (750 modules)
+ ✓ Compiled in 103ms (323 modules)
+IntlError: MISSING_MESSAGE: Could not resolve `home.searchHotels` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:38:23)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.searchHotels` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.searchPlaceholderExample` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:59:42)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.searchPlaceholderExample` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.destination` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:61:43)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.destination` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.numberOfGuests` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:159:43)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.numberOfGuests` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.searchHotelsButton` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:177:35)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.searchHotelsButton` in messages for locale `de`.'
+}
+ HEAD /de 200 in 2351ms
+IntlError: MISSING_MESSAGE: Could not resolve `home.searchHotels` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:38:23)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.searchHotels` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.searchPlaceholderExample` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:59:42)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.searchPlaceholderExample` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.destination` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:61:43)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.destination` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.numberOfGuests` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:159:43)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.numberOfGuests` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.searchHotelsButton` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:177:35)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.searchHotelsButton` in messages for locale `de`.'
+}
+ GET /de 200 in 65ms
+ ⚠ The "images.domains" configuration is deprecated. Please use "images.remotePatterns" configuration instead.
+IntlError: MISSING_MESSAGE: Could not resolve `home.searchHotels` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:38:23)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.searchHotels` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.searchPlaceholderExample` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:59:42)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.searchPlaceholderExample` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.destination` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:61:43)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.destination` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.numberOfGuests` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:159:43)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.numberOfGuests` in messages for locale `de`.'
+}
+IntlError: MISSING_MESSAGE: Could not resolve `home.searchHotelsButton` in messages for locale `de`.
+    at getFallbackFromErrorAndNotify (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:159:19)
+    at translateBaseFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:184:14)
+    at translateFn (webpack-internal:///(ssr)/./node_modules/use-intl/dist/development/createFormatter-QqAaZwGD.js:258:20)
+    at SearchBar (webpack-internal:///(ssr)/./src/components/common/SearchBar.tsx:177:35)
+    at au (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:10446)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:15122
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:46505)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42336
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:42822)
+    ... collapsed 11 duplicate lines matching above lines ...
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50067)
+    at aj (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:53793)
+    at aC (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:52874)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:50095)
+    ... collapsed 3 duplicate lines matching above lines ...
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:45321)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ab (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11808)
+    at /Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16871
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:16908)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776)
+    at ac (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:11400)
+    at aw (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:14707)
+    at a_ (/Users/alanbest/book.ax/book-ax-web/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49776) {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `home.searchHotelsButton` in messages for locale `de`.'
+}
+ HEAD /de 200 in 42ms
