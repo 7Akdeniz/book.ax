@@ -1,38 +1,22 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Book.ax Adaptive Icon - Suitcase Design -->
+  <!-- Book.ax Adaptive Icon - Simple & Bold -->
   <defs>
-    <linearGradient id="suitcaseGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B1FA2;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#9C27B0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BA68C8;stop-opacity:1" />
     </linearGradient>
   </defs>
   
-  <!-- Full Purple Background for Adaptive Icon -->
-  <rect width="1024" height="1024" fill="#8b5cf6"/>
+  <!-- Purple Background (kein radius für adaptive icon) -->
+  <rect width="1024" height="1024" fill="url(#bgGradient)"/>
   
-  <!-- Suitcase Icon (centered and larger) -->
-  <g transform="translate(512, 350)">
-    <!-- Handle -->
-    <path d="M -100 -120 Q -100 -200 0 -200 Q 100 -200 100 -120" 
-          stroke="white" stroke-width="28" fill="none" 
-          stroke-linecap="round" stroke-linejoin="round"/>
-    
-    <!-- Main Suitcase Body -->
-    <rect x="-260" y="-120" width="520" height="450" rx="50" 
-          fill="white" opacity="0.95"/>
-    
-    <!-- Lock/Latch Center -->
-    <rect x="-40" y="100" width="80" height="100" rx="12" 
-          fill="#7c3aed" opacity="0.3"/>
-    <circle cx="0" cy="150" r="22" fill="#7c3aed"/>
-    <rect x="-8" y="140" width="16" height="30" rx="4" fill="white"/>
-  </g>
-  
-  <!-- Book.ax Text -->
-  <text x="512" y="750" 
+  <!-- Book.ax Text - Dick und Fett -->
+  <text x="512" y="580" 
         font-family="Arial, Helvetica, sans-serif" 
-        font-size="130" 
-        font-weight="700" 
+        font-size="160" 
+        font-weight="900" 
         fill="white" 
-        text-anchor="middle">Book.ax</text>
+        text-anchor="middle"
+        letter-spacing="4">Book.ax</text>
 </svg>

@@ -1,42 +1,22 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Book.ax App Icon - Suitcase Design -->
+  <!-- Book.ax App Icon - Simple & Bold -->
   <defs>
-    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#f5f3ff;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ede9fe;stop-opacity:1" />
-    </linearGradient>
-    <linearGradient id="suitcaseGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B1FA2;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#9C27B0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BA68C8;stop-opacity:1" />
     </linearGradient>
   </defs>
   
-  <!-- Rounded Background -->
-  <rect width="1024" height="1024" rx="180" fill="url(#bgGradient)"/>
+  <!-- Purple Background -->
+  <rect width="1024" height="1024" rx="220" fill="url(#bgGradient)"/>
   
-  <!-- Suitcase Icon -->
-  <g transform="translate(512, 400)">
-    <!-- Handle -->
-    <path d="M -80 -100 Q -80 -160 0 -160 Q 80 -160 80 -100" 
-          stroke="#7c3aed" stroke-width="24" fill="none" 
-          stroke-linecap="round" stroke-linejoin="round"/>
-    
-    <!-- Main Suitcase Body -->
-    <rect x="-220" y="-100" width="440" height="380" rx="40" 
-          fill="url(#suitcaseGradient)"/>
-    
-    <!-- Lock/Latch Center -->
-    <rect x="-30" y="80" width="60" height="80" rx="10" 
-          fill="white" opacity="0.25"/>
-    <circle cx="0" cy="120" r="18" fill="white" opacity="0.9"/>
-    <rect x="-6" y="110" width="12" height="25" rx="3" fill="#7c3aed"/>
-  </g>
-  
-  <!-- Book.ax Text -->
-  <text x="512" y="680" 
+  <!-- Book.ax Text - Dick und Fett -->
+  <text x="512" y="580" 
         font-family="Arial, Helvetica, sans-serif" 
-        font-size="120" 
-        font-weight="700" 
+        font-size="160" 
+        font-weight="900" 
         fill="white" 
-        text-anchor="middle">Book.ax</text>
+        text-anchor="middle"
+        letter-spacing="4">Book.ax</text>
 </svg>
