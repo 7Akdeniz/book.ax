@@ -358,6 +358,49 @@
           "updateFailed": "Failed to update room category",
           "deleteFailed": "Failed to delete room category"
         }
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "welcome": "Welcome back",
+        "loading": "Loading dashboard data...",
+        "stats": {
+          "occupancy": "Occupancy Rate",
+          "revenue": "Total Revenue",
+          "todayArrivals": "Today's Arrivals",
+          "todayDepartures": "Today's Departures",
+          "totalBookings": "Total Bookings",
+          "averageRate": "Average Daily Rate"
+        },
+        "recentBookings": {
+          "title": "Recent Bookings",
+          "guest": "Guest",
+          "room": "Room",
+          "checkIn": "Check-in",
+          "checkOut": "Check-out",
+          "status": "Status",
+          "total": "Total",
+          "viewAll": "View All Bookings",
+          "noBookings": "No bookings yet",
+          "statuses": {
+            "pending": "Pending",
+            "confirmed": "Confirmed",
+            "checked_in": "Checked In",
+            "checked_out": "Checked Out",
+            "cancelled": "Cancelled"
+          }
+        },
+        "quickActions": {
+          "title": "Quick Actions",
+          "addRoom": "Add Room Category",
+          "manageRooms": "Manage Rooms",
+          "viewCalendar": "View Calendar",
+          "manageRates": "Manage Rates",
+          "viewBookings": "View Bookings",
+          "editHotel": "Edit Hotel Info"
+        },
+        "errors": {
+          "loadFailed": "Failed to load dashboard data"
+        }
       }
     }
   },
