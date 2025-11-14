@@ -461,6 +461,82 @@
         "errors": {
           "loadFailed": "Failed to load calendar data"
         }
+      },
+      "rates": {
+        "title": "Rates & Availability",
+        "subtitle": "Manage pricing and inventory for your rooms",
+        "loading": "Loading rates data...",
+        "selectRoom": "Select Room Category",
+        "allRooms": "All Room Categories",
+        "dateRange": "Date Range",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "basePrice": "Base Price",
+        "availability": "Availability",
+        "available": "Available",
+        "unavailable": "Unavailable",
+        "updateRates": "Update Rates",
+        "bulkUpdate": "Bulk Update",
+        "applyToRange": "Apply to Date Range",
+        "price": {
+          "title": "Price Management",
+          "current": "Current Price",
+          "new": "New Price",
+          "increase": "Increase by",
+          "decrease": "Decrease by",
+          "percentage": "Percentage",
+          "amount": "Amount"
+        },
+        "inventory": {
+          "title": "Inventory Control",
+          "totalRooms": "Total Rooms",
+          "availableRooms": "Available Rooms",
+          "blockedRooms": "Blocked Rooms",
+          "block": "Block Rooms",
+          "unblock": "Unblock Rooms"
+        },
+        "presets": {
+          "title": "Quick Presets",
+          "weekend": "Weekend Rate (+20%)",
+          "peak": "Peak Season (+50%)",
+          "lowSeason": "Low Season (-20%)",
+          "lastMinute": "Last Minute (-30%)"
+        },
+        "calendar": {
+          "title": "Rate Calendar",
+          "today": "Today",
+          "selectDate": "Select date to edit rates"
+        },
+        "form": {
+          "pricePerNight": "Price per Night",
+          "availableRooms": "Available Rooms",
+          "minStay": "Minimum Stay (nights)",
+          "maxStay": "Maximum Stay (nights)",
+          "closedToArrival": "Closed to Arrival",
+          "closedToDeparture": "Closed to Departure",
+          "save": "Save Changes",
+          "saving": "Saving...",
+          "cancel": "Cancel"
+        },
+        "success": {
+          "updated": "Rates updated successfully!",
+          "bulkUpdated": "Bulk rates updated successfully!"
+        },
+        "errors": {
+          "loadFailed": "Failed to load rates data",
+          "updateFailed": "Failed to update rates",
+          "invalidPrice": "Invalid price - must be greater than 0",
+          "invalidAvailability": "Invalid availability - cannot exceed total rooms",
+          "invalidDateRange": "Invalid date range - end date must be after start date",
+          "unauthorized": "Unauthorized - you don't have permission to modify rates",
+          "forbidden": "Access denied - only hotel owners can modify rates",
+          "sessionExpired": "Session expired - please login again"
+        },
+        "warnings": {
+          "priceChange": "This will change prices for {count} days",
+          "blockAvailability": "This will block availability and may affect existing bookings",
+          "confirm": "Are you sure you want to continue?"
+        }
       }
     }
   },
