@@ -1,9 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd book-ax-web && npm run build",
-  "installCommand": "cd book-ax-web && npm install",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
   "framework": "nextjs",
-  "outputDirectory": "book-ax-web/.next",
+  "outputDirectory": ".next",
   "rewrites": [
     {
       "source": "/media/:path*",
