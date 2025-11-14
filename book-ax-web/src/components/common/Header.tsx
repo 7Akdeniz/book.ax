@@ -2,6 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
+import Image from 'next/image';
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher';
 
 export function Header() {
@@ -13,8 +14,14 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href={`/${locale}`} className="text-3xl font-bold text-primary-600">
-            Book.ax
+          <Link href={`/${locale}`} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <Image 
+              src="/logo.svg" 
+              alt="Book.ax" 
+              width={150} 
+              height={45}
+              priority
+            />
           </Link>
 
           {/* Navigation */}

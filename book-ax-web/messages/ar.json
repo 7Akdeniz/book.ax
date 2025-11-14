@@ -37,7 +37,11 @@
     "freeChangesCancellation": "تغييرات وإلغاء مجاني",
     "bestPriceGuaranteeDesc": "اعثر على أفضل الأسعار أو سنرد الفرق",
     "noCreditCardFeesDesc": "لا توجد رسوم مخفية، ادفع بالضبط ما تراه",
-    "freeChangesCancellationDesc": "حجز مرن مع إلغاء مجاني"
+    "freeChangesCancellationDesc": "حجز مرن مع إلغاء مجاني",
+    "searchPlaceholderExample": "مثلاً برلين، ألمانيا",
+    "destination": "الوجهة",
+    "numberOfGuests": "عدد الضيوف",
+    "searchHotelsButton": "البحث عن فنادق"
   },
   "search": {
     "results": "Search Results",

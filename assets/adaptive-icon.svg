@@ -1,4 +1,22 @@
-<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1024" height="1024" fill="#9C27B0"/>
-  <text x="512" y="650" font-family="Arial, sans-serif" font-size="500" font-weight="bold" fill="#FFFFFF" text-anchor="middle">B</text>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Full Background for Adaptive Icon -->
+  <rect width="1024" height="1024" fill="#F5F5F0"/>
+  
+  <!-- Suitcase Icon (Centered) -->
+  <g transform="translate(512, 430)">
+    <!-- Handle -->
+    <rect x="-90" y="-270" width="180" height="45" rx="22.5" fill="#7C3AED"/>
+    <rect x="-115" y="-250" width="55" height="90" rx="27.5" fill="#7C3AED"/>
+    <rect x="60" y="-250" width="55" height="90" rx="27.5" fill="#7C3AED"/>
+    
+    <!-- Suitcase Body -->
+    <rect x="-200" y="-160" width="400" height="290" rx="45" fill="#7C3AED"/>
+    
+    <!-- Book.ax Text -->
+    <text x="0" y="220" font-family="Arial, sans-serif" font-size="130" font-weight="bold" fill="#7C3AED" text-anchor="middle">Book.ax</text>
+  </g>
+</svg>
+  
+  <!-- Book.ax Text -->
+  <text x="512" y="680" font-family="Arial, sans-serif" font-size="110" font-weight="bold" fill="white" text-anchor="middle">Book.ax</text>
 </svg>

@@ -23,6 +23,15 @@ export const metadata: Metadata = {
   creator: 'Book.ax',
   publisher: 'Book.ax',
   
+  // Icons
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  
   // OpenGraph
   openGraph: {
     type: 'website',

@@ -1,0 +1,18 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="90" fill="#F5F5F0"/>
+  
+  <!-- Suitcase Icon -->
+  <g transform="translate(256, 256)">
+    <!-- Handle -->
+    <rect x="-40" y="-120" width="80" height="20" rx="10" fill="#7C3AED"/>
+    <rect x="-50" y="-110" width="25" height="40" rx="12.5" fill="#7C3AED"/>
+    <rect x="25" y="-110" width="25" height="40" rx="12.5" fill="#7C3AED"/>
+    
+    <!-- Suitcase Body -->
+    <rect x="-90" y="-70" width="180" height="130" rx="20" fill="#7C3AED"/>
+    
+    <!-- Book.ax Text -->
+    <text x="0" y="100" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="#7C3AED" text-anchor="middle">Book.ax</text>
+  </g>
+</svg>

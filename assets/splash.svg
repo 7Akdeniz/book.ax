@@ -1,5 +1,45 @@
-<svg width="1284" height="2778" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1284" height="2778" fill="#9C27B0"/>
-  <text x="642" y="1450" font-family="Arial, sans-serif" font-size="180" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Book.ax</text>
-  <text x="642" y="1620" font-family="Arial, sans-serif" font-size="60" fill="#FFFFFF" text-anchor="middle" opacity="0.8">Premium Hotel Buchung</text>
+<svg width="1284" height="2778" viewBox="0 0 1284 2778" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Background -->
+  <defs>
+    <linearGradient id="splashGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9333EA;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6D28D9;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glowGradient">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1284" height="2778" fill="url(#splashGradient)"/>
+  
+  <!-- Glow Effect -->
+  <circle cx="642" cy="1000" r="600" fill="url(#glowGradient)"/>
+  
+  <!-- Suitcase Icon (Centered) -->
+  <g transform="translate(642, 1100)">
+    <!-- Handle -->
+    <rect x="-140" y="-420" width="280" height="70" rx="35" fill="#F5F5F0"/>
+    <rect x="-180" y="-390" width="90" height="140" rx="45" fill="#F5F5F0"/>
+    <rect x="90" y="-390" width="90" height="140" rx="45" fill="#F5F5F0"/>
+    
+    <!-- Suitcase Body -->
+    <rect x="-310" y="-250" width="620" height="450" rx="70" fill="#F5F5F0"/>
+  </g>
+  
+  <!-- Book.ax Text -->
+  <text x="642" y="1750" font-family="Arial, sans-serif" font-size="140" font-weight="bold" fill="white" text-anchor="middle">Book.ax</text>
+  
+  <!-- Tagline -->
+  <text x="642" y="1900" font-family="Arial, sans-serif" font-size="50" fill="white" text-anchor="middle" opacity="0.9">Find Your Perfect Stay</text>
+  
+  <!-- Decorative Stars -->
+  <circle cx="200" cy="500" r="4" fill="white" opacity="0.6"/>
+  <circle cx="1000" cy="600" r="3" fill="white" opacity="0.5"/>
+  <circle cx="300" cy="2200" r="5" fill="white" opacity="0.7"/>
+  <circle cx="900" cy="2100" r="4" fill="white" opacity="0.6"/>
+  <circle cx="150" cy="1500" r="3" fill="white" opacity="0.5"/>
+  <circle cx="1100" cy="1400" r="4" fill="white" opacity="0.6"/>
 </svg>

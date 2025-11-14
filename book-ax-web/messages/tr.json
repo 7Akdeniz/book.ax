@@ -37,7 +37,11 @@
     "freeChangesCancellation": "Ücretsiz Değişiklik ve İptal",
     "bestPriceGuaranteeDesc": "En iyi fiyatları bulun veya farkı iade ederiz",
     "noCreditCardFeesDesc": "Gizli ücret yok, gördüğünüz fiyatı ödersiniz",
-    "freeChangesCancellationDesc": "Ücretsiz iptal ile esnek rezervasyon"
+    "freeChangesCancellationDesc": "Ücretsiz iptal ile esnek rezervasyon",
+    "searchPlaceholderExample": "örn. Berlin, Almanya",
+    "destination": "Varış noktası",
+    "numberOfGuests": "Misafir sayısı",
+    "searchHotelsButton": "Otel ara"
   },
   "search": {
     "results": "Search Results",

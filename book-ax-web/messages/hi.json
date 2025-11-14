@@ -37,7 +37,11 @@
     "freeChangesCancellation": "मुफ्त परिवर्तन और रद्दीकरण",
     "bestPriceGuaranteeDesc": "सर्वोत्तम मूल्य खोजें या हम अंतर वापस करेंगे",
     "noCreditCardFeesDesc": "कोई छिपी हुई फीस नहीं, जो देखें वही भुगतान करें",
-    "freeChangesCancellationDesc": "निःशुल्क रद्दीकरण के साथ लचीली बुकिंग"
+    "freeChangesCancellationDesc": "निःशुल्क रद्दीकरण के साथ लचीली बुकिंग",
+    "searchPlaceholderExample": "उदाहरण बर्लिन, जर्मनी",
+    "destination": "गंतव्य",
+    "numberOfGuests": "मेहमानों की संख्या",
+    "searchHotelsButton": "होटल खोजें"
   },
   "search": {
     "results": "Search Results",

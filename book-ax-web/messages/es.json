@@ -37,7 +37,11 @@
     "freeChangesCancellation": "Cambios y cancelación gratuitos",
     "bestPriceGuaranteeDesc": "Encuentra los mejores precios o te devolvemos la diferencia",
     "noCreditCardFeesDesc": "Sin tarifas ocultas, paga exactamente lo que ves",
-    "freeChangesCancellationDesc": "Reserva flexible con cancelación gratuita"
+    "freeChangesCancellationDesc": "Reserva flexible con cancelación gratuita",
+    "searchPlaceholderExample": "ej. Berlín, Alemania",
+    "destination": "Destino",
+    "numberOfGuests": "Número de huéspedes",
+    "searchHotelsButton": "Buscar hoteles"
   },
   "search": {
     "results": "Search Results",

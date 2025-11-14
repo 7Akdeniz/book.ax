@@ -37,7 +37,11 @@
     "freeChangesCancellation": "免费更改和取消",
     "bestPriceGuaranteeDesc": "找到最优惠的价格，否则我们将退还差价",
     "noCreditCardFeesDesc": "没有隐藏费用，所见即所付",
-    "freeChangesCancellationDesc": "灵活预订，免费取消"
+    "freeChangesCancellationDesc": "灵活预订，免费取消",
+    "searchPlaceholderExample": "例如 柏林，德国",
+    "destination": "目的地",
+    "numberOfGuests": "客人人数",
+    "searchHotelsButton": "搜索酒店"
   },
   "search": {
     "results": "Search Results",

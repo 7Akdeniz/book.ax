@@ -2,6 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function Footer() {
   const locale = useLocale();
@@ -14,7 +15,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">Book.ax</h3>
+            <div className="mb-4">
+              <Image 
+                src="/logo.svg" 
+                alt="Book.ax" 
+                width={150} 
+                height={45}
+                className="brightness-0 invert"
+              />
+            </div>
             <p className="text-gray-400 text-base">
               {t('tagline')}
             </p>

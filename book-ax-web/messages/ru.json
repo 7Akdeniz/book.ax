@@ -37,7 +37,11 @@
     "freeChangesCancellation": "Бесплатные изменения и отмена",
     "bestPriceGuaranteeDesc": "Найдите лучшие цены или мы вернем разницу",
     "noCreditCardFeesDesc": "Никаких скрытых комиссий, платите только то, что видите",
-    "freeChangesCancellationDesc": "Гибкое бронирование с бесплатной отменой"
+    "freeChangesCancellationDesc": "Гибкое бронирование с бесплатной отменой",
+    "searchPlaceholderExample": "напр. Берлин, Германия",
+    "destination": "Направление",
+    "numberOfGuests": "Количество гостей",
+    "searchHotelsButton": "Искать отели"
   },
   "search": {
     "results": "Search Results",
