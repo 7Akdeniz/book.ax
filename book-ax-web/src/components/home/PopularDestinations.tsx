@@ -27,7 +27,7 @@ const destinations = [
     name: 'Köln',
     country: 'Deutschland',
     hotels: 987,
-    image: 'https://images.unsplash.com/photo-1590686536039-6f7d4b63c7b1?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1564594245185-5aa06a3e7ae8?w=600&h=400&fit=crop',
   },
 ];
 
