@@ -654,20 +654,29 @@
     },
     "settings": {
       "title": "System Settings",
-      "general": "General Settings",
-      "commission": "Commission Settings",
-      "tax": "Tax Settings",
-      "currency": "Currency Settings",
-      "email": "Email Settings",
-      "api": "API Settings",
-      "globalCommission": "Global Commission Rate",
-      "minCommission": "Minimum Commission",
-      "maxCommission": "Maximum Commission",
-      "defaultCurrency": "Default Currency",
-      "taxRate": "Tax Rate",
-      "smtpServer": "SMTP Server",
-      "apiKey": "API Key",
-      "webhookUrl": "Webhook URL",
+      "commission": {
+        "title": "Commission Settings",
+        "default": "Default Commission",
+        "min": "Minimum Commission",
+        "max": "Maximum Commission"
+      },
+      "tax": {
+        "title": "Tax Settings",
+        "rate": "Tax Rate",
+        "included": "Tax Included in Prices"
+      },
+      "currency": {
+        "title": "Currency Settings",
+        "default": "Default Currency"
+      },
+      "email": {
+        "title": "Email Settings",
+        "from": "From Address",
+        "replyTo": "Reply-To Address"
+      },
+      "system": {
+        "title": "System Settings"
+      },
       "save": "Save Settings",
       "saving": "Saving...",
       "success": {
