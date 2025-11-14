@@ -35,10 +35,6 @@ export default function PanelPage() {
   const [error, setError] = useState('');
   const [userName, setUserName] = useState('');
 
-  useEffect(() => {
-    checkAuthAndLoadData();
-  }, []);
-
   const checkAuthAndLoadData = async () => {
     try {
       // Check if user is logged in
@@ -153,6 +149,11 @@ export default function PanelPage() {
       console.error('Error loading stats:', err);
     }
   };
+
+  useEffect(() => {
+    checkAuthAndLoadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('accessToken');

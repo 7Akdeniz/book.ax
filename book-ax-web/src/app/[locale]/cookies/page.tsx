@@ -365,8 +365,8 @@ export default function CookiesPage() {
 
               <h3 className="font-semibold text-gray-900 mt-4">3. Browser-Plugins</h3>
               <p>
-                Sie können auch Browser-Erweiterungen wie "Cookie AutoDelete" oder 
-                "Privacy Badger" verwenden, um Cookies automatisch zu verwalten.
+                Sie können auch Browser-Erweiterungen wie &quot;Cookie AutoDelete&quot; oder 
+                &quot;Privacy Badger&quot; verwenden, um Cookies automatisch zu verwalten.
               </p>
             </div>
           </section>

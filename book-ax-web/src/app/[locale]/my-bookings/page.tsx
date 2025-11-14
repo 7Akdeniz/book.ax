@@ -31,10 +31,6 @@ export default function MyBookingsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    loadBookings();
-  }, []);
-
   const loadBookings = async () => {
     try {
       // Check if user is logged in
@@ -73,6 +69,11 @@ export default function MyBookingsPage() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadBookings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getStatusColor = (status: string) => {
     switch (status) {

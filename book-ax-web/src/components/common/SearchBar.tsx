@@ -112,9 +112,6 @@ export function SearchBar() {
             max={10}
             className="peer w-full px-5 pt-8 pb-3 text-lg font-medium border-b-2 border-gray-300 bg-transparent focus:border-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-200 rounded transition-all"
             aria-label={t('numberOfGuests') || 'Number of guests'}
-            aria-valuemin={1}
-            aria-valuemax={10}
-            aria-valuenow={guests}
           />
         </div>
 
