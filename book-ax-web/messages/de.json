@@ -19,7 +19,26 @@
     "back": "Zurück",
     "next": "Weiter",
     "submit": "Absenden",
-    "close": "Schließen"
+    "close": "Schließen",
+    "welcome": "Welcome",
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm",
+    "view": "View",
+    "download": "Download",
+    "export": "Export",
+    "import": "Import",
+    "refresh": "Refresh",
+    "filter": "Filter",
+    "sort": "Sort",
+    "actions": "Actions",
+    "details": "Details",
+    "status": "Status",
+    "date": "Date",
+    "time": "Time",
+    "name": "Name",
+    "description": "Description",
+    "settings": "Settings"
   },
   "home": {
     "title": "Finde deine perfekte Unterkunft",
@@ -538,6 +557,22 @@
           "confirm": "Are you sure you want to continue?"
         }
       }
+    },
+    "loginTitle": "Hotelier Login",
+    "loginSubtitle": "Sign in to manage your hotel",
+    "accessDenied": "Access Denied - Hotelier role required",
+    "unauthorized": "Unauthorized access",
+    "welcomeBack": "Welcome back",
+    "navigation": {
+      "dashboard": "Dashboard",
+      "bookings": "Bookings",
+      "calendar": "Calendar",
+      "rooms": "Rooms",
+      "rates": "Rates",
+      "guests": "Guests",
+      "reports": "Reports",
+      "settings": "Settings",
+      "logout": "Logout"
     }
   },
   "admin": {
@@ -706,8 +741,67 @@
       "finances": "Finances",
       "settings": "Settings",
       "security": "Security",
-      "logout": "Logout"
-    }
+      "logout": "Logout",
+      "bookings": "Bookings"
+    },
+    "bookings": {
+      "title": "All Bookings",
+      "subtitle": "Manage all bookings across all hotels",
+      "loading": "Loading bookings...",
+      "refresh": "Refresh",
+      "fetchError": "Failed to load bookings",
+      "confirmCancel": "Are you sure you want to cancel this booking?",
+      "cancelSuccess": "Booking cancelled successfully",
+      "cancelError": "Failed to cancel booking",
+      "noBookings": "No bookings found",
+      "stats": {
+        "total": "Total Bookings",
+        "confirmed": "Confirmed",
+        "pending": "Pending",
+        "revenue": "Total Revenue"
+      },
+      "filters": {
+        "search": "Search",
+        "searchPlaceholder": "Search by reference, hotel, guest...",
+        "status": "Status",
+        "allStatuses": "All Statuses",
+        "source": "Source",
+        "allSources": "All Sources"
+      },
+      "status": {
+        "pending": "Pending",
+        "confirmed": "Confirmed",
+        "checkedIn": "Checked In",
+        "checkedOut": "Checked Out",
+        "cancelled": "Cancelled",
+        "noShow": "No Show"
+      },
+      "source": {
+        "direct": "Direct",
+        "bookingCom": "Booking.com",
+        "airbnb": "Airbnb",
+        "expedia": "Expedia",
+        "other": "Other"
+      },
+      "table": {
+        "reference": "Reference",
+        "hotel": "Hotel",
+        "guest": "Guest",
+        "dates": "Dates",
+        "guests": "Guests / Rooms",
+        "amount": "Amount",
+        "status": "Status",
+        "source": "Source",
+        "actions": "Actions"
+      },
+      "actions": {
+        "cancel": "Cancel"
+      }
+    },
+    "loginTitle": "Admin Login",
+    "loginSubtitle": "Sign in to access the admin panel",
+    "unauthorized": "Unauthorized access",
+    "welcomeBack": "Welcome back, Administrator"
   },
   "auth": {
     "loginTitle": "Bei Book.ax anmelden",
@@ -727,7 +821,28 @@
     "invalidCredentials": "Ungültige E-Mail oder Passwort",
     "emailAlreadyExists": "E-Mail bereits registriert",
     "passwordTooShort": "Passwort muss mindestens 8 Zeichen lang sein",
-    "passwordsDoNotMatch": "Passwörter stimmen nicht überein"
+    "passwordsDoNotMatch": "Passwörter stimmen nicht überein",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "rememberMe": "Remember Me",
+    "loginButton": "Login",
+    "registerButton": "Create Account",
+    "loginSuccess": "Login successful!",
+    "loginError": "Login failed. Please check your credentials.",
+    "logoutSuccess": "Logged out successfully",
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required",
+    "invalidEmail": "Invalid email address",
+    "passwordMinLength": "Password must be at least 8 characters",
+    "accountCreated": "Account created successfully!",
+    "registrationError": "Registration failed. Please try again.",
+    "passwordResetSent": "Password reset link sent to your email",
+    "passwordResetError": "Failed to send reset link",
+    "role": "Role",
+    "guest": "Guest",
+    "hotelier": "Hotelier",
+    "admin": "Administrator"
   },
   "errors": {
     "somethingWentWrong": "Etwas ist schiefgelaufen",
@@ -816,7 +931,11 @@
     "phone": "Telefon",
     "supportEmail": "support@book.ax",
     "supportPhone": "+49 30 1234 5678",
-    "businessHours": "Geschäftszeiten: Mo-Fr 9:00-18:00 Uhr"
+    "businessHours": "Geschäftszeiten: Mo-Fr 9:00-18:00 Uhr",
+    "searchPlaceholder": "Search for help...",
+    "contactSupport": "Contact Support",
+    "guides": "User Guides",
+    "documentation": "Documentation"
   },
   "pricing": {
     "hero": {
