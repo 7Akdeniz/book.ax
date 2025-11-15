@@ -1,9 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import toast from 'react-hot-toast';
+import { useAuth } from '@/contexts/AuthContext';
+import { authenticatedFetch } from '@/lib/auth/client';
+import { PanelNav } from '@/components/panel/PanelNav';
 
 interface DayBooking {
   id: string;
@@ -33,7 +36,10 @@ interface MonthStats {
 
 export default function HotelierCalendarPage() {
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale as string;
   const t = useTranslations('panel.calendar');
+  const { user } = useAuth();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [calendarData, setCalendarData] = useState<CalendarDay[]>([]);
   const [stats, setStats] = useState<MonthStats>({
@@ -48,52 +54,48 @@ export default function HotelierCalendarPage() {
   const [totalRooms, setTotalRooms] = useState(0);
 
   const verifyHotelierAccess = async () => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) {
-      router.push('/login');
+    // Check if user is logged in
+    if (!user) {
+      router.push(`/${locale}/login`);
+      return false;
+    }
+
+    // Check if user is hotelier or admin
+    if (user.role !== 'hotelier' && user.role !== 'admin') {
+      toast.error(t('accessDenied'));
+      router.push(`/${locale}`);
       return false;
     }
 
     try {
-      const response = await fetch('/api/panel/verify', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await authenticatedFetch('/api/panel/verify');
 
       if (response.status === 401) {
-        router.push('/login');
+        router.push(`/${locale}/login`);
         return false;
       }
 
       if (response.status === 403) {
         toast.error(t('accessDenied'));
-        router.push('/');
+        router.push(`/${locale}`);
         return false;
       }
 
       return response.ok;
     } catch (error) {
       console.error('Verification error:', error);
-      router.push('/login');
+      router.push(`/${locale}/login`);
       return false;
     }
   };
 
   const fetchCalendarData = async () => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) return;
-
     try {
       setLoading(true);
       const year = currentDate.getFullYear();
       const month = currentDate.getMonth() + 1;
 
-      const response = await fetch(`/api/panel/calendar?year=${year}&month=${month}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await authenticatedFetch(`/api/panel/calendar?year=${year}&month=${month}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch calendar data');
@@ -184,8 +186,10 @@ export default function HotelierCalendarPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-50">
+      <PanelNav />
+      <div className="py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
           <p className="mt-2 text-gray-600">{t('subtitle')}</p>
@@ -373,6 +377,7 @@ export default function HotelierCalendarPage() {
               <span className="text-sm text-gray-700">{t('today')}</span>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

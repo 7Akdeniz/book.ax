@@ -16,6 +16,7 @@ export function AdminNav() {
     { name: t('navigation.users'), href: '/admin/users', current: pathname === '/admin/users' },
     { name: 'Bookings', href: '/admin/bookings', current: pathname === '/admin/bookings' },
     { name: t('navigation.finances'), href: '/admin/finances', current: pathname === '/admin/finances' },
+    { name: 'CMS', href: '/admin/cms/pages', current: pathname.includes('/admin/cms') },
     { name: t('navigation.settings'), href: '/admin/settings', current: pathname === '/admin/settings' },
   ];
 

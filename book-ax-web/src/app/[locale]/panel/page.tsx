@@ -62,7 +62,7 @@ export default function PanelPage() {
       const user = getUser();
       
       // Check role on client-side first
-      if (!user || user.role !== 'hotelier') {
+      if (!user || (user.role !== 'hotelier' && user.role !== 'admin')) {
         // Wrong role - show landing page
         setIsHotelier(false);
         setLoading(false);
@@ -80,7 +80,7 @@ export default function PanelPage() {
       }
 
       const data = await response.json();
-      if (data.user?.role !== 'hotelier') {
+      if (data.user?.role !== 'hotelier' && data.user?.role !== 'admin') {
         // Wrong role confirmed by server
         setIsHotelier(false);
         setLoading(false);
@@ -484,7 +484,7 @@ export default function PanelPage() {
         {/* Quick Actions */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           <Link
-            href="/panel/bookings"
+            href={`/${locale}/panel/bookings`}
             className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow"
           >
             <div className="flex items-center">
@@ -505,7 +505,7 @@ export default function PanelPage() {
           </Link>
 
           <Link
-            href="/panel/calendar"
+            href={`/${locale}/panel/calendar`}
             className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow"
           >
             <div className="flex items-center">
@@ -526,7 +526,7 @@ export default function PanelPage() {
           </Link>
 
           <Link
-            href="/panel/rooms"
+            href={`/${locale}/panel/hotels`}
             className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow"
           >
             <div className="flex items-center">

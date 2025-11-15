@@ -3,10 +3,12 @@
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useAuth } from '@/contexts/AuthContext';
 
 export function Footer() {
   const locale = useLocale();
   const t = useTranslations('footer');
+  const { user } = useAuth();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -38,11 +40,13 @@ export function Footer() {
                   {t('searchHotels')}
                 </Link>
               </li>
-              <li>
-                <Link href={`/${locale}/my-bookings`} className="text-gray-400 hover:text-white">
-                  {t('myBookings')}
-                </Link>
-              </li>
+              {user && (
+                <li>
+                  <Link href={`/${locale}/my-bookings`} className="text-gray-400 hover:text-white">
+                    {t('myBookings')}
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link href={`/${locale}/help`} className="text-gray-400 hover:text-white">
                   {t('helpCenter')}
@@ -60,11 +64,13 @@ export function Footer() {
                   {t('dashboard')}
                 </Link>
               </li>
-              <li>
-                <Link href={`/${locale}/panel/hotels`} className="text-gray-400 hover:text-white">
-                  {t('listYourProperty')}
-                </Link>
-              </li>
+              {(user?.role === 'hotelier' || user?.role === 'admin') && (
+                <li>
+                  <Link href={`/${locale}/panel/hotels`} className="text-gray-400 hover:text-white">
+                    {t('listYourProperty')}
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link href={`/${locale}/pricing`} className="text-gray-400 hover:text-white">
                   {t('pricing')}

@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import toast from 'react-hot-toast';
-import { authenticatedFetch, isAuthenticated, getUser } from '@/lib/auth/client';
+import { authenticatedFetch } from '@/lib/auth/client';
 import { useAuth } from '@/contexts/AuthContext';
+import { PanelNav } from '@/components/panel/PanelNav';
 
 interface BookingWithDetails {
   id: string;
@@ -38,8 +39,10 @@ type DateFilter = 'all' | 'today' | 'upcoming' | 'past';
 
 export default function HotelierBookingsPage() {
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale as string;
   const t = useTranslations('panel.bookings');
-  const { user: authUser } = useAuth();
+  const { user } = useAuth();
   const [bookings, setBookings] = useState<BookingWithDetails[]>([]);
   const [stats, setStats] = useState<Stats>({
     totalBookings: 0,
@@ -55,15 +58,14 @@ export default function HotelierBookingsPage() {
 
   // Verify hotelier access
   const verifyHotelierAccess = async () => {
-    if (!isAuthenticated()) {
-      router.push('/login');
+    if (!user) {
+      router.push(`/${locale}/login`);
       return false;
     }
 
-    const user = getUser();
-    if (!user || user.role !== 'hotelier') {
+    if (user.role !== 'hotelier' && user.role !== 'admin') {
       toast.error(t('accessDenied'));
-      router.push('/');
+      router.push(`/${locale}`);
       return false;
     }
 
@@ -71,27 +73,27 @@ export default function HotelierBookingsPage() {
       const response = await authenticatedFetch('/api/panel/verify');
 
       if (response.status === 401) {
-        router.push('/login');
+        router.push(`/${locale}/login`);
         return false;
       }
 
       if (response.status === 403) {
         toast.error(t('accessDenied'));
-        router.push('/');
+        router.push(`/${locale}`);
         return false;
       }
 
       return response.ok;
     } catch (error) {
       console.error('Verification error:', error);
-      router.push('/login');
+      router.push(`/${locale}/login`);
       return false;
     }
   };
 
   // Fetch bookings data
   const fetchBookings = async () => {
-    if (!isAuthenticated()) return;
+    if (!user) return;
 
     try {
       setLoading(true);
@@ -279,8 +281,10 @@ export default function HotelierBookingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-50">
+      <PanelNav />
+      <div className="py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
@@ -507,6 +511,7 @@ export default function HotelierBookingsPage() {
               </tbody>
             </table>
           </div>
+        </div>
         </div>
       </div>
     </div>
