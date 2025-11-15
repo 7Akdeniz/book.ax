@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import toast from 'react-hot-toast';
+import { authenticatedFetch, isAuthenticated, getUser } from '@/lib/auth/client';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface BookingWithDetails {
   id: string;
@@ -37,6 +39,7 @@ type DateFilter = 'all' | 'today' | 'upcoming' | 'past';
 export default function HotelierBookingsPage() {
   const router = useRouter();
   const t = useTranslations('panel.bookings');
+  const { user: authUser } = useAuth();
   const [bookings, setBookings] = useState<BookingWithDetails[]>([]);
   const [stats, setStats] = useState<Stats>({
     totalBookings: 0,
@@ -52,18 +55,20 @@ export default function HotelierBookingsPage() {
 
   // Verify hotelier access
   const verifyHotelierAccess = async () => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) {
+    if (!isAuthenticated()) {
       router.push('/login');
       return false;
     }
 
+    const user = getUser();
+    if (!user || user.role !== 'hotelier') {
+      toast.error(t('accessDenied'));
+      router.push('/');
+      return false;
+    }
+
     try {
-      const response = await fetch('/api/panel/verify', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await authenticatedFetch('/api/panel/verify');
 
       if (response.status === 401) {
         router.push('/login');
@@ -86,8 +91,7 @@ export default function HotelierBookingsPage() {
 
   // Fetch bookings data
   const fetchBookings = async () => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) return;
+    if (!isAuthenticated()) return;
 
     try {
       setLoading(true);
@@ -95,11 +99,7 @@ export default function HotelierBookingsPage() {
       if (statusFilter !== 'all') params.append('status', statusFilter);
       if (dateFilter !== 'all') params.append('dateFilter', dateFilter);
 
-      const response = await fetch(`/api/panel/bookings?${params.toString()}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await authenticatedFetch(`/api/panel/bookings?${params.toString()}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch bookings');

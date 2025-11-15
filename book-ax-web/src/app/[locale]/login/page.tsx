@@ -5,12 +5,15 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { setAuthData } from '@/lib/auth/client';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function LoginPage() {
   const router = useRouter();
   const params = useParams();
   const locale = params.locale as string;
   const t = useTranslations();
+  const { refreshUser } = useAuth();
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,10 +35,17 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (response.ok) {
-        // Store tokens
-        localStorage.setItem('accessToken', data.accessToken);
-        localStorage.setItem('refreshToken', data.refreshToken);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        // Store authentication data
+        setAuthData(
+          {
+            accessToken: data.accessToken,
+            refreshToken: data.refreshToken,
+          },
+          data.user
+        );
+        
+        // Refresh user in AuthContext
+        refreshUser();
         
         // Redirect based on role
         if (data.user.role === 'hotelier') {

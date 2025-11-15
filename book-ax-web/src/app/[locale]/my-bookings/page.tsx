@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter, useParams } from 'next/navigation';
 import { supabase } from '@/lib/db/supabase';
+import { getUser, isAuthenticated } from '@/lib/auth/client';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface Booking {
   id: string;
@@ -26,6 +28,7 @@ export default function MyBookingsPage() {
   const params = useParams();
   const locale = params.locale as string;
   const t = useTranslations();
+  const { user: authUser } = useAuth();
   
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
@@ -34,20 +37,16 @@ export default function MyBookingsPage() {
   const loadBookings = async () => {
     try {
       // Check if user is logged in
-      const accessToken = localStorage.getItem('accessToken');
-      if (!accessToken) {
+      if (!isAuthenticated()) {
         router.push(`/${locale}/login`);
         return;
       }
 
-      // Get user from localStorage
-      const userStr = localStorage.getItem('user');
-      if (!userStr) {
+      const user = getUser();
+      if (!user) {
         router.push(`/${locale}/login`);
         return;
       }
-
-      const user = JSON.parse(userStr);
 
       // Fetch bookings from Supabase
       const { data, error } = await supabase

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+import { authenticatedFetch, getUser, isAuthenticated } from '@/lib/auth/client';
 
 interface DashboardStats {
   todayCheckIns: number;
@@ -43,15 +44,24 @@ export default function PanelPage() {
 
   const verifyHotelierAccess = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
+      // Check if authenticated
+      if (!isAuthenticated()) {
         router.push('/login');
         return;
       }
 
-      const response = await fetch('/api/panel/verify', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      // Get user from localStorage
+      const user = getUser();
+      
+      // Check role on client-side first
+      if (!user || user.role !== 'hotelier') {
+        toast.error(t('accessDenied'));
+        router.push('/');
+        return;
+      }
+
+      // Verify with server (with automatic token refresh)
+      const response = await authenticatedFetch('/api/panel/verify');
 
       if (!response.ok) {
         router.push('/login');
@@ -75,10 +85,7 @@ export default function PanelPage() {
 
   const fetchDashboardData = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('/api/panel/dashboard', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await authenticatedFetch('/api/panel/dashboard');
 
       if (!response.ok) throw new Error('Failed to fetch dashboard data');
 

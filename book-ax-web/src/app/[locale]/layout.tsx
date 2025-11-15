@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { locales } from '@/i18n/config';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -34,13 +35,15 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow mt-5">
-              {children}
-            </main>
-            <Footer />
-          </div>
+          <AuthProvider>
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-grow mt-5">
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </AuthProvider>
         </NextIntlClientProvider>
       </body>
     </html>
