@@ -1,24 +1,75 @@
 # Book.ax Web - Hotel Booking Platform
 
-Multi-language hotel booking platform built with Next.js 14, Supabase, and TypeScript.
+Multi-language hotel booking platform built with Next.js 14, PostgreSQL, and TypeScript.
 
 ## 🚀 Quick Start
 
 ```bash
-# Install dependencies
+# 1. Setup lokale Datenbank (Docker)
+npm run db:setup
+
+# 2. Install dependencies
 npm install
 
-# Development
+# 3. Development
 npm run dev
-
-# Build for production
-npm run build
-npm start
 ```
+
+**Live URL:** https://book.ax
 
 ---
 
-## �️ Supabase CLI - Database Management
+## 🗄️ Lokale Datenbank (Docker PostgreSQL)
+
+### Erstmaliges Setup
+```bash
+# Komplettes Setup (empfohlen)
+npm run db:setup
+
+# Oder manuell:
+docker-compose up -d
+```
+
+Das startet:
+- **PostgreSQL** auf Port 5432
+- **pgAdmin** Web UI auf Port 5050
+
+### Demo-Zugänge
+Nach dem Setup sind folgende User verfügbar:
+
+| Rolle | Email | Passwort |
+|-------|-------|----------|
+| **Gast** | guest@bookax.local | Password123! |
+| **Hotelier** | hotelier@bookax.local | Password123! |
+| **Admin** | admin@bookax.local | Password123! |
+
+### Häufige DB-Befehle
+```bash
+# Datenbank Shell öffnen
+npm run db:shell
+
+# Status & Statistiken anzeigen
+npm run db:info
+
+# Backup erstellen
+npm run db:backup
+
+# Datenbank zurücksetzen (löscht alle Daten!)
+npm run db:reset
+
+# Container starten/stoppen
+npm run docker:up
+npm run docker:down
+
+# Logs live anzeigen
+npm run docker:logs
+```
+
+**Mehr Infos:** Siehe [LOCAL_DEVELOPMENT.md](./LOCAL_DEVELOPMENT.md)
+
+---
+
+## ☁️ Supabase CLI - Database Management
 
 ### Setup (Einmalig)
 ```bash
