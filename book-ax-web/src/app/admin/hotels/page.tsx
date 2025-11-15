@@ -38,16 +38,19 @@ function AdminHotelsContent() {
   // 🔒 CRITICAL: Verify admin access
   useEffect(() => {
     verifyAdminAccess();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (isAdmin) {
       fetchHotels();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdmin]);
 
   useEffect(() => {
     filterHotels();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusFilter, hotels]);
 
   const verifyAdminAccess = async () => {

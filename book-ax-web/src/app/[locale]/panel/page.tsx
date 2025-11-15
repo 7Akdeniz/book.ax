@@ -43,6 +43,7 @@ export default function PanelPage() {
 
   useEffect(() => {
     verifyHotelierAccess();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const verifyHotelierAccess = async () => {

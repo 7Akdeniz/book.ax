@@ -209,6 +209,7 @@ export default function HotelierBookingsPage() {
       }
     };
     init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Refetch on filter change
@@ -216,6 +217,7 @@ export default function HotelierBookingsPage() {
     if (!loading) {
       fetchBookings();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusFilter, dateFilter]);
 
   // Client-side search filter

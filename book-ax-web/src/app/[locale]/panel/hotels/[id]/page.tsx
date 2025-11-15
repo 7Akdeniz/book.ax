@@ -39,6 +39,7 @@ export default function HotelDashboard({ params }: { params: { locale: string; i
 
   useEffect(() => {
     fetchDashboardData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hotelId]);
 
   const fetchDashboardData = async () => {

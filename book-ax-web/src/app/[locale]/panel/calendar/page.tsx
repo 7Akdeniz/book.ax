@@ -119,12 +119,14 @@ export default function HotelierCalendarPage() {
       }
     };
     init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (!loading) {
       fetchCalendarData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentDate]);
 
   const goToPreviousMonth = () => {

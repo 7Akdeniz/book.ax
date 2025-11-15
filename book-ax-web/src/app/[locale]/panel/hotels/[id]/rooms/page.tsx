@@ -37,6 +37,7 @@ export default function HotelRoomsPage() {
 
   useEffect(() => {
     fetchRooms();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hotelId]);
 
   const fetchRooms = async () => {

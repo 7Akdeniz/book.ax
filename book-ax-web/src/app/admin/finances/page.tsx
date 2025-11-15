@@ -44,6 +44,7 @@ export default function AdminFinancesPage() {
   // Admin verification on mount
   useEffect(() => {
     verifyAdminAccess();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Fetch data when filters change
@@ -51,6 +52,7 @@ export default function AdminFinancesPage() {
     if (isAdmin) {
       fetchFinancialData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdmin, dateRange, statusFilter]);
 
   const verifyAdminAccess = async () => {

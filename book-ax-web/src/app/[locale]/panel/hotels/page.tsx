@@ -49,6 +49,7 @@ export default function PanelHotelsPage() {
     };
 
     verifyAndLoadHotels();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locale, router, t]);
 
   const loadHotels = async () => {

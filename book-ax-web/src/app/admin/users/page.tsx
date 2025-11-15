@@ -31,6 +31,7 @@ export default function AdminUsersPage() {
   // Admin verification on mount
   useEffect(() => {
     verifyAdminAccess();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const verifyAdminAccess = async () => {

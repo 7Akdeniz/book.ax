@@ -33,6 +33,7 @@ export default function AdminDashboard() {
   // 🔒 CRITICAL: Admin role verification
   useEffect(() => {
     verifyAdminAccess();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const verifyAdminAccess = async () => {

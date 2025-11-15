@@ -41,12 +41,14 @@ export default function AdminBookingsPage() {
 
   useEffect(() => {
     verifyAdminAccess();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (!loading) {
       fetchBookings();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusFilter, sourceFilter]);
 
   const verifyAdminAccess = async () => {

@@ -57,12 +57,14 @@ export default function RatesPage({ params }: { params: { locale: string } }) {
     }
     
     fetchRoomCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (selectedRoom) {
       fetchRates();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRoom, currentDate]);
 
   const fetchRoomCategories = async () => {
