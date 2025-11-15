@@ -6,6 +6,7 @@ import { HotelImageGallery } from '@/components/hotel/HotelImageGallery';
 import { BookingCard } from '@/components/hotel/BookingCard';
 import { HotelStructuredData } from '@/components/seo/StructuredData';
 import { formatCurrency } from '@/utils/formatting';
+import { BookNowButton } from '@/components/hotel/BookNowButton';
 
 interface PageProps {
   params: {
@@ -145,7 +146,7 @@ export default async function HotelPage({ params }: PageProps) {
                       <div className="text-right ml-4">
                         <p className="text-2xl font-bold text-primary-600">{formatCurrency(room.base_price, 'EUR', params.locale)}</p>
                         <p className="text-sm text-gray-600">{t('hotel.perNight')}</p>
-                        <button className="mt-2 bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">{t('hotel.bookNow')}</button>
+                        <BookNowButton roomName={room.name} />
                       </div>
                     </div>
                   </div>
@@ -175,7 +176,9 @@ export default async function HotelPage({ params }: PageProps) {
           </div>
 
           <div className="lg:col-span-1">
-            <BookingCard checkInTime={hotel.check_in_time} checkOutTime={hotel.check_out_time} hotelId={hotel.id} />
+            <div className="booking-card-container">
+              <BookingCard checkInTime={hotel.check_in_time} checkOutTime={hotel.check_out_time} hotelId={hotel.id} />
+            </div>
           </div>
         </div>
       </div>

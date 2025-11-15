@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
+import Link from 'next/link';
 
 const CheckIcon = () => (
   <svg className="h-6 w-6 text-success mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   };
 }
 
-export default function PricingPage() {
+export default function PricingPage({ params }: { params: { locale: string } }) {
   const t = useTranslations('pricing');
   
   const hotelierServices = [
@@ -176,9 +177,12 @@ export default function PricingPage() {
             {t('finalCta.highlight')}
           </div>
           <div className="mt-10">
-            <button className="bg-white text-primary-700 px-12 py-5 rounded-xl text-2xl font-bold hover:bg-purple-50 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105">
+            <Link 
+              href={`/${params.locale}/register`}
+              className="inline-block bg-white text-primary-700 px-12 py-5 rounded-xl text-2xl font-bold hover:bg-purple-50 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+            >
               {t('finalCta.button')}
-            </button>
+            </Link>
           </div>
         </div>
       </div>

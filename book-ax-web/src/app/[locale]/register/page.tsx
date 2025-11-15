@@ -1,11 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 export default function RegisterPage() {
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale as string;
   const t = useTranslations();
   
   const [formData, setFormData] = useState({
@@ -132,6 +135,19 @@ export default function RegisterPage() {
                 <option value="guest">{t('auth.guest')}</option>
                 <option value="hotelier">{t('auth.hotelier')}</option>
               </select>
+              {formData.role === 'hotelier' && (
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-800">
+                    💡 <strong>{t('auth.hotelierTip')}</strong>
+                  </p>
+                  <Link 
+                    href={`/${locale}/pricing`}
+                    className="text-sm text-primary-600 hover:text-primary-700 font-semibold underline mt-1 inline-block"
+                  >
+                    {t('auth.viewPricing')} →
+                  </Link>
+                </div>
+              )}
             </div>
 
             <button

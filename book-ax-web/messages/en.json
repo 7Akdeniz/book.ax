@@ -201,6 +201,20 @@
       }
     },
     "hotels": {
+      "title": "My Hotels",
+      "subtitle": "Manage your registered properties",
+      "addNew": "Add New Hotel",
+      "noHotels": "No Hotels Yet",
+      "noHotelsDescription": "Register your first hotel to start accepting bookings",
+      "registerFirst": "Register Your First Hotel",
+      "loadError": "Failed to load hotels",
+      "roomsCount": "rooms",
+      "status": {
+        "active": "Active",
+        "pending": "Pending Review",
+        "inactive": "Inactive",
+        "suspended": "Suspended"
+      },
       "new": {
         "title": "Register New Hotel",
         "subtitle": "Complete the registration in 5 easy steps",
@@ -630,10 +644,12 @@
       "calendar": "Calendar",
       "rooms": "Rooms",
       "rates": "Rates",
+      "hotels": "Hotels",
       "guests": "Guests",
       "reports": "Reports",
       "settings": "Settings",
-      "logout": "Logout"
+      "logout": "Logout",
+      "backToSite": "Back to Site"
     },
     "bookings": {
       "title": "Bookings Management",
@@ -979,7 +995,15 @@
     "role": "Role",
     "guest": "Guest",
     "hotelier": "Hotelier",
-    "admin": "Administrator"
+    "admin": "Administrator",
+    "accountType": "Account Type",
+    "haveAccount": "Already have an account?",
+    "createAccount": "Create Account",
+    "creatingAccount": "Creating account...",
+    "registrationFailed": "Registration failed",
+    "passwordRequirements": "Minimum 8 characters",
+    "hotelierTip": "As a hotelier, you get full access to our PMS at 0€/month!",
+    "viewPricing": "View Pricing & Features"
   },
   "errors": {
     "somethingWentWrong": "Something went wrong",

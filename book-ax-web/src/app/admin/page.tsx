@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+import { authenticatedFetch, isAuthenticated, getUser } from '@/lib/auth/client';
+import { useAuth } from '@/contexts/AuthContext';
+import { AdminNav } from '@/components/admin/AdminNav';
 
 // 🔒 SECURITY: Force dynamic rendering for admin pages
 export const dynamic = 'force-dynamic';
@@ -21,6 +24,7 @@ export default function AdminDashboard() {
   const router = useRouter();
   const t = useTranslations('admin');
   const tCommon = useTranslations('common');
+  const { user: authUser } = useAuth();
 
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<AdminStats | null>(null);
@@ -33,26 +37,27 @@ export default function AdminDashboard() {
 
   const verifyAdminAccess = async () => {
     try {
-      const token = localStorage.getItem('token');
-      
-      // Security: No token = immediate redirect
-      if (!token) {
+      // Check if authenticated
+      if (!isAuthenticated()) {
         toast.error(t('security.errors.sessionExpired'));
         router.push('/login');
         return;
       }
 
+      const user = getUser();
+      
+      // Security: Check role on client-side first
+      if (!user || user.role !== 'admin') {
+        toast.error(t('accessDenied'));
+        router.push('/');
+        return;
+      }
+
       // Security: Verify admin role with backend
-      const res = await fetch('/api/admin/verify', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const res = await authenticatedFetch('/api/admin/verify');
 
       // Security: Handle auth errors
       if (res.status === 401) {
-        localStorage.removeItem('token');
         toast.error(t('security.errors.unauthorized'));
         router.push('/login');
         return;
@@ -89,18 +94,8 @@ export default function AdminDashboard() {
   const fetchAdminStats = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
 
-      if (!token) {
-        throw new Error('No token');
-      }
-
-      const res = await fetch('/api/admin/stats', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const res = await authenticatedFetch('/api/admin/stats');
 
       if (res.status === 401 || res.status === 403) {
         toast.error(t('security.errors.unauthorized'));
@@ -154,44 +149,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Admin Navigation */}
-      <nav className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex space-x-8">
-              <Link
-                href="/admin"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-primary-500 text-sm font-medium text-gray-900"
-              >
-                {t('navigation.dashboard')}
-              </Link>
-              <Link
-                href="/admin/hotels"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
-              >
-                {t('navigation.hotels')}
-              </Link>
-              <Link
-                href="/admin/users"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
-              >
-                {t('navigation.users')}
-              </Link>
-              <Link
-                href="/admin/finances"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
-              >
-                {t('navigation.finances')}
-              </Link>
-              <Link
-                href="/admin/settings"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
-              >
-                {t('navigation.settings')}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <AdminNav />
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
