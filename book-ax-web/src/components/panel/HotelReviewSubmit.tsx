@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import toast from 'react-hot-toast';
+import { authenticatedFetch } from '@/lib/auth/client';
 
 interface HotelReviewSubmitProps {
   data: any;
@@ -14,31 +15,34 @@ interface HotelReviewSubmitProps {
 export function HotelReviewSubmit({ data, onBack, onSubmit }: HotelReviewSubmitProps) {
   const t = useTranslations('panel.hotels.new.review');
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale as string;
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async () => {
     setSubmitting(true);
 
     try {
+      // Get first translation for hotel name and description
+      const firstTranslation = Object.values(data.translations || {})[0] as any;
+      const hotelName = firstTranslation?.name || data.name;
+      const hotelDescription = firstTranslation?.description || '';
+
       // 1. Create Hotel
-      const hotelResponse = await fetch('/api/hotels', {
+      const hotelResponse = await authenticatedFetch('/api/panel/hotels', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
         body: JSON.stringify({
           propertyType: data.propertyType,
-          name: data.name,
+          name: hotelName,
+          description: hotelDescription,
           starRating: data.starRating,
-          addressLine1: data.addressLine1,
-          addressLine2: data.addressLine2,
+          addressStreet: data.addressLine1,
           addressCity: data.addressCity,
           addressState: data.addressState,
           addressPostalCode: data.addressPostalCode,
           addressCountry: data.addressCountry,
-          contactPhone: data.contactPhone,
-          contactEmail: data.contactEmail,
+          phone: data.contactPhone,
+          email: data.contactEmail,
           website: data.website,
           latitude: data.latitude,
           longitude: data.longitude,
@@ -46,6 +50,7 @@ export function HotelReviewSubmit({ data, onBack, onSubmit }: HotelReviewSubmitP
           checkOutTime: data.checkOutTime,
           totalRooms: data.totalRooms,
           commissionPercentage: data.commissionPercentage,
+          locale: locale || 'de',
         }),
       });
 
@@ -57,48 +62,14 @@ export function HotelReviewSubmit({ data, onBack, onSubmit }: HotelReviewSubmitP
       const { hotel } = await hotelResponse.json();
       const hotelId = hotel.id;
 
-      // 2. Add Translations
-      if (Object.keys(data.translations).length > 0) {
-        await fetch(`/api/hotels/${hotelId}/translations`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-          },
-          body: JSON.stringify({
-            translations: Object.entries(data.translations).map(([language, trans]: [string, any]) => ({
-              language,
-              name: trans.name,
-              description: trans.description,
-              checkInInstructions: trans.checkInInstructions,
-              checkOutInstructions: trans.checkOutInstructions,
-              houseRules: trans.houseRules,
-            })),
-          }),
-        });
-      }
-
-      // 3. Add Images
-      if (data.images && data.images.length > 0) {
-        for (const image of data.images) {
-          await fetch(`/api/hotels/${hotelId}/images`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-            },
-            body: JSON.stringify({
-              url: image.url,
-              altText: image.altText,
-              isPrimary: image.isPrimary,
-              displayOrder: data.images.indexOf(image),
-            }),
-          });
-        }
-      }
+      // TODO: Add additional translations (beyond the first one)
+      // This would require a separate API endpoint for translations
+      
+      // TODO: Add Images
+      // This would require a separate API endpoint for image uploads
 
       toast.success(t('success'));
-      router.push(`/panel/hotels/${hotelId}`);
+      router.push(`/${locale}/panel`);
     } catch (error: any) {
       console.error('Submit error:', error);
       toast.error(error.message || t('error'));

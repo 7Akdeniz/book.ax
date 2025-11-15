@@ -249,7 +249,16 @@ export default function PanelPage() {
             </div>
             <div className="mt-4 flex space-x-3 md:mt-0 md:ml-4">
               <Link
-                href="/panel/bookings"
+                href={`/${locale}/panel/hotels/new`}
+                className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+              >
+                <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+                Hotel hinzufügen
+              </Link>
+              <Link
+                href={`/${locale}/panel/bookings`}
                 className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700"
               >
                 {t('actions.viewBookings')}
