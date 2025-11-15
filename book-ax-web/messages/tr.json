@@ -590,7 +590,13 @@
           "blockAvailability": "This will block availability and may affect existing bookings",
           "confirm": "Are you sure you want to continue?"
         }
-      }
+      },
+      "title": "Otellerim",
+      "subtitle": "Kayıtlı tesislerinizi yönetin",
+      "addNew": "Yeni Otel Ekle",
+      "noHotels": "Henüz Otel Yok",
+      "noHotelsDescription": "Rezervasyon almaya başlamak için ilk otelinizi kaydedin",
+      "registerFirst": "İlk Otelinizi Kaydedin"
     },
     "loginTitle": "Hotelier Login",
     "loginSubtitle": "Sign in to manage your hotel",

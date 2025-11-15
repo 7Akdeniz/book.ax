@@ -38,7 +38,7 @@ export default async function LocaleLayout({
           <AuthProvider>
             <div className="flex flex-col min-h-screen">
               <Header />
-              <main className="flex-grow mt-5">
+              <main className="flex-grow py-12">
                 {children}
               </main>
               <Footer />

@@ -586,7 +586,13 @@
           "blockAvailability": "This will block availability and may affect existing bookings",
           "confirm": "Are you sure you want to continue?"
         }
-      }
+      },
+      "title": "I Miei Hotel",
+      "subtitle": "Gestisci le tue strutture registrate",
+      "addNew": "Aggiungi Nuovo Hotel",
+      "noHotels": "Nessun Hotel Ancora",
+      "noHotelsDescription": "Registra il tuo primo hotel per iniziare ad accettare prenotazioni",
+      "registerFirst": "Registra Il Tuo Primo Hotel"
     },
     "loginTitle": "Hotelier Login",
     "loginSubtitle": "Sign in to manage your hotel",
