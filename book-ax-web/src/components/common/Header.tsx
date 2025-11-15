@@ -38,11 +38,20 @@ export function Header() {
             <Link href={`/${locale}/search`} className="text-lg font-semibold text-gray-700 hover:text-primary-600 transition-colors">
               {t('hotels')}
             </Link>
-            {user?.role === 'hotelier' && (
-              <Link href={`/${locale}/panel`} className="text-lg font-semibold text-gray-700 hover:text-primary-600 transition-colors">
-                {t('forHoteliers')}
+            
+            {/* Hotelier Panel - immer sichtbar für Marketing */}
+            <Link href={`/${locale}/panel`} className="text-lg font-semibold text-gray-700 hover:text-primary-600 transition-colors">
+              {t('forHoteliers')}
+            </Link>
+            
+            {/* Admin Panel - nur für Admin */}
+            {user?.role === 'admin' && (
+              <Link href="/admin" className="text-lg font-semibold text-gray-700 hover:text-primary-600 transition-colors">
+                Admin
               </Link>
             )}
+            
+            {/* My Bookings - für alle eingeloggten User */}
             {user && (
               <Link href={`/${locale}/my-bookings`} className="text-lg font-semibold text-gray-700 hover:text-primary-600 transition-colors">
                 {t('myBookings')}
