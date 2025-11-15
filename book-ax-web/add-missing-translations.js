@@ -165,6 +165,306 @@ const missingTranslations = {
     no: 'Registrer Ditt Første Hotell',
     pl: 'Zarejestruj Swój Pierwszy Hotel',
     sv: 'Registrera Ditt Första Hotell'
+  },
+  'panel.dashboard.subtitle': {
+    de: 'Willkommen in Ihrem Hotelier-Dashboard',
+    en: 'Welcome to your hotelier dashboard',
+    es: 'Bienvenido a tu panel de hotelero',
+    fr: 'Bienvenue sur votre tableau de bord hôtelier',
+    tr: 'Otelci kontrol panelinize hoş geldiniz',
+    da: 'Velkommen til dit hotelejer-dashboard',
+    it: 'Benvenuto nella tua dashboard alberghiera',
+    no: 'Velkommen til ditt hotelleierdashboard',
+    pl: 'Witamy w panelu hotelarza',
+    sv: 'Välkommen till din hotelliers instrumentpanel'
+  },
+  'panel.dashboard.actions.viewBookings': {
+    de: 'Alle Buchungen ansehen',
+    en: 'View All Bookings',
+    es: 'Ver Todas las Reservas',
+    fr: 'Voir Toutes les Réservations',
+    tr: 'Tüm Rezervasyonları Görüntüle',
+    da: 'Se Alle Bookinger',
+    it: 'Visualizza Tutte le Prenotazioni',
+    no: 'Se Alle Bestillinger',
+    pl: 'Zobacz Wszystkie Rezerwacje',
+    sv: 'Visa Alla Bokningar'
+  },
+  'panel.dashboard.stats.todayCheckIns': {
+    de: 'Check-ins Heute',
+    en: "Today's Check-Ins",
+    es: 'Check-ins de Hoy',
+    fr: "Arrivées d'Aujourd'hui",
+    tr: 'Bugünkü Giriş',
+    da: 'Dagens Indtjekninger',
+    it: 'Check-in di Oggi',
+    no: 'Dagens Innsjekking',
+    pl: 'Dzisiejsze Zameldowania',
+    sv: 'Dagens Incheckning'
+  },
+  'panel.dashboard.stats.todayCheckOuts': {
+    de: 'Check-outs Heute',
+    en: "Today's Check-Outs",
+    es: 'Check-outs de Hoy',
+    fr: "Départs d'Aujourd'hui",
+    tr: 'Bugünkü Çıkış',
+    da: 'Dagens Udtjekninger',
+    it: 'Check-out di Oggi',
+    no: 'Dagens Utsjekking',
+    pl: 'Dzisiejsze Wymeldowania',
+    sv: 'Dagens Utcheckning'
+  },
+  'panel.dashboard.stats.currentGuests': {
+    de: 'Aktuelle Gäste',
+    en: 'Current Guests',
+    es: 'Huéspedes Actuales',
+    fr: 'Clients Actuels',
+    tr: 'Mevcut Misafirler',
+    da: 'Nuværende Gæster',
+    it: 'Ospiti Attuali',
+    no: 'Nåværende Gjester',
+    pl: 'Obecni Goście',
+    sv: 'Nuvarande Gäster'
+  },
+  'panel.dashboard.stats.upcomingBookings': {
+    de: 'Bevorstehende Buchungen',
+    en: 'Upcoming Bookings',
+    es: 'Próximas Reservas',
+    fr: 'Réservations à Venir',
+    tr: 'Yaklaşan Rezervasyonlar',
+    da: 'Kommende Bookinger',
+    it: 'Prenotazioni in Arrivo',
+    no: 'Kommende Bestillinger',
+    pl: 'Nadchodzące Rezerwacje',
+    sv: 'Kommande Bokningar'
+  },
+  'panel.dashboard.stats.monthlyRevenue': {
+    de: 'Monatlicher Umsatz',
+    en: 'Monthly Revenue',
+    es: 'Ingresos Mensuales',
+    fr: 'Revenus Mensuels',
+    tr: 'Aylık Gelir',
+    da: 'Månedlig Omsætning',
+    it: 'Entrate Mensili',
+    no: 'Månedlige Inntekter',
+    pl: 'Przychody Miesięczne',
+    sv: 'Månadsinkomst'
+  },
+  'panel.dashboard.stats.totalRevenue': {
+    de: 'Gesamtumsatz',
+    en: 'Total Revenue',
+    es: 'Ingresos Totales',
+    fr: 'Revenus Totaux',
+    tr: 'Toplam Gelir',
+    da: 'Samlet Omsætning',
+    it: 'Entrate Totali',
+    no: 'Totale Inntekter',
+    pl: 'Łączne Przychody',
+    sv: 'Total Inkomst'
+  },
+  'panel.dashboard.stats.occupancyRate': {
+    de: 'Auslastung',
+    en: 'Occupancy Rate',
+    es: 'Tasa de Ocupación',
+    fr: "Taux d'Occupation",
+    tr: 'Doluluk Oranı',
+    da: 'Belægningsgrad',
+    it: 'Tasso di Occupazione',
+    no: 'Beleggsprosent',
+    pl: 'Wskaźnik Obłożenia',
+    sv: 'Beläggningsgrad'
+  },
+  'panel.dashboard.stats.roomAvailability': {
+    de: 'Zimmerverfügbarkeit',
+    en: 'Room Availability',
+    es: 'Disponibilidad de Habitaciones',
+    fr: 'Disponibilité des Chambres',
+    tr: 'Oda Müsaitliği',
+    da: 'Værelsestilgængelighed',
+    it: 'Disponibilità Camere',
+    no: 'Romtilgjengelighet',
+    pl: 'Dostępność Pokoi',
+    sv: 'Rumstillgänglighet'
+  },
+  'panel.dashboard.stats.availableToday': {
+    de: 'Heute verfügbar',
+    en: 'Available Today',
+    es: 'Disponible Hoy',
+    fr: "Disponible Aujourd'hui",
+    tr: 'Bugün Müsait',
+    da: 'Tilgængelig i dag',
+    it: 'Disponibile Oggi',
+    no: 'Tilgjengelig i dag',
+    pl: 'Dostępne Dzisiaj',
+    sv: 'Tillgängligt idag'
+  },
+  'panel.dashboard.recentBookings.title': {
+    de: 'Letzte Buchungen',
+    en: 'Recent Bookings',
+    es: 'Reservas Recientes',
+    fr: 'Réservations Récentes',
+    tr: 'Son Rezervasyonlar',
+    da: 'Seneste Bookinger',
+    it: 'Prenotazioni Recenti',
+    no: 'Nylige Bestillinger',
+    pl: 'Ostatnie Rezerwacje',
+    sv: 'Senaste Bokningar'
+  },
+  'panel.dashboard.recentBookings.reference': {
+    de: 'Referenz',
+    en: 'Reference',
+    es: 'Referencia',
+    fr: 'Référence',
+    tr: 'Referans',
+    da: 'Reference',
+    it: 'Riferimento',
+    no: 'Referanse',
+    pl: 'Numer',
+    sv: 'Referens'
+  },
+  'panel.dashboard.recentBookings.guest': {
+    de: 'Gast',
+    en: 'Guest',
+    es: 'Huésped',
+    fr: 'Client',
+    tr: 'Misafir',
+    da: 'Gæst',
+    it: 'Ospite',
+    no: 'Gjest',
+    pl: 'Gość',
+    sv: 'Gäst'
+  },
+  'panel.dashboard.recentBookings.room': {
+    de: 'Zimmer',
+    en: 'Room',
+    es: 'Habitación',
+    fr: 'Chambre',
+    tr: 'Oda',
+    da: 'Værelse',
+    it: 'Camera',
+    no: 'Rom',
+    pl: 'Pokój',
+    sv: 'Rum'
+  },
+  'panel.dashboard.recentBookings.checkIn': {
+    de: 'Check-in',
+    en: 'Check-In',
+    es: 'Check-in',
+    fr: 'Arrivée',
+    tr: 'Giriş',
+    da: 'Indtjekning',
+    it: 'Check-in',
+    no: 'Innsjekking',
+    pl: 'Zameldowanie',
+    sv: 'Incheckning'
+  },
+  'panel.dashboard.recentBookings.status': {
+    de: 'Status',
+    en: 'Status',
+    es: 'Estado',
+    fr: 'Statut',
+    tr: 'Durum',
+    da: 'Status',
+    it: 'Stato',
+    no: 'Status',
+    pl: 'Status',
+    sv: 'Status'
+  },
+  'panel.dashboard.recentBookings.amount': {
+    de: 'Betrag',
+    en: 'Amount',
+    es: 'Monto',
+    fr: 'Montant',
+    tr: 'Tutar',
+    da: 'Beløb',
+    it: 'Importo',
+    no: 'Beløp',
+    pl: 'Kwota',
+    sv: 'Belopp'
+  },
+  'panel.dashboard.recentBookings.noBookings': {
+    de: 'Keine aktuellen Buchungen',
+    en: 'No recent bookings',
+    es: 'No hay reservas recientes',
+    fr: 'Aucune réservation récente',
+    tr: 'Son rezervasyon yok',
+    da: 'Ingen seneste bookinger',
+    it: 'Nessuna prenotazione recente',
+    no: 'Ingen nylige bestillinger',
+    pl: 'Brak ostatnich rezerwacji',
+    sv: 'Inga senaste bokningar'
+  },
+  'panel.dashboard.quickActions.manageBookings': {
+    de: 'Buchungen verwalten',
+    en: 'Manage Bookings',
+    es: 'Gestionar Reservas',
+    fr: 'Gérer les Réservations',
+    tr: 'Rezervasyonları Yönet',
+    da: 'Administrer Bookinger',
+    it: 'Gestisci Prenotazioni',
+    no: 'Administrer Bestillinger',
+    pl: 'Zarządzaj Rezerwacjami',
+    sv: 'Hantera Bokningar'
+  },
+  'panel.dashboard.quickActions.manageBookingsDesc': {
+    de: 'Alle Buchungen ansehen und verwalten',
+    en: 'View and manage all bookings',
+    es: 'Ver y gestionar todas las reservas',
+    fr: 'Voir et gérer toutes les réservations',
+    tr: 'Tüm rezervasyonları görüntüle ve yönet',
+    da: 'Se og administrer alle bookinger',
+    it: 'Visualizza e gestisci tutte le prenotazioni',
+    no: 'Se og administrer alle bestillinger',
+    pl: 'Zobacz i zarządzaj wszystkimi rezerwacjami',
+    sv: 'Visa och hantera alla bokningar'
+  },
+  'panel.dashboard.quickActions.calendar': {
+    de: 'Kalenderansicht',
+    en: 'Calendar View',
+    es: 'Vista de Calendario',
+    fr: 'Vue Calendrier',
+    tr: 'Takvim Görünümü',
+    da: 'Kalendervisning',
+    it: 'Vista Calendario',
+    no: 'Kalendervisning',
+    pl: 'Widok Kalendarza',
+    sv: 'Kalendervy'
+  },
+  'panel.dashboard.quickActions.calendarDesc': {
+    de: 'Verfügbarkeit und Preise prüfen',
+    en: 'Check availability and rates',
+    es: 'Consultar disponibilidad y tarifas',
+    fr: 'Vérifier la disponibilité et les tarifs',
+    tr: 'Müsaitlik ve fiyatları kontrol et',
+    da: 'Tjek tilgængelighed og priser',
+    it: 'Verifica disponibilità e tariffe',
+    no: 'Sjekk tilgjengelighet og priser',
+    pl: 'Sprawdź dostępność i ceny',
+    sv: 'Kontrollera tillgänglighet och priser'
+  },
+  'panel.dashboard.quickActions.rooms': {
+    de: 'Zimmerverwaltung',
+    en: 'Room Management',
+    es: 'Gestión de Habitaciones',
+    fr: 'Gestion des Chambres',
+    tr: 'Oda Yönetimi',
+    da: 'Værelsesadministration',
+    it: 'Gestione Camere',
+    no: 'Romadministrasjon',
+    pl: 'Zarządzanie Pokojami',
+    sv: 'Rumshantering'
+  },
+  'panel.dashboard.quickActions.roomsDesc': {
+    de: 'Zimmer und Inventar verwalten',
+    en: 'Manage rooms and inventory',
+    es: 'Gestionar habitaciones e inventario',
+    fr: "Gérer les chambres et l'inventaire",
+    tr: 'Odaları ve envanteri yönet',
+    da: 'Administrer værelser og inventar',
+    it: 'Gestisci camere e inventario',
+    no: 'Administrer rom og inventar',
+    pl: 'Zarządzaj pokojami i zapasami',
+    sv: 'Hantera rum och inventarier'
   }
 };
 
@@ -284,6 +584,55 @@ function addMissingTranslations() {
         data.panel.hotels.registerFirst = missingTranslations['panel.hotels.registerFirst'][locale];
         modified = true;
       }
+
+      // Dashboard-Übersetzungen
+      const dashboardKeys = [
+        'subtitle',
+        'actions.viewBookings',
+        'stats.todayCheckIns',
+        'stats.todayCheckOuts',
+        'stats.currentGuests',
+        'stats.upcomingBookings',
+        'stats.monthlyRevenue',
+        'stats.totalRevenue',
+        'stats.occupancyRate',
+        'stats.roomAvailability',
+        'stats.availableToday',
+        'recentBookings.title',
+        'recentBookings.reference',
+        'recentBookings.guest',
+        'recentBookings.room',
+        'recentBookings.checkIn',
+        'recentBookings.status',
+        'recentBookings.amount',
+        'recentBookings.noBookings',
+        'quickActions.manageBookings',
+        'quickActions.manageBookingsDesc',
+        'quickActions.calendar',
+        'quickActions.calendarDesc',
+        'quickActions.rooms',
+        'quickActions.roomsDesc'
+      ];
+
+      dashboardKeys.forEach(key => {
+        const parts = key.split('.');
+        const translationKey = `panel.dashboard.${key}`;
+        
+        if (!data.panel) data.panel = {};
+        if (!data.panel.dashboard) data.panel.dashboard = {};
+        
+        let current = data.panel.dashboard;
+        for (let i = 0; i < parts.length - 1; i++) {
+          if (!current[parts[i]]) current[parts[i]] = {};
+          current = current[parts[i]];
+        }
+        
+        const lastPart = parts[parts.length - 1];
+        if (!current[lastPart]) {
+          current[lastPart] = missingTranslations[translationKey][locale];
+          modified = true;
+        }
+      });
 
       if (modified) {
         fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n', 'utf8');

@@ -682,6 +682,41 @@
         "cancel": "Cancel",
         "viewDetails": "View Details"
       }
+    },
+    "dashboard": {
+      "subtitle": "Otelci kontrol panelinize hoş geldiniz",
+      "actions": {
+        "viewBookings": "Tüm Rezervasyonları Görüntüle"
+      },
+      "stats": {
+        "todayCheckIns": "Bugünkü Giriş",
+        "todayCheckOuts": "Bugünkü Çıkış",
+        "currentGuests": "Mevcut Misafirler",
+        "upcomingBookings": "Yaklaşan Rezervasyonlar",
+        "monthlyRevenue": "Aylık Gelir",
+        "totalRevenue": "Toplam Gelir",
+        "occupancyRate": "Doluluk Oranı",
+        "roomAvailability": "Oda Müsaitliği",
+        "availableToday": "Bugün Müsait"
+      },
+      "recentBookings": {
+        "title": "Son Rezervasyonlar",
+        "reference": "Referans",
+        "guest": "Misafir",
+        "room": "Oda",
+        "checkIn": "Giriş",
+        "status": "Durum",
+        "amount": "Tutar",
+        "noBookings": "Son rezervasyon yok"
+      },
+      "quickActions": {
+        "manageBookings": "Rezervasyonları Yönet",
+        "manageBookingsDesc": "Tüm rezervasyonları görüntüle ve yönet",
+        "calendar": "Takvim Görünümü",
+        "calendarDesc": "Müsaitlik ve fiyatları kontrol et",
+        "rooms": "Oda Yönetimi",
+        "roomsDesc": "Odaları ve envanteri yönet"
+      }
     }
   },
   "admin": {

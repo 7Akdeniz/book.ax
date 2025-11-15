@@ -678,6 +678,41 @@
         "cancel": "Cancel",
         "viewDetails": "View Details"
       }
+    },
+    "dashboard": {
+      "subtitle": "Benvenuto nella tua dashboard alberghiera",
+      "actions": {
+        "viewBookings": "Visualizza Tutte le Prenotazioni"
+      },
+      "stats": {
+        "todayCheckIns": "Check-in di Oggi",
+        "todayCheckOuts": "Check-out di Oggi",
+        "currentGuests": "Ospiti Attuali",
+        "upcomingBookings": "Prenotazioni in Arrivo",
+        "monthlyRevenue": "Entrate Mensili",
+        "totalRevenue": "Entrate Totali",
+        "occupancyRate": "Tasso di Occupazione",
+        "roomAvailability": "Disponibilità Camere",
+        "availableToday": "Disponibile Oggi"
+      },
+      "recentBookings": {
+        "title": "Prenotazioni Recenti",
+        "reference": "Riferimento",
+        "guest": "Ospite",
+        "room": "Camera",
+        "checkIn": "Check-in",
+        "status": "Stato",
+        "amount": "Importo",
+        "noBookings": "Nessuna prenotazione recente"
+      },
+      "quickActions": {
+        "manageBookings": "Gestisci Prenotazioni",
+        "manageBookingsDesc": "Visualizza e gestisci tutte le prenotazioni",
+        "calendar": "Vista Calendario",
+        "calendarDesc": "Verifica disponibilità e tariffe",
+        "rooms": "Gestione Camere",
+        "roomsDesc": "Gestisci camere e inventario"
+      }
     }
   },
   "admin": {

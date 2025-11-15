@@ -682,6 +682,41 @@
         "cancel": "Cancel",
         "viewDetails": "View Details"
       }
+    },
+    "dashboard": {
+      "subtitle": "Bienvenido a tu panel de hotelero",
+      "actions": {
+        "viewBookings": "Ver Todas las Reservas"
+      },
+      "stats": {
+        "todayCheckIns": "Check-ins de Hoy",
+        "todayCheckOuts": "Check-outs de Hoy",
+        "currentGuests": "Huéspedes Actuales",
+        "upcomingBookings": "Próximas Reservas",
+        "monthlyRevenue": "Ingresos Mensuales",
+        "totalRevenue": "Ingresos Totales",
+        "occupancyRate": "Tasa de Ocupación",
+        "roomAvailability": "Disponibilidad de Habitaciones",
+        "availableToday": "Disponible Hoy"
+      },
+      "recentBookings": {
+        "title": "Reservas Recientes",
+        "reference": "Referencia",
+        "guest": "Huésped",
+        "room": "Habitación",
+        "checkIn": "Check-in",
+        "status": "Estado",
+        "amount": "Monto",
+        "noBookings": "No hay reservas recientes"
+      },
+      "quickActions": {
+        "manageBookings": "Gestionar Reservas",
+        "manageBookingsDesc": "Ver y gestionar todas las reservas",
+        "calendar": "Vista de Calendario",
+        "calendarDesc": "Consultar disponibilidad y tarifas",
+        "rooms": "Gestión de Habitaciones",
+        "roomsDesc": "Gestionar habitaciones e inventario"
+      }
     }
   },
   "admin": {

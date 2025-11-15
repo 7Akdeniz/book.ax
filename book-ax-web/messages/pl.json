@@ -678,6 +678,41 @@
         "cancel": "Cancel",
         "viewDetails": "View Details"
       }
+    },
+    "dashboard": {
+      "subtitle": "Witamy w panelu hotelarza",
+      "actions": {
+        "viewBookings": "Zobacz Wszystkie Rezerwacje"
+      },
+      "stats": {
+        "todayCheckIns": "Dzisiejsze Zameldowania",
+        "todayCheckOuts": "Dzisiejsze Wymeldowania",
+        "currentGuests": "Obecni Goście",
+        "upcomingBookings": "Nadchodzące Rezerwacje",
+        "monthlyRevenue": "Przychody Miesięczne",
+        "totalRevenue": "Łączne Przychody",
+        "occupancyRate": "Wskaźnik Obłożenia",
+        "roomAvailability": "Dostępność Pokoi",
+        "availableToday": "Dostępne Dzisiaj"
+      },
+      "recentBookings": {
+        "title": "Ostatnie Rezerwacje",
+        "reference": "Numer",
+        "guest": "Gość",
+        "room": "Pokój",
+        "checkIn": "Zameldowanie",
+        "status": "Status",
+        "amount": "Kwota",
+        "noBookings": "Brak ostatnich rezerwacji"
+      },
+      "quickActions": {
+        "manageBookings": "Zarządzaj Rezerwacjami",
+        "manageBookingsDesc": "Zobacz i zarządzaj wszystkimi rezerwacjami",
+        "calendar": "Widok Kalendarza",
+        "calendarDesc": "Sprawdź dostępność i ceny",
+        "rooms": "Zarządzanie Pokojami",
+        "roomsDesc": "Zarządzaj pokojami i zapasami"
+      }
     }
   },
   "admin": {

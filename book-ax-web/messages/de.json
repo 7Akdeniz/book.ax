@@ -683,6 +683,41 @@
         "cancel": "Cancel",
         "viewDetails": "View Details"
       }
+    },
+    "dashboard": {
+      "subtitle": "Willkommen in Ihrem Hotelier-Dashboard",
+      "actions": {
+        "viewBookings": "Alle Buchungen ansehen"
+      },
+      "stats": {
+        "todayCheckIns": "Check-ins Heute",
+        "todayCheckOuts": "Check-outs Heute",
+        "currentGuests": "Aktuelle Gäste",
+        "upcomingBookings": "Bevorstehende Buchungen",
+        "monthlyRevenue": "Monatlicher Umsatz",
+        "totalRevenue": "Gesamtumsatz",
+        "occupancyRate": "Auslastung",
+        "roomAvailability": "Zimmerverfügbarkeit",
+        "availableToday": "Heute verfügbar"
+      },
+      "recentBookings": {
+        "title": "Letzte Buchungen",
+        "reference": "Referenz",
+        "guest": "Gast",
+        "room": "Zimmer",
+        "checkIn": "Check-in",
+        "status": "Status",
+        "amount": "Betrag",
+        "noBookings": "Keine aktuellen Buchungen"
+      },
+      "quickActions": {
+        "manageBookings": "Buchungen verwalten",
+        "manageBookingsDesc": "Alle Buchungen ansehen und verwalten",
+        "calendar": "Kalenderansicht",
+        "calendarDesc": "Verfügbarkeit und Preise prüfen",
+        "rooms": "Zimmerverwaltung",
+        "roomsDesc": "Zimmer und Inventar verwalten"
+      }
     }
   },
   "admin": {

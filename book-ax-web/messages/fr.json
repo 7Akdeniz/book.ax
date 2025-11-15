@@ -682,6 +682,41 @@
         "cancel": "Cancel",
         "viewDetails": "View Details"
       }
+    },
+    "dashboard": {
+      "subtitle": "Bienvenue sur votre tableau de bord hôtelier",
+      "actions": {
+        "viewBookings": "Voir Toutes les Réservations"
+      },
+      "stats": {
+        "todayCheckIns": "Arrivées d'Aujourd'hui",
+        "todayCheckOuts": "Départs d'Aujourd'hui",
+        "currentGuests": "Clients Actuels",
+        "upcomingBookings": "Réservations à Venir",
+        "monthlyRevenue": "Revenus Mensuels",
+        "totalRevenue": "Revenus Totaux",
+        "occupancyRate": "Taux d'Occupation",
+        "roomAvailability": "Disponibilité des Chambres",
+        "availableToday": "Disponible Aujourd'hui"
+      },
+      "recentBookings": {
+        "title": "Réservations Récentes",
+        "reference": "Référence",
+        "guest": "Client",
+        "room": "Chambre",
+        "checkIn": "Arrivée",
+        "status": "Statut",
+        "amount": "Montant",
+        "noBookings": "Aucune réservation récente"
+      },
+      "quickActions": {
+        "manageBookings": "Gérer les Réservations",
+        "manageBookingsDesc": "Voir et gérer toutes les réservations",
+        "calendar": "Vue Calendrier",
+        "calendarDesc": "Vérifier la disponibilité et les tarifs",
+        "rooms": "Gestion des Chambres",
+        "roomsDesc": "Gérer les chambres et l'inventaire"
+      }
     }
   },
   "admin": {
