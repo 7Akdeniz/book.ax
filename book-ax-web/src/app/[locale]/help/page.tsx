@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
+import Link from 'next/link';
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
   const t = await getTranslations({ locale: params.locale });
@@ -10,8 +11,13 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   };
 }
 
-export default function HelpPage() {
+interface HelpPageProps {
+  params: { locale: string };
+}
+
+export default function HelpPage({ params }: HelpPageProps) {
   const t = useTranslations('help');
+  const locale = params.locale;
   
   const faqSections = [
     {
@@ -120,7 +126,7 @@ export default function HelpPage() {
         </div>
 
         {/* Contact Section */}
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-12">
           <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-8 text-white text-center">
             <h2 className="text-3xl font-bold mb-2">
               {t('contactTitle')}
@@ -187,6 +193,86 @@ export default function HelpPage() {
                 {t('businessHours').split(':').slice(1).join(':')}
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* Quick Links Section */}
+        <div className="bg-white rounded-lg shadow-sm p-8 mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+            Quick Links
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* For Guests */}
+            <Link
+              href={`/${locale}/search`}
+              className="flex flex-col items-center p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+            >
+              <svg className="h-12 w-12 text-primary-600 mb-3 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Search Hotels</h3>
+              <p className="text-sm text-gray-600 text-center">Find your perfect stay</p>
+            </Link>
+
+            <Link
+              href={`/${locale}/my-bookings`}
+              className="flex flex-col items-center p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+            >
+              <svg className="h-12 w-12 text-primary-600 mb-3 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">My Bookings</h3>
+              <p className="text-sm text-gray-600 text-center">View your reservations</p>
+            </Link>
+
+            <Link
+              href={`/${locale}/panel`}
+              className="flex flex-col items-center p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+            >
+              <svg className="h-12 w-12 text-primary-600 mb-3 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Hotelier Portal</h3>
+              <p className="text-sm text-gray-600 text-center">Manage your properties</p>
+            </Link>
+
+            <Link
+              href={`/${locale}/pricing`}
+              className="flex flex-col items-center p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+            >
+              <svg className="h-12 w-12 text-primary-600 mb-3 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Pricing</h3>
+              <p className="text-sm text-gray-600 text-center">View our commission rates</p>
+            </Link>
+          </div>
+        </div>
+
+        {/* Legal & Policy Links */}
+        <div className="bg-gray-100 rounded-lg p-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+            Legal & Policies
+          </h2>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href={`/${locale}/terms`}
+              className="px-6 py-3 bg-white rounded-lg hover:shadow-md transition-shadow text-gray-900 font-medium"
+            >
+              Terms & Conditions
+            </Link>
+            <Link
+              href={`/${locale}/privacy`}
+              className="px-6 py-3 bg-white rounded-lg hover:shadow-md transition-shadow text-gray-900 font-medium"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href={`/${locale}/cookies`}
+              className="px-6 py-3 bg-white rounded-lg hover:shadow-md transition-shadow text-gray-900 font-medium"
+            >
+              Cookie Policy
+            </Link>
           </div>
         </div>
       </div>
