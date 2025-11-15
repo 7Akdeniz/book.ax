@@ -3,15 +3,25 @@ import { supabaseAdmin } from '@/lib/db/supabase';
 import { verifyAccessToken } from '@/lib/auth/jwt';
 import { handleApiError, ValidationError, AuthorizationError, AuthenticationError } from '@/utils/errors';
 
-// Helper to verify auth
+// Helper to verify auth (supports both Authorization header and cookies)
 function getAuthUser(req: NextRequest) {
+  let token: string | undefined;
+
+  // 1. Try Authorization header first
   const authHeader = req.headers.get('authorization');
-  
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    token = authHeader.substring(7);
+  }
+
+  // 2. Fallback to cookie
+  if (!token) {
+    token = req.cookies.get('accessToken')?.value;
+  }
+
+  if (!token) {
     throw new AuthenticationError('No authentication token provided');
   }
 
-  const token = authHeader.substring(7);
   const decoded = verifyAccessToken(token);
   
   if (!decoded) {

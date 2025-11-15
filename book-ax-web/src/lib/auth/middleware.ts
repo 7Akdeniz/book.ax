@@ -14,14 +14,22 @@ export interface AuthenticatedRequest extends NextRequest {
 export const verifyAuth = (handler: (req: AuthenticatedRequest) => Promise<NextResponse>) => {
   return async (req: AuthenticatedRequest): Promise<NextResponse> => {
     try {
-      // Get token from Authorization header
+      let token: string | undefined;
+
+      // 1. Try to get token from Authorization header
       const authHeader = req.headers.get('authorization');
-      
-      if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        throw new AuthenticationError('No authentication token provided');
+      if (authHeader && authHeader.startsWith('Bearer ')) {
+        token = authHeader.substring(7); // Remove 'Bearer ' prefix
       }
 
-      const token = authHeader.substring(7); // Remove 'Bearer ' prefix
+      // 2. If no header, try to get token from cookies
+      if (!token) {
+        token = req.cookies.get('accessToken')?.value;
+      }
+
+      if (!token) {
+        throw new AuthenticationError('No authentication token provided');
+      }
       
       // Verify token
       const decoded = verifyAccessToken(token);
