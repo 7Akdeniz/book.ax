@@ -74,7 +74,9 @@
     "sortByRating": "Rating",
     "sortByDistance": "Distance",
     "pricePerNight": "per night",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "noHotelsFound": "Otel bulunamadı",
+    "tryDifferentCriteria": "Farklı arama kriterleri deneyin"
   },
   "hotel": {
     "details": "Hotel Details",
@@ -604,7 +606,9 @@
       "guests": "Guests",
       "reports": "Reports",
       "settings": "Settings",
-      "logout": "Logout"
+      "logout": "Logout",
+      "hotels": "Oteller",
+      "backToSite": "Siteye Dön"
     },
     "bookings": {
       "title": "Bookings Management",
@@ -941,7 +945,17 @@
     "role": "Role",
     "guest": "Guest",
     "hotelier": "Hotelier",
-    "admin": "Administrator"
+    "admin": "Administrator",
+    "accountType": "Hesap Türü",
+    "haveAccount": "Zaten bir hesabınız var mı?",
+    "createAccount": "Hesap Oluştur",
+    "creatingAccount": "Hesap oluşturuluyor...",
+    "registrationFailed": "Kayıt başarısız oldu",
+    "passwordRequirements": "En az 8 karakter",
+    "hotelierTip": "Otelci olarak, PMS'imize aylık 0€ karşılığında tam erişim kazanırsınız!",
+    "viewPricing": "Fiyatlar ve Özellikleri Görüntüle",
+    "noAccount": "Hesabınız yok mu?",
+    "loginFailed": "Giriş başarısız"
   },
   "errors": {
     "somethingWentWrong": "Something went wrong",
@@ -958,7 +972,8 @@
     "forHoteliers": "Otelciler İçin",
     "myBookings": "Rezervasyonlarım",
     "login": "Giriş Yap",
-    "signUp": "Kayıt Ol"
+    "signUp": "Kayıt Ol",
+    "logout": "Çıkış Yap"
   },
   "footer": {
     "tagline": "Tek adımda otel rezervasyon ve yönetim platformunuz",

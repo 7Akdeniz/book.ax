@@ -4,6 +4,13 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Better error output in development
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
+  
   images: {
     formats: ['image/avif', 'image/webp'], // Modern formats for better performance
     domains: ['images.unsplash.com', 'cmoohnktsgszmuxxnobd.supabase.co'],

@@ -74,7 +74,9 @@
     "sortByRating": "Rating",
     "sortByDistance": "Distance",
     "pricePerNight": "per night",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "noHotelsFound": "No se encontraron hoteles",
+    "tryDifferentCriteria": "Pruebe con diferentes criterios de búsqueda"
   },
   "hotel": {
     "details": "Hotel Details",
@@ -604,7 +606,9 @@
       "guests": "Guests",
       "reports": "Reports",
       "settings": "Settings",
-      "logout": "Logout"
+      "logout": "Logout",
+      "hotels": "Hoteles",
+      "backToSite": "Volver al sitio"
     },
     "bookings": {
       "title": "Bookings Management",
@@ -941,7 +945,17 @@
     "role": "Role",
     "guest": "Guest",
     "hotelier": "Hotelier",
-    "admin": "Administrator"
+    "admin": "Administrator",
+    "accountType": "Tipo de cuenta",
+    "haveAccount": "¿Ya tienes una cuenta?",
+    "createAccount": "Crear cuenta",
+    "creatingAccount": "Creando cuenta...",
+    "registrationFailed": "Registro fallido",
+    "passwordRequirements": "Mínimo 8 caracteres",
+    "hotelierTip": "¡Como hotelero, obtienes acceso completo a nuestro PMS por 0€/mes!",
+    "viewPricing": "Ver precios y características",
+    "noAccount": "¿No tienes cuenta?",
+    "loginFailed": "Error de inicio de sesión"
   },
   "errors": {
     "somethingWentWrong": "Something went wrong",
@@ -958,7 +972,8 @@
     "forHoteliers": "Para Hoteleros",
     "myBookings": "Mis Reservas",
     "login": "Iniciar sesión",
-    "signUp": "Registrarse"
+    "signUp": "Registrarse",
+    "logout": "Cerrar sesión"
   },
   "footer": {
     "tagline": "Tu plataforma todo en uno para reservas y gestión hotelera",

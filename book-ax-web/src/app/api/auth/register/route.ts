@@ -4,8 +4,12 @@ import { supabaseAdmin } from '@/lib/db/supabase';
 import { generateTokens } from '@/lib/auth/jwt';
 import { registerSchema } from '@/utils/validation';
 import { handleApiError, ValidationError, ConflictError } from '@/utils/errors';
+import { withLogging } from '@/lib/api-logger';
+import { logger } from '@/lib/logger';
+import { sendEmail } from '@/lib/email/mailer';
+import { verificationEmail } from '@/lib/email/templates';
 
-export async function POST(req: NextRequest) {
+async function registerHandler(req: NextRequest) {
   try {
     const body = await req.json();
 
@@ -16,6 +20,11 @@ export async function POST(req: NextRequest) {
     }
 
     const { email, password, firstName, lastName, role } = validation.data;
+
+    logger.debug('Registration attempt', {
+      context: 'Auth Register',
+      data: { email: email.toLowerCase(), role },
+    });
 
     // Check if user already exists
     const { data: existingUser } = await supabaseAdmin
@@ -48,8 +57,16 @@ export async function POST(req: NextRequest) {
       .single();
 
     if (createError) {
+      logger.error('Failed to create user', createError as Error, {
+        context: 'Supabase Insert',
+        data: { email: email.toLowerCase() },
+      });
       throw createError;
     }
+
+    logger.success('User created successfully', {
+      data: { userId: user.id, email: user.email },
+    });
 
     // Generate tokens
     const tokens = generateTokens(user);
@@ -61,8 +78,33 @@ export async function POST(req: NextRequest) {
       expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
     });
 
-    // TODO: Send verification email
-    // await sendVerificationEmail(user.email, user.id);
+    // Send verification email
+    try {
+      const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/de/verify-email?token=${user.id}`;
+      
+      await sendEmail({
+        to: user.email,
+        subject: 'E-Mail-Adresse bestätigen - Book.ax',
+        html: verificationEmail({
+          firstName: user.first_name,
+          verificationUrl,
+        }),
+      });
+
+      logger.success('Verification email sent', {
+        context: 'Registration',
+        data: { email: user.email },
+      });
+    } catch (emailError) {
+      // Email-Fehler loggen, aber nicht die Registrierung abbrechen
+      logger.warn('Failed to send verification email', {
+        context: 'Registration',
+        data: { 
+          email: user.email,
+          error: emailError instanceof Error ? emailError.message : 'Unknown error',
+        },
+      });
+    }
 
     // Return response
     return NextResponse.json({
@@ -81,3 +123,5 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: message }, { status });
   }
 }
+
+export const POST = withLogging(registerHandler);

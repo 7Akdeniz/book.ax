@@ -75,7 +75,9 @@
     "sortByRating": "Rating",
     "sortByDistance": "Distance",
     "pricePerNight": "per night",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "noHotelsFound": "No hotels found",
+    "tryDifferentCriteria": "Try different search criteria"
   },
   "hotel": {
     "details": "Hotel Details",
@@ -1003,7 +1005,9 @@
     "registrationFailed": "Registration failed",
     "passwordRequirements": "Minimum 8 characters",
     "hotelierTip": "As a hotelier, you get full access to our PMS at 0€/month!",
-    "viewPricing": "View Pricing & Features"
+    "viewPricing": "View Pricing & Features",
+    "noAccount": "Don't have an account?",
+    "loginFailed": "Login failed"
   },
   "errors": {
     "somethingWentWrong": "Something went wrong",
@@ -1020,7 +1024,8 @@
     "forHoteliers": "For Hoteliers",
     "myBookings": "My Bookings",
     "login": "Login",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "logout": "Logout"
   },
   "footer": {
     "tagline": "Your all-in-one hotel booking and management platform",

@@ -1,3 +1,5 @@
+import { logger } from '@/lib/logger';
+
 // Custom Error Classes
 
 export class AppError extends Error {
@@ -57,7 +59,17 @@ export class ExternalServiceError extends AppError {
 
 // Error handler for API routes
 export const handleApiError = (error: unknown): { error: string; status: number } => {
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  
   if (error instanceof AppError) {
+    // In development, add more details
+    if (isDevelopment) {
+      logger.error(`AppError: ${error.message}`, error, {
+        context: error.constructor.name,
+        data: { statusCode: error.statusCode },
+      });
+    }
+    
     return {
       error: error.message,
       status: error.statusCode,
@@ -65,17 +77,63 @@ export const handleApiError = (error: unknown): { error: string; status: number 
   }
 
   if (error instanceof Error) {
-    // Log unexpected errors
-    console.error('Unexpected error:', error);
+    // Log unexpected errors with full details
+    if (isDevelopment) {
+      logger.error(`Unexpected Error: ${error.message}`, error, {
+        context: 'Unhandled Error in API Route',
+      });
+    } else {
+      console.error('Unexpected error:', error.message);
+    }
     
     return {
-      error: 'An unexpected error occurred',
+      error: isDevelopment ? `${error.name}: ${error.message}` : 'An unexpected error occurred',
       status: 500,
     };
   }
 
+  // Handle Supabase/PostgreSQL errors
+  if (typeof error === 'object' && error !== null) {
+    const dbError = error as any;
+    
+    if (isDevelopment) {
+      logger.error('Database/API Error', undefined, {
+        context: 'Supabase/PostgreSQL Error',
+        data: {
+          code: dbError.code,
+          message: dbError.message,
+          details: dbError.details,
+          hint: dbError.hint,
+          fullError: dbError,
+        },
+      });
+    }
+    
+    if (dbError.code) {
+      const handled = handleDatabaseError(dbError);
+      return {
+        error: isDevelopment ? `DB Error (${dbError.code}): ${handled.message}` : handled.message,
+        status: handled.statusCode,
+      };
+    }
+    
+    if (dbError.message) {
+      return {
+        error: isDevelopment ? `Error: ${dbError.message}` : 'An error occurred',
+        status: 500,
+      };
+    }
+  }
+
+  if (isDevelopment) {
+    logger.error('Unknown Error Type', undefined, {
+      context: 'Cannot determine error type',
+      data: { error },
+    });
+  }
+
   return {
-    error: 'An unknown error occurred',
+    error: isDevelopment ? `Unknown error: ${JSON.stringify(error)}` : 'An unknown error occurred',
     status: 500,
   };
 };

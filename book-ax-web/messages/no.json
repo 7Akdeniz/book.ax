@@ -1,25 +1,25 @@
 {
   "common": {
     "appName": "Book.ax",
-    "search": "搜索",
-    "login": "登录",
-    "register": "注册",
-    "logout": "退出",
-    "profile": "个人资料",
-    "bookings": "我的预订",
-    "dashboard": "仪表板",
-    "admin": "管理员",
-    "loading": "加载中...",
-    "error": "错误",
-    "success": "成功",
-    "cancel": "取消",
-    "save": "保存",
-    "delete": "删除",
-    "edit": "编辑",
-    "back": "返回",
-    "next": "下一步",
-    "submit": "提交",
-    "close": "关闭",
+    "search": "Search",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "profile": "Profile",
+    "bookings": "My Bookings",
+    "dashboard": "Dashboard",
+    "admin": "Admin",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "close": "Close",
     "welcome": "Welcome",
     "yes": "Yes",
     "no": "No",
@@ -41,26 +41,27 @@
     "settings": "Settings"
   },
   "home": {
-    "title": "找到您的完美住宿",
-    "subtitle": "全球超过500,000家酒店",
-    "searchPlaceholder": "您要去哪里？",
-    "checkIn": "入住",
-    "checkOut": "退房",
-    "guests": "客人",
-    "searchButton": "搜索酒店",
-    "popularDestinations": "热门目的地",
-    "featuredHotels": "精选酒店",
-    "whyBookWithUs": "为什么选择我们",
-    "bestPriceGuarantee": "最优价格保证",
-    "noCreditCardFees": "无信用卡手续费",
-    "freeChangesCancellation": "免费更改和取消",
-    "bestPriceGuaranteeDesc": "找到最优惠的价格，否则我们将退还差价",
-    "noCreditCardFeesDesc": "没有隐藏费用，所见即所付",
-    "freeChangesCancellationDesc": "灵活预订，免费取消",
-    "searchPlaceholderExample": "例如 柏林，德国",
-    "destination": "目的地",
-    "numberOfGuests": "客人人数",
-    "searchHotelsButton": "搜索酒店"
+    "title": "Find Your Perfect Stay",
+    "subtitle": "Over 500,000 hotels worldwide",
+    "searchPlaceholder": "Where are you going?",
+    "searchPlaceholderExample": "e.g. Berlin, Germany",
+    "destination": "Destination",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Guests",
+    "numberOfGuests": "Number of Guests",
+    "searchButton": "Search Hotels",
+    "searchHotels": "Search Hotels",
+    "searchHotelsButton": "Search Hotels",
+    "popularDestinations": "Popular Destinations",
+    "featuredHotels": "Featured Hotels",
+    "whyBookWithUs": "Why Book With Us",
+    "bestPriceGuarantee": "Best Price Guarantee",
+    "noCreditCardFees": "No Credit Card Fees",
+    "freeChangesCancellation": "Free Changes & Cancellation",
+    "bestPriceGuaranteeDesc": "Find the best prices or we'll refund the difference",
+    "noCreditCardFeesDesc": "No hidden fees, pay exactly what you see",
+    "freeChangesCancellationDesc": "Flexible booking with free cancellation"
   },
   "search": {
     "results": "Search Results",
@@ -74,7 +75,9 @@
     "sortByRating": "Rating",
     "sortByDistance": "Distance",
     "pricePerNight": "per night",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "noHotelsFound": "Ingen hoteller funnet",
+    "tryDifferentCriteria": "Prøv forskjellige søkekriterier"
   },
   "hotel": {
     "details": "Hotel Details",
@@ -152,26 +155,68 @@
         "cancelled": "Cancelled"
       }
     },
-    "rates": "Rates & Availability",
-    "pms": "Property Management",
-    "housekeeping": "Housekeeping",
+    "rates": "Rates & Pricing",
     "guests": "Guests",
-    "invoices": "Invoices",
     "reports": "Reports",
-    "channelManager": "Channel Manager",
-    "revenueManagement": "Revenue Management",
-    "settings": "Settings",
-    "commission": "Commission Settings",
-    "commissionRate": "Commission Rate",
-    "setCommission": "Set Commission (10-50%)",
-    "currentCommission": "Current Commission",
     "todaysArrivals": "Today's Arrivals",
     "todaysDepartures": "Today's Departures",
-    "occupancyRate": "Occupancy Rate",
     "revenue": "Revenue",
+    "occupancyRate": "Occupancy Rate",
     "averageDailyRate": "Average Daily Rate",
     "revPAR": "RevPAR",
+    "dashboard": {
+      "subtitle": "Welcome to your hotelier dashboard",
+      "loading": "Loading dashboard...",
+      "fetchError": "Failed to load dashboard data",
+      "accessDenied": "Access denied. Hotelier role required.",
+      "actions": {
+        "viewBookings": "View All Bookings"
+      },
+      "stats": {
+        "todayCheckIns": "Today's Check-Ins",
+        "todayCheckOuts": "Today's Check-Outs",
+        "currentGuests": "Current Guests",
+        "upcomingBookings": "Upcoming Bookings",
+        "monthlyRevenue": "Monthly Revenue",
+        "totalRevenue": "Total Revenue",
+        "occupancyRate": "Occupancy Rate",
+        "roomAvailability": "Room Availability",
+        "availableToday": "Available Today"
+      },
+      "recentBookings": {
+        "title": "Recent Bookings",
+        "reference": "Reference",
+        "guest": "Guest",
+        "room": "Room",
+        "checkIn": "Check-In",
+        "status": "Status",
+        "amount": "Amount",
+        "noBookings": "No recent bookings"
+      },
+      "quickActions": {
+        "manageBookings": "Manage Bookings",
+        "manageBookingsDesc": "View and manage all bookings",
+        "calendar": "Calendar View",
+        "calendarDesc": "Check availability and rates",
+        "rooms": "Room Management",
+        "roomsDesc": "Manage rooms and inventory"
+      }
+    },
     "hotels": {
+      "title": "My Hotels",
+      "subtitle": "Manage your registered properties",
+      "addNew": "Add New Hotel",
+      "noHotels": "No Hotels Yet",
+      "noHotelsDescription": "Register your first hotel to start accepting bookings",
+      "registerFirst": "Register Your First Hotel",
+      "loadError": "Failed to load hotels",
+      "roomsCount": "rooms",
+      "status": {
+        "active": "Active",
+        "pending": "Pending Review",
+        "inactive": "Inactive",
+        "suspended": "Suspended"
+      },
       "new": {
         "title": "Register New Hotel",
         "subtitle": "Complete the registration in 5 easy steps",
@@ -601,10 +646,12 @@
       "calendar": "Calendar",
       "rooms": "Rooms",
       "rates": "Rates",
+      "hotels": "Hotels",
       "guests": "Guests",
       "reports": "Reports",
       "settings": "Settings",
-      "logout": "Logout"
+      "logout": "Logout",
+      "backToSite": "Back to Site"
     },
     "bookings": {
       "title": "Bookings Management",
@@ -788,20 +835,29 @@
     },
     "settings": {
       "title": "System Settings",
-      "general": "General Settings",
-      "commission": "Commission Settings",
-      "tax": "Tax Settings",
-      "currency": "Currency Settings",
-      "email": "Email Settings",
-      "api": "API Settings",
-      "globalCommission": "Global Commission Rate",
-      "minCommission": "Minimum Commission",
-      "maxCommission": "Maximum Commission",
-      "defaultCurrency": "Default Currency",
-      "taxRate": "Tax Rate",
-      "smtpServer": "SMTP Server",
-      "apiKey": "API Key",
-      "webhookUrl": "Webhook URL",
+      "commission": {
+        "title": "Commission Settings",
+        "default": "Default Commission",
+        "min": "Minimum Commission",
+        "max": "Maximum Commission"
+      },
+      "tax": {
+        "title": "Tax Settings",
+        "rate": "Tax Rate",
+        "included": "Tax Included in Prices"
+      },
+      "currency": {
+        "title": "Currency Settings",
+        "default": "Default Currency"
+      },
+      "email": {
+        "title": "Email Settings",
+        "from": "From Address",
+        "replyTo": "Reply-To Address"
+      },
+      "system": {
+        "title": "System Settings"
+      },
       "save": "Save Settings",
       "saving": "Saving...",
       "success": {
@@ -905,7 +961,7 @@
   "auth": {
     "loginTitle": "Login to Book.ax",
     "registerTitle": "Create Account",
-    "signUp": "注册",
+    "signUp": "Sign Up",
     "email": "Email Address",
     "password": "Password",
     "confirmPassword": "Confirm Password",
@@ -941,7 +997,17 @@
     "role": "Role",
     "guest": "Guest",
     "hotelier": "Hotelier",
-    "admin": "Administrator"
+    "admin": "Administrator",
+    "accountType": "Kontotype",
+    "haveAccount": "Har du allerede en konto?",
+    "createAccount": "Opprett konto",
+    "creatingAccount": "Oppretter konto...",
+    "registrationFailed": "Registrering mislyktes",
+    "passwordRequirements": "Minimum 8 tegn",
+    "hotelierTip": "Som hotelldriver får du full tilgang til vårt PMS for 0€/måned!",
+    "viewPricing": "Se priser og funksjoner",
+    "noAccount": "Har du ikke en konto?",
+    "loginFailed": "Pålogging mislyktes"
   },
   "errors": {
     "somethingWentWrong": "Something went wrong",
@@ -954,45 +1020,189 @@
     "networkError": "Network error"
   },
   "header": {
-    "hotels": "酒店",
-    "forHoteliers": "酒店业主",
-    "myBookings": "我的预订",
-    "login": "登录",
-    "signUp": "注册"
+    "hotels": "Hotels",
+    "forHoteliers": "For Hoteliers",
+    "myBookings": "My Bookings",
+    "login": "Login",
+    "signUp": "Sign Up",
+    "logout": "Logg ut"
   },
   "footer": {
-    "tagline": "您的一体化酒店预订和管理平台",
-    "forGuests": "客人专区",
-    "searchHotels": "搜索酒店",
-    "myBookings": "我的预订",
-    "helpCenter": "帮助中心",
-    "forHoteliers": "酒店经营者",
-    "dashboard": "仪表板",
-    "listYourProperty": "添加您的酒店",
-    "pricing": "价格",
-    "legal": "法律信息",
-    "termsConditions": "条款和条件",
-    "privacyPolicy": "隐私政策",
-    "cookiePolicy": "Cookie政策",
-    "copyright": "© 2025 Book.ax. 版权所有。用 ❤️ 为酒店业打造"
+    "tagline": "Your all-in-one hotel booking and management platform",
+    "forGuests": "For Guests",
+    "searchHotels": "Search Hotels",
+    "myBookings": "My Bookings",
+    "helpCenter": "Help Center",
+    "forHoteliers": "For Hoteliers",
+    "dashboard": "Dashboard",
+    "listYourProperty": "List Your Property",
+    "pricing": "Pricing",
+    "legal": "Legal",
+    "termsConditions": "Terms & Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
+    "copyright": "© 2025 Book.ax. All rights reserved. Made with ❤️ for the hospitality industry"
   },
   "bookings": {
-    "myBookings": "我的预订",
-    "noBookings": "暂无预订",
-    "noBookingsDescription": "您还没有任何预订。浏览我们的酒店，找到您完美的住宿！",
-    "searchHotels": "搜索酒店",
-    "unknownHotel": "未知酒店",
-    "checkIn": "入住",
-    "checkOut": "退房",
-    "guests": "客人",
-    "guest": "客人",
-    "guestsPlural": "客人",
-    "bookedOn": "预订于",
-    "loadError": "加载预订时出错",
+    "myBookings": "My Bookings",
+    "noBookings": "No bookings yet",
+    "noBookingsDescription": "You haven't made any bookings yet. Browse our hotels and find your perfect stay!",
+    "searchHotels": "Search Hotels",
+    "unknownHotel": "Unknown Hotel",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Guests",
+    "guest": "Guest",
+    "guestsPlural": "Guests",
+    "bookedOn": "Booked on",
+    "loadError": "Error loading bookings",
     "status": {
-      "confirmed": "已确认",
-      "pending": "待处理",
-      "cancelled": "已取消"
+      "confirmed": "Confirmed",
+      "pending": "Pending",
+      "cancelled": "Cancelled"
+    }
+  },
+  "help": {
+    "title": "Help Center",
+    "subtitle": "How can we help you?",
+    "faq": "Frequently Asked Questions",
+    "contact": "Contact",
+    "bookingHelp": "Booking Help",
+    "bookingHelpTitle": "Booking & Reservation",
+    "bookingQuestion1": "How do I book a hotel?",
+    "bookingAnswer1": "Enter your destination, check-in and check-out dates, and number of guests. Select a hotel from the search results and follow the booking instructions.",
+    "bookingQuestion2": "Can I cancel my booking?",
+    "bookingAnswer2": "Yes, most bookings can be cancelled free of charge. Please check the cancellation policy when making your booking.",
+    "bookingQuestion3": "How do I receive my booking confirmation?",
+    "bookingAnswer3": "After completing your booking, you will receive a confirmation email. You can also view your bookings under 'My Bookings'.",
+    "accountHelp": "Account Help",
+    "accountHelpTitle": "Account & Profile",
+    "accountQuestion1": "How do I create an account?",
+    "accountAnswer1": "Click 'Register' and enter your email address and a secure password.",
+    "accountQuestion2": "I forgot my password",
+    "accountAnswer2": "Click 'Forgot Password' on the login page and follow the instructions.",
+    "accountQuestion3": "How do I change my account details?",
+    "accountAnswer3": "Log in and go to 'Profile' to update your personal information.",
+    "paymentHelp": "Payment Help",
+    "paymentHelpTitle": "Payment & Invoices",
+    "paymentQuestion1": "What payment methods are accepted?",
+    "paymentAnswer1": "We accept all major credit cards (Visa, Mastercard, American Express) as well as PayPal and other local payment methods.",
+    "paymentQuestion2": "When will my card be charged?",
+    "paymentAnswer2": "Depending on the hotel, you will be charged either at booking or at check-in. You can find the exact information in the booking details.",
+    "paymentQuestion3": "How do I get an invoice?",
+    "paymentAnswer3": "After completing your booking, you will automatically receive an invoice by email. You can also download it from your account.",
+    "contactTitle": "Contact Us",
+    "contactDescription": "Have more questions? Our support team is happy to help.",
+    "email": "Email",
+    "phone": "Phone",
+    "supportEmail": "support@book.ax",
+    "supportPhone": "+49 30 1234 5678",
+    "businessHours": "Business Hours: Mon-Fri 9:00-18:00",
+    "searchPlaceholder": "Search for help...",
+    "contactSupport": "Contact Support",
+    "guides": "User Guides",
+    "documentation": "Documentation"
+  },
+  "pricing": {
+    "hero": {
+      "title": "Book.ax – Pricing Overview",
+      "subtitle": "$0 Fixed Costs – Commission Only",
+      "description": "Book.ax has no monthly fees, no setup costs, and no hidden charges."
+    },
+    "commission": {
+      "title": "Commission from 10%",
+      "subtitle": "Hotels pay a minimum of 10% commission per booking.",
+      "rate": "from 10%",
+      "description": "All other services are completely free."
+    },
+    "freeServices": {
+      "title": "All Services Included – Free of Charge",
+      "subtitle": "Benefit from our complete service package – everything free!",
+      "badge": "100% FREE"
+    },
+    "hotelierPortal": {
+      "title": "Hotelier Portal (free)",
+      "features": [
+        "Hotel Management",
+        "Room Categories & Prices",
+        "Availability Calendar",
+        "PMS System: Check-in, Check-out, Housekeeping, Guest Lists, Invoices",
+        "Booking Management"
+      ]
+    },
+    "channelManager": {
+      "title": "Channel Manager (free)",
+      "features": [
+        "Connection to Booking.com",
+        "Connection to Expedia",
+        "Connection to Airbnb",
+        "Price and Availability Sync",
+        "OTA Bookings Automatically in PMS",
+        "Overbooking Protection"
+      ]
+    },
+    "revenueManagement": {
+      "title": "AI Revenue Management (free)",
+      "features": [
+        "Dynamic Pricing Suggestions",
+        "Pricing Rules",
+        "Demand Analysis",
+        "Event and Season Data",
+        "Automatic Optimization"
+      ]
+    },
+    "guestFrontend": {
+      "title": "Guest Frontend (free)",
+      "features": [
+        "50 Languages",
+        "Global Reach",
+        "Online Payments",
+        "Instant Confirmation",
+        "Invoices & Cancellations"
+      ]
+    },
+    "security": {
+      "title": "Security & Hosting (free)",
+      "features": [
+        "SSL/HTTPS",
+        "Backups",
+        "Monitoring",
+        "High Availability",
+        "Secure Payment Processing"
+      ]
+    },
+    "admin": {
+      "title": "Admin Service (free)",
+      "features": [
+        "Hotel Verification",
+        "Financial Overview",
+        "OTA Error Logs",
+        "System Settings",
+        "Translation Management"
+      ]
+    },
+    "table": {
+      "title": "Summary",
+      "serviceColumn": "Service",
+      "priceColumn": "Price",
+      "registration": "Registration",
+      "setup": "Setup",
+      "pms": "PMS",
+      "channelManager": "Channel Manager",
+      "bookingEngine": "Booking Engine",
+      "revenueManagement": "Revenue Management",
+      "translations": "Translations",
+      "payments": "Payment Processing",
+      "support": "Support",
+      "commission": "Commission per Booking",
+      "commissionPrice": "from 10%"
+    },
+    "finalCta": {
+      "title": "Book.ax – The Fairest Hotel System in the World",
+      "line1": "No fixed costs. No contracts. No surprises.",
+      "line2": "Only commission from 10% – everything else free.",
+      "highlight": "Only commission from 10% – everything else free.",
+      "button": "Register Free Now"
     }
   },
   "terms": {
@@ -1122,14 +1332,5 @@
       "email": "Email: i@book.ax"
     },
     "footer": "By using Book.ax, you agree to these Terms and Conditions."
-  },
-  "help": {
-    "title": "Help Center",
-    "subtitle": "Find answers to your questions",
-    "searchPlaceholder": "Search for help...",
-    "contactSupport": "Contact Support",
-    "faq": "Frequently Asked Questions",
-    "guides": "User Guides",
-    "documentation": "Documentation"
   }
 }
