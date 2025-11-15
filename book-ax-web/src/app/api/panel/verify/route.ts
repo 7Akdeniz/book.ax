@@ -13,8 +13,14 @@ export async function GET(req: NextRequest) {
     const token = authHeader.substring(7);
     const payload = verifyAccessToken(token);
 
-    if (!payload || (payload.role !== 'hotelier' && payload.role !== 'admin')) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    // If token is invalid/expired, return 401 (not 403) to trigger refresh
+    if (!payload) {
+      return NextResponse.json({ error: 'Invalid or expired token' }, { status: 401 });
+    }
+
+    // If valid token but wrong role, return 403
+    if (payload.role !== 'hotelier' && payload.role !== 'admin') {
+      return NextResponse.json({ error: 'Forbidden - insufficient permissions' }, { status: 403 });
     }
 
     return NextResponse.json({ user: payload });

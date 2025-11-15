@@ -30,6 +30,12 @@ export function setAuthData(tokens: AuthTokens, user: AuthUser): void {
   localStorage.setItem(ACCESS_TOKEN_KEY, tokens.accessToken);
   localStorage.setItem(REFRESH_TOKEN_KEY, tokens.refreshToken);
   localStorage.setItem(USER_KEY, JSON.stringify(user));
+  
+  // Trigger storage event for AuthContext
+  window.dispatchEvent(new StorageEvent('storage', {
+    key: ACCESS_TOKEN_KEY,
+    newValue: tokens.accessToken,
+  }));
 }
 
 /**
@@ -107,11 +113,17 @@ export async function refreshAccessToken(): Promise<string | null> {
 
     const data = await response.json();
     
-    // Update tokens
+    // Update tokens in localStorage
     localStorage.setItem(ACCESS_TOKEN_KEY, data.accessToken);
     if (data.refreshToken) {
       localStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken);
     }
+    
+    // Trigger storage event to notify AuthContext
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: ACCESS_TOKEN_KEY,
+      newValue: data.accessToken,
+    }));
 
     return data.accessToken;
   } catch (error) {
@@ -131,6 +143,7 @@ export async function authenticatedFetch(
   let token = getAccessToken();
 
   if (!token) {
+    console.warn('authenticatedFetch: No access token available');
     throw new Error('No access token available');
   }
 
@@ -145,12 +158,16 @@ export async function authenticatedFetch(
 
   // If 401, try to refresh and retry once
   if (response.status === 401) {
+    console.log('authenticatedFetch: Token expired (401), attempting refresh...');
     token = await refreshAccessToken();
 
     if (!token) {
+      console.error('authenticatedFetch: Token refresh failed');
       throw new Error('Authentication failed');
     }
 
+    console.log('authenticatedFetch: Token refreshed successfully, retrying request...');
+    
     // Retry with new token
     response = await fetch(url, {
       ...options,
