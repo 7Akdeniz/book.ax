@@ -5,16 +5,16 @@ import { usePathname, useRouter } from 'next/navigation';
 import { languageNames, locales, type Locale } from '@/i18n/config';
 
 const flagEmojis: Record<Locale, string> = {
-  da: '🇩�',
-  de: '��',
-  en: '��',
+  de: '🇩🇪',
+  en: '🇬🇧',
+  tr: '🇹🇷',
+  da: '🇩🇰',
   es: '🇪🇸',
   fr: '🇫🇷',
   it: '🇮🇹',
-  no: '🇳�',
+  no: '🇳🇴',
   pl: '🇵🇱',
-  sv: '🇸�',
-  tr: '🇹�',
+  sv: '🇸🇪',
 };
 
 export function LanguageSwitcher() {
