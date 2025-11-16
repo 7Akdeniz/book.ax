@@ -1,3 +1,6 @@
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 // =====================================================
 // API: POST /api/cms/images - Upload image
 // API: GET /api/cms/images - List images

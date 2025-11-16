@@ -1,3 +1,6 @@
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 // =====================================================
 // API: Single CMS Page with Hybrid Auth
 // GET /api/v1/cms/pages/[id] - Get page (public)

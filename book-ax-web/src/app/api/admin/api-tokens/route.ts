@@ -10,6 +10,9 @@ import { supabaseAdmin } from '@/lib/db/supabase';
 import { handleApiError } from '@/utils/errors';
 import { generateApiToken, API_SCOPES } from '@/lib/auth/api-token';
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 // =====================================================
 // GET - List All API Tokens
 // =====================================================

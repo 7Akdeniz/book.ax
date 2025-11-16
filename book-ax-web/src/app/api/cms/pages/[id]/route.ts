@@ -1,3 +1,6 @@
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 // =====================================================
 // API: GET /api/cms/pages/[id] - Get page by ID
 // API: PUT /api/cms/pages/[id] - Update page

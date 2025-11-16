@@ -1,3 +1,6 @@
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 // =====================================================
 // API: CMS API with Hybrid Auth (JWT + API Token)
 // GET /api/v1/cms/pages - List pages (public)

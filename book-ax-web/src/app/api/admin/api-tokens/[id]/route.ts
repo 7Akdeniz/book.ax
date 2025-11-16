@@ -5,15 +5,19 @@
 // DELETE /api/admin/api-tokens/[id] - Delete token
 // =====================================================
 
+
+// =====================================================
+// GET - Get Token Details
+// =====================================================
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAdmin, type AuthenticatedRequest } from '@/lib/auth/middleware';
 import { supabaseAdmin } from '@/lib/db/supabase';
 import { handleApiError } from '@/utils/errors';
 import { API_SCOPES } from '@/lib/auth/api-token';
 
-// =====================================================
-// GET - Get Token Details
-// =====================================================
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }

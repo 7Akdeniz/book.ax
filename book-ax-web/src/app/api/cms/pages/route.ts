@@ -1,3 +1,6 @@
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 // =====================================================
 // API: GET /api/cms/pages - List all pages
 // API: POST /api/cms/pages - Create new page
