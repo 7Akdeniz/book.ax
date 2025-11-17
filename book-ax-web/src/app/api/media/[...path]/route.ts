@@ -9,11 +9,12 @@ export const runtime = 'edge';
 
 /**
  * Media Proxy - Serves images from private Supabase Storage bucket
- * via media.book.ax subdomain
  * 
- * Example: https://media.book.ax/hotel-uuid/image.jpg
- * → Fetches from Supabase Storage bucket 'hotel-images'
- * → Returns with CDN caching headers
+ * Example:
+ * → Request: https://media.book.ax/temp/abc123.jpg
+ * → Proxies to: https://book.ax/api/media/temp/abc123.jpg
+ * → Fetches from Supabase Storage bucket 'media'
+ * → Returns image with proper headers and caching
  */
 export async function GET(
   req: NextRequest,
@@ -32,7 +33,7 @@ export async function GET(
 
     // Fetch file from private Supabase Storage bucket
     const { data, error } = await supabaseAdmin.storage
-      .from('hotel-images')
+      .from('media')
       .download(filePath);
 
     if (error) {

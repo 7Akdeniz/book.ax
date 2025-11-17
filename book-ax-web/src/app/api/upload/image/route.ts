@@ -55,10 +55,6 @@ export async function POST(req: NextRequest) {
       throw new ValidationError('No file provided');
     }
 
-    if (!hotelId) {
-      throw new ValidationError('Hotel ID is required');
-    }
-
     // Validate file type
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
     if (!allowedTypes.includes(file.type)) {
@@ -72,8 +68,10 @@ export async function POST(req: NextRequest) {
     }
 
     // Generate unique filename
+    // If no hotelId provided (during hotel creation), use 'temp' folder
+    const folder = hotelId || 'temp';
     const fileExt = file.name.split('.').pop();
-    const fileName = `${hotelId}/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+    const fileName = `${folder}/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
 
     // Convert File to ArrayBuffer
     const arrayBuffer = await file.arrayBuffer();
@@ -81,7 +79,7 @@ export async function POST(req: NextRequest) {
 
     // Upload to Supabase Storage
     const { data, error } = await supabaseAdmin.storage
-      .from('hotel-images')
+      .from('media')
       .upload(fileName, buffer, {
         contentType: file.type,
         cacheControl: '3600',

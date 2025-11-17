@@ -62,11 +62,30 @@ export function HotelReviewSubmit({ data, onBack, onSubmit }: HotelReviewSubmitP
       const { hotel } = await hotelResponse.json();
       const hotelId = hotel.id;
 
+      // 2. Upload Images (if any)
+      if (data.images && data.images.length > 0) {
+        const imageUploadPromises = data.images.map((image: any, index: number) =>
+          authenticatedFetch(`/api/panel/hotels/${hotelId}/images`, {
+            method: 'POST',
+            body: JSON.stringify({
+              url: image.url,
+              altText: image.altText,
+              isPrimary: image.isPrimary,
+              displayOrder: index,
+            }),
+          })
+        );
+
+        const imageResults = await Promise.allSettled(imageUploadPromises);
+        const failedImages = imageResults.filter(r => r.status === 'rejected');
+        
+        if (failedImages.length > 0) {
+          console.warn(`${failedImages.length} image(s) failed to upload`);
+        }
+      }
+
       // TODO: Add additional translations (beyond the first one)
       // This would require a separate API endpoint for translations
-      
-      // TODO: Add Images
-      // This would require a separate API endpoint for image uploads
 
       toast.success(t('success'));
       router.push(`/${locale}/panel`);
