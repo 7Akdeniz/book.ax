@@ -1,23 +1,45 @@
-'use client';
+'use client';'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter, useParams } from 'next/navigation';
+
+
+import { useEffect } from 'react';import { useEffect, useState } from 'react';
+
+import { useRouter } from 'next/navigation';import { useRouter, useParams } from 'next/navigation';
+
 import { useTranslations } from 'next-intl';
 
-interface User {
+export default function AdminRedirect() {
+
+  const router = useRouter();interface User {
+
   id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  role: 'guest' | 'hotelier' | 'admin';
+
+  useEffect(() => {  email: string;
+
+    // Redirect to the new locale-independent admin panel  firstName: string;
+
+    router.replace('/admin');  lastName: string;
+
+  }, [router]);  role: 'guest' | 'hotelier' | 'admin';
+
 }
 
-interface DashboardStats {
-  totalHotels: number;
-  pendingApprovals: number;
-  totalUsers: number;
-  totalBookings: number;
-  totalRevenue: number;
+  return (
+
+    <div className="flex items-center justify-center min-h-screen">interface DashboardStats {
+
+      <div className="text-center">  totalHotels: number;
+
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>  pendingApprovals: number;
+
+        <p className="text-gray-600">Redirecting to Admin Panel...</p>  totalUsers: number;
+
+      </div>  totalBookings: number;
+
+    </div>  totalRevenue: number;
+
+  );}
+
 }
 
 export default function AdminDashboard() {
