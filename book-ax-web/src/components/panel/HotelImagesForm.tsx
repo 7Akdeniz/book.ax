@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { authenticatedFetch } from '@/lib/auth/client';
 
 interface HotelImagesFormProps {
   data: any;
@@ -60,16 +61,14 @@ export function HotelImagesForm({ data, onNext, onBack }: HotelImagesFormProps) 
         const formData = new FormData();
         formData.append('file', file);
 
-        const response = await fetch('/api/upload/image', {
+        const response = await authenticatedFetch('/api/upload/image', {
           method: 'POST',
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-          },
           body: formData,
         });
 
         if (!response.ok) {
-          throw new Error('Upload failed');
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || 'Upload failed');
         }
 
         const data = await response.json();
