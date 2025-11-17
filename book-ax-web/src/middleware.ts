@@ -16,6 +16,11 @@ const intlMiddleware = createIntlMiddleware({
 export default function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
+  // Skip middleware for admin routes (no locale needed)
+  if (pathname.startsWith('/admin')) {
+    return NextResponse.next();
+  }
+  
   // Skip middleware for API routes (except media subdomain)
   if (pathname.startsWith('/api/')) {
     return NextResponse.next();
