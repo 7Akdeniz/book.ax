@@ -5,7 +5,7 @@ services:
     container_name: bookax-postgres
     restart: unless-stopped
     ports:
-      - "5432:5432"
+      - "5433:5432"  # 🔧 Changed to 5433 (external:internal)
     environment:
       POSTGRES_DB: bookax
       POSTGRES_USER: bookax_user
