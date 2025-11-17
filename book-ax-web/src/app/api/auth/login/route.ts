@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import { query } from '@/lib/db/postgres';
+import { supabaseAdmin } from '@/lib/db/supabase';
 import { generateTokens } from '@/lib/auth/jwt';
 import { loginSchema } from '@/utils/validation';
 import { handleApiError, ValidationError, AuthenticationError } from '@/utils/errors';
@@ -20,28 +20,31 @@ export async function POST(req: NextRequest) {
 
     const { email, password } = validation.data;
 
-    // Find user by email (using direct PostgreSQL)
+    // Find user by email (using Supabase for production compatibility)
     console.log('🔍 Looking for user:', email.toLowerCase());
-    const result = await query(
-      `SELECT id, email, password_hash, first_name, last_name, role, email_verified, status
-       FROM users 
-       WHERE email = $1
-       LIMIT 1`,
-      [email.toLowerCase()]
-    );
+    const { data: users, error: queryError } = await supabaseAdmin
+      .from('users')
+      .select('id, email, password_hash, first_name, last_name, role, email_verified, status')
+      .eq('email', email.toLowerCase())
+      .limit(1);
+
+    if (queryError) {
+      console.error('❌ Database error:', queryError);
+      throw new Error('Database error');
+    }
 
     console.log('📊 Query result:', { 
-      found: result.rows.length > 0, 
-      email: result.rows[0]?.email,
-      status: result.rows[0]?.status,
-      email_verified: result.rows[0]?.email_verified
+      found: users && users.length > 0, 
+      email: users?.[0]?.email,
+      status: users?.[0]?.status,
+      email_verified: users?.[0]?.email_verified
     });
 
-    if (!result.rows || result.rows.length === 0) {
+    if (!users || users.length === 0) {
       throw new AuthenticationError('Invalid email or password');
     }
 
-    const user = result.rows[0];
+    const user = users[0];
 
     // Check status
     if (user.status !== 'active') {
@@ -66,21 +69,30 @@ export async function POST(req: NextRequest) {
     const tokens = generateTokens(user);
 
     // Store refresh token in database
-    await query(
-      `INSERT INTO refresh_tokens (user_id, token, expires_at, created_at)
-       VALUES ($1, $2, $3, NOW())`,
-      [
-        user.id,
-        tokens.refreshToken,
-        new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-      ]
-    );
+    const { error: refreshTokenError } = await supabaseAdmin
+      .from('refresh_tokens')
+      .insert({
+        user_id: user.id,
+        token: tokens.refreshToken,
+        expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+        created_at: new Date().toISOString(),
+      });
+
+    if (refreshTokenError) {
+      console.error('❌ Error storing refresh token:', refreshTokenError);
+      throw new Error('Error storing refresh token');
+    }
 
     // Update last login
-    await query(
-      `UPDATE users SET last_login = NOW() WHERE id = $1`,
-      [user.id]
-    );
+    const { error: updateError } = await supabaseAdmin
+      .from('users')
+      .update({ last_login: new Date().toISOString() })
+      .eq('id', user.id);
+
+    if (updateError) {
+      console.error('⚠️ Error updating last login:', updateError);
+      // Don't fail login if this fails
+    }
 
     // Return response (exclude password hash)
     return NextResponse.json({
