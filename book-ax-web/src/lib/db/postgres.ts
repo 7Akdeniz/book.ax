@@ -9,7 +9,7 @@
  *   const result = await query('SELECT * FROM users WHERE id = $1', [userId]);
  */
 
-import { Pool, QueryResult } from 'pg';
+import { Pool, QueryResult, QueryResultRow } from 'pg';
 
 // Environment detection
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -53,13 +53,13 @@ export function getPool(): Pool {
 }
 
 /**
- * Execute a SQL query with parameterized values
+ * Execute a database query
  * 
  * @param text SQL query with $1, $2, etc. placeholders
  * @param params Array of parameter values
  * @returns Query result
  */
-export async function query<T = any>(
+export async function query<T extends QueryResultRow = any>(
   text: string,
   params?: any[]
 ): Promise<QueryResult<T>> {

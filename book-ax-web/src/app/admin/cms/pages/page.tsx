@@ -1,29 +1,82 @@
-import { redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
-import { verifyAccessToken } from '@/lib/auth/jwt';
-import Link from 'next/link';
+'use client';
 
-async function getPages() {
-  // This would normally be a server-side fetch
-  // For now, we'll return empty array
-  return [];
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import toast from 'react-hot-toast';
+import { authenticatedFetch, isAuthenticated, getUser } from '@/lib/auth/client';
+
+interface CMSPage {
+  id: string;
+  title: string;
+  slug: string;
+  type: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export default async function CMSPagesListPage() {
-  // Verify admin access
-  const cookieStore = cookies();
-  const token = cookieStore.get('accessToken')?.value;
+export default function CMSPagesListPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [pages, setPages] = useState<CMSPage[]>([]);
 
-  if (!token) {
-    redirect('/login');
+  useEffect(() => {
+    verifyAdminAccess();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const verifyAdminAccess = async () => {
+    try {
+      if (!isAuthenticated()) {
+        toast.error('Session expired. Please login again.');
+        router.push('/de/login');
+        return;
+      }
+
+      const user = getUser();
+      if (!user || user.role !== 'admin') {
+        toast.error('Access denied. Admin only.');
+        router.push('/');
+        return;
+      }
+
+      const response = await authenticatedFetch('/api/admin/verify');
+      if (!response.ok) {
+        toast.error('Authentication failed');
+        router.push('/de/login');
+        return;
+      }
+
+      setLoading(false);
+      fetchPages();
+    } catch (error) {
+      console.error('Admin verification failed:', error);
+      toast.error('Authentication failed');
+      router.push('/de/login');
+    }
+  };
+
+  const fetchPages = async () => {
+    try {
+      // TODO: Implement CMS pages API
+      setPages([]);
+    } catch (error) {
+      console.error('Failed to fetch pages:', error);
+      toast.error('Failed to load pages');
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
   }
-
-  const decoded = verifyAccessToken(token);
-  if (!decoded || decoded.role !== 'admin') {
-    redirect('/');
-  }
-
-  const pages = await getPages();
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">

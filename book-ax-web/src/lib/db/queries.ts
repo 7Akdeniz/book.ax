@@ -41,9 +41,9 @@ export async function getHotelById(
         *,
         hotel_images (
           id,
-          image_url,
+          url,
           alt_text,
-          sort_order,
+          display_order,
           is_primary
         ),
         hotel_amenities (
@@ -55,7 +55,7 @@ export async function getHotelById(
         )
       `)
       .eq('id', hotelId)
-      .eq('status', 'active')
+      .eq('status', 'approved')
       .single();
 
     if (hotelError || !hotel) {
@@ -68,7 +68,7 @@ export async function getHotelById(
       .from('hotel_translations')
       .select('name, description')
       .eq('hotel_id', hotelId)
-      .eq('language_code', locale)
+      .eq('language', locale)
       .single();
 
     // Fetch room categories with translations
@@ -79,11 +79,11 @@ export async function getHotelById(
         room_category_translations (
           name,
           description,
-          language_code
+          language
         )
       `)
       .eq('hotel_id', hotelId)
-      .eq('status', 'active')
+      .eq('status', 'approved')
       .order('sort_order', { ascending: true });
 
     // Fetch reviews
@@ -113,10 +113,10 @@ export async function getHotelById(
         .sort((a: any, b: any) => {
           if (a.is_primary) return -1;
           if (b.is_primary) return 1;
-          return a.sort_order - b.sort_order;
+          return a.display_order - b.display_order;
         })
         .map((img: any) => ({
-          url: img.image_url,
+          url: img.url,
           alt_text: img.alt_text,
         })),
       amenities: (hotel.hotel_amenities || []).map((a: any) => ({
@@ -125,7 +125,7 @@ export async function getHotelById(
       })),
       room_categories: (roomCategories || []).map((room: any) => {
         const roomTranslation = room.room_category_translations?.find(
-          (t: any) => t.language_code === locale
+          (t: any) => t.language === locale
         );
         return {
           ...room,
@@ -160,7 +160,7 @@ export async function getHotelsForSitemap(): Promise<
     const { data, error } = await supabaseAdmin
       .from('hotels')
       .select('id, updated_at')
-      .eq('status', 'active')
+      .eq('status', 'approved')
       .order('updated_at', { ascending: false });
 
     if (error) throw error;
@@ -196,17 +196,17 @@ export async function searchHotels(
       .select(`
         *,
         hotel_images!inner (
-          image_url,
+          url,
           alt_text,
           is_primary
         ),
         hotel_translations (
           name,
           description,
-          language_code
+          language
         )
       `)
-      .eq('status', 'active');
+      .eq('status', 'approved');
 
     // Filter by destination (city or country)
     if (params.destination) {
@@ -230,7 +230,7 @@ export async function searchHotels(
     // Transform data
     const transformedHotels = (hotels || []).map((hotel: any) => {
       const translation = hotel.hotel_translations?.find(
-        (t: any) => t.language_code === (params.locale || 'en')
+        (t: any) => t.language === (params.locale || 'en')
       );
       const primaryImage = hotel.hotel_images?.find((img: any) => img.is_primary);
 
@@ -238,7 +238,7 @@ export async function searchHotels(
         ...hotel,
         name: translation?.name || 'Hotel',
         description: translation?.description,
-        image: primaryImage?.image_url || hotel.hotel_images?.[0]?.image_url,
+        image: primaryImage?.url || hotel.hotel_images?.[0]?.url,
         average_rating: hotel.average_rating || 0,
         total_reviews: hotel.total_reviews || 0,
       };
@@ -264,19 +264,19 @@ export async function getFeaturedHotels(
       .select(`
         *,
         hotel_images!inner (
-          image_url,
+          url,
           alt_text,
           is_primary
         ),
         hotel_translations (
           name,
           description,
-          language_code
+          language
         )
       `)
-      .eq('status', 'active')
-      .eq('is_featured', true)
-      .order('average_rating', { ascending: false })
+      .eq('status', 'approved')
+      .not('hotel_images', 'is', null)
+      .order('created_at', { ascending: false })
       .limit(limit);
 
     if (error) throw error;
@@ -284,7 +284,7 @@ export async function getFeaturedHotels(
     // Transform data (same as searchHotels)
     const transformedHotels = (hotels || []).map((hotel: any) => {
       const translation = hotel.hotel_translations?.find(
-        (t: any) => t.language_code === locale
+        (t: any) => t.language === locale
       );
       const primaryImage = hotel.hotel_images?.find((img: any) => img.is_primary);
 
@@ -292,7 +292,7 @@ export async function getFeaturedHotels(
         ...hotel,
         name: translation?.name || hotel.name,
         description: translation?.description || hotel.description,
-        image: primaryImage?.image_url || hotel.hotel_images?.[0]?.image_url,
+        image: primaryImage?.url || hotel.hotel_images?.[0]?.url,
       };
     });
 
@@ -312,7 +312,7 @@ export async function getHotelMinPrice(hotelId: string): Promise<number | null> 
       .from('room_categories')
       .select('base_price')
       .eq('hotel_id', hotelId)
-      .eq('status', 'active')
+      .eq('status', 'approved')
       .order('base_price', { ascending: true })
       .limit(1)
       .single();

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
+import { authenticatedFetch, isAuthenticated, getUser } from '@/lib/auth/client';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -56,54 +57,36 @@ export default function AdminFinancesPage() {
   }, [isAdmin, dateRange, statusFilter]);
 
   const verifyAdminAccess = async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      toast.error(t('security.unauthorized'));
-      router.push('/login');
-      return;
-    }
-
     try {
-      const res = await fetch('/api/admin/verify', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (res.status === 401) {
-        toast.error(t('security.sessionExpired'));
-        localStorage.removeItem('token');
-        router.push('/login');
+      if (!isAuthenticated()) {
+        toast.error('Session expired. Please login again.');
+        router.push('/de/login');
         return;
       }
 
-      if (res.status === 403) {
-        toast.error(t('security.forbidden'));
+      const user = getUser();
+      if (!user || user.role !== 'admin') {
+        toast.error('Access denied. Admin only.');
         router.push('/');
         return;
       }
 
-      if (!res.ok) {
-        throw new Error('Verification failed');
-      }
-
-      const data = await res.json();
-      if (data.role !== 'admin') {
-        toast.error(t('security.adminOnly'));
-        router.push('/');
+      const response = await authenticatedFetch('/api/admin/verify');
+      if (!response.ok) {
+        toast.error('Authentication failed');
+        router.push('/de/login');
         return;
       }
 
       setIsAdmin(true);
     } catch (error) {
-      console.error('Admin verification error:', error);
-      toast.error(t('security.unauthorized'));
-      router.push('/login');
+      console.error('Admin verification failed:', error);
+      toast.error('Authentication failed');
+      router.push('/de/login');
     }
   };
 
   const fetchFinancialData = async () => {
-    const token = localStorage.getItem('token');
-    if (!token) return;
-
     try {
       setLoading(true);
       const params = new URLSearchParams({
@@ -111,21 +94,13 @@ export default function AdminFinancesPage() {
         status: statusFilter,
       });
 
-      const res = await fetch(`/api/admin/finances?${params}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await authenticatedFetch(`/api/admin/finances?${params}`);
 
-      if (res.status === 401 || res.status === 403) {
-        toast.error(t('security.unauthorized'));
-        router.push('/login');
-        return;
-      }
-
-      if (!res.ok) {
+      if (!response.ok) {
         throw new Error('Failed to fetch financial data');
       }
 
-      const data = await res.json();
+      const data = await response.json();
       setFinancialData(data.summary);
       setTransactions(data.transactions || []);
     } catch (error) {
@@ -197,61 +172,33 @@ export default function AdminFinancesPage() {
   if (!isAdmin) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-        <p className="ml-4 text-gray-600">{t('security.verifying')}...</p>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Verifying access...</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Security Warning Banner */}
-      <div className="bg-red-600 text-white py-2 px-4 text-center font-semibold">
-        {t('security.adminOnly')} - {t('security.auditLog.enabled')}
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">{t('finances.title')}</h1>
+          <p className="text-gray-600 mt-1">Monitor revenue and transactions</p>
+        </div>
+        <button
+          onClick={handleExport}
+          className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors font-medium"
+        >
+          📥 {t('finances.export')}
+        </button>
       </div>
 
-      {/* Admin Navigation */}
-      <nav className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex space-x-8">
-              <Link href="/admin" className="inline-flex items-center px-1 pt-1 text-gray-700 hover:text-primary-600">
-                {t('navigation.dashboard')}
-              </Link>
-              <Link href="/admin/hotels" className="inline-flex items-center px-1 pt-1 text-gray-700 hover:text-primary-600">
-                {t('navigation.hotels')}
-              </Link>
-              <Link href="/admin/users" className="inline-flex items-center px-1 pt-1 text-gray-700 hover:text-primary-600">
-                {t('navigation.users')}
-              </Link>
-              <Link href="/admin/finances" className="inline-flex items-center px-1 pt-1 text-primary-600 border-b-2 border-primary-600 font-semibold">
-                {t('navigation.finances')}
-              </Link>
-              <Link href="/admin/settings" className="inline-flex items-center px-1 pt-1 text-gray-700 hover:text-primary-600">
-                {t('navigation.settings')}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-3xl font-bold text-gray-900">
-              {t('finances.title')}
-            </h1>
-            <button
-              onClick={handleExport}
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors font-medium"
-            >
-              📥 {t('finances.export')}
-            </button>
-          </div>
-
-          {/* Filters */}
-          <div className="mb-6 bg-white rounded-lg shadow p-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Filters */}
+      <div className="bg-white rounded-lg shadow p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Date Range Filter */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -346,22 +293,21 @@ export default function AdminFinancesPage() {
                     }`}
                   >
                     Cancelled
-                  </button>
-                </div>
+                </button>
               </div>
             </div>
           </div>
 
-          {/* Financial Overview Cards */}
-          {loading ? (
-            <div className="bg-white shadow rounded-lg p-8 text-center mb-6">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
-              <p className="mt-4 text-gray-600">Loading financial data...</p>
-            </div>
-          ) : financialData ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-              {/* Total Revenue */}
-              <div className="bg-white rounded-lg shadow p-6">
+      {/* Financial Overview Cards */}
+      {loading ? (
+        <div className="bg-white shadow rounded-lg p-8 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading financial data...</p>
+        </div>
+      ) : financialData ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Total Revenue */}
+          <div className="bg-white rounded-lg shadow p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-600">{t('finances.totalRevenue')}</p>
@@ -418,15 +364,15 @@ export default function AdminFinancesPage() {
                 <p className="text-xs text-gray-500 mt-2">Awaiting processing</p>
               </div>
             </div>
-          ) : null}
+        ) : null}
 
-          {/* Transactions Table */}
-          {loading ? null : transactions.length === 0 ? (
-            <div className="bg-white shadow rounded-lg p-8 text-center">
-              <p className="text-gray-500">No transactions found for selected filters</p>
-            </div>
-          ) : (
-            <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+        {/* Transactions Table */}
+        {loading ? null : transactions.length === 0 ? (
+          <div className="bg-white shadow rounded-lg p-8 text-center">
+            <p className="text-gray-500">No transactions found for selected filters</p>
+          </div>
+        ) : (
+          <div className="bg-white shadow overflow-hidden sm:rounded-lg">
               <div className="px-4 py-5 sm:px-6 bg-gray-50">
                 <h3 className="text-lg leading-6 font-medium text-gray-900">
                   Transaction Details
@@ -509,7 +455,6 @@ export default function AdminFinancesPage() {
             </div>
           )}
         </div>
-      </div>
     </div>
   );
 }

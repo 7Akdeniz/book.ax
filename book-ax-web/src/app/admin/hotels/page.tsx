@@ -248,8 +248,8 @@ function AdminHotelsContent() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
-          <p className="text-red-600">Verifying admin access...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Verifying admin access...</p>
         </div>
       </div>
     );
@@ -267,65 +267,60 @@ function AdminHotelsContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Security Banner */}
-      <div className="bg-red-600 text-white px-4 py-2 text-center text-sm font-semibold">
-        🔒 {tSecurity('adminOnly')}
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+        <p className="text-gray-600 mt-1">Review and manage hotel listings</p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">{t('title')}</h1>
-          
-          {/* Status Filter */}
-          <div className="flex gap-2">
-            <button
-              onClick={() => setStatusFilter('all')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                statusFilter === 'all'
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              {t('all')} ({hotels.length})
-            </button>
-            <button
-              onClick={() => setStatusFilter('pending')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                statusFilter === 'pending'
-                  ? 'bg-yellow-500 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              {t('pending')} ({hotels.filter(h => h.status === 'pending').length})
-            </button>
-            <button
-              onClick={() => setStatusFilter('approved')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                statusFilter === 'approved'
-                  ? 'bg-green-500 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              {t('approved')} ({hotels.filter(h => h.status === 'approved').length})
-            </button>
-            <button
-              onClick={() => setStatusFilter('rejected')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                statusFilter === 'rejected'
-                  ? 'bg-red-500 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              {t('rejected')} ({hotels.filter(h => h.status === 'rejected').length})
-            </button>
-          </div>
-        </div>
+      {/* Status Filter */}
+      <div className="flex gap-2">
+        <button
+          onClick={() => setStatusFilter('all')}
+          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            statusFilter === 'all'
+              ? 'bg-primary-600 text-white'
+              : 'bg-white text-gray-700 hover:bg-gray-50 shadow-sm'
+          }`}
+        >
+          {t('all')} ({hotels.length})
+        </button>
+        <button
+          onClick={() => setStatusFilter('pending')}
+          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            statusFilter === 'pending'
+              ? 'bg-yellow-500 text-white'
+              : 'bg-white text-gray-700 hover:bg-gray-50 shadow-sm'
+          }`}
+        >
+          {t('pending')} ({hotels.filter(h => h.status === 'pending').length})
+        </button>
+        <button
+          onClick={() => setStatusFilter('approved')}
+          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            statusFilter === 'approved'
+              ? 'bg-green-500 text-white'
+              : 'bg-white text-gray-700 hover:bg-gray-50 shadow-sm'
+          }`}
+        >
+          {t('approved')} ({hotels.filter(h => h.status === 'approved').length})
+        </button>
+        <button
+          onClick={() => setStatusFilter('rejected')}
+          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            statusFilter === 'rejected'
+              ? 'bg-red-500 text-white'
+              : 'bg-white text-gray-700 hover:bg-gray-50 shadow-sm'
+          }`}
+        >
+          {t('rejected')} ({hotels.filter(h => h.status === 'rejected').length})
+        </button>
+      </div>
 
-        {/* Hotels Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200">
+      {/* Hotels Table */}
+      <div className="bg-white rounded-lg shadow overflow-hidden">
+        <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -411,7 +406,6 @@ function AdminHotelsContent() {
             </div>
           )}
         </div>
-      </div>
     </div>
   );
 }

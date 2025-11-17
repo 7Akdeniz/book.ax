@@ -19,6 +19,12 @@ Dies ist **Book.ax** - eine Multi-Platform Hotel-Buchungsplattform (ähnlich Boo
 
 **Gemeinsame Backend**: Beide Apps nutzen dieselbe Supabase Database
 
+
+## Lokale Entwicklungsumgebung
+
+- **System**: MacOS
+
+
 ---
 
 ## Mobile App Architektur (React Native)
@@ -410,3 +416,8 @@ npx react-native log-ios
 # Android-Logs live anzeigen
 npx react-native log-android
 ```
+
+# Important Instructions 
+
+- DO NOT write documentation or project status files.
+- FOCUS on writing code, tests, and configuration files only.

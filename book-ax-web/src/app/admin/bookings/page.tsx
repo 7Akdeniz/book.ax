@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import toast from 'react-hot-toast';
+import { authenticatedFetch, isAuthenticated, getUser } from '@/lib/auth/client';
 
 interface Booking {
   id: string;
@@ -53,45 +54,57 @@ export default function AdminBookingsPage() {
 
   const verifyAdminAccess = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        router.push('/login');
+      // Check if authenticated
+      if (!isAuthenticated()) {
+        toast.error('Session expired. Please login again.');
+        router.push('/de/login');
         return;
       }
 
-      const response = await fetch('/api/admin/verify', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (!response.ok) {
-        router.push('/login');
-        return;
-      }
-
-      const data = await response.json();
-      if (data.user?.role !== 'admin') {
+      const user = getUser();
+      
+      // Check role on client-side first
+      if (!user || user.role !== 'admin') {
+        toast.error('Access denied. Admin only.');
         router.push('/');
         return;
+      }
+
+      // Verify admin role with backend
+      const response = await authenticatedFetch('/api/admin/verify');
+
+      if (response.status === 401) {
+        toast.error('Unauthorized access');
+        router.push('/de/login');
+        return;
+      }
+
+      if (response.status === 403) {
+        toast.error('Access denied. Admin only.');
+        router.push('/');
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error('Admin verification failed');
       }
 
       setLoading(false);
       fetchBookings();
     } catch (error) {
       console.error('Admin verification failed:', error);
-      router.push('/login');
+      toast.error('Authentication failed');
+      router.push('/de/login');
     }
   };
 
   const fetchBookings = async () => {
     try {
-      const token = localStorage.getItem('token');
       const params = new URLSearchParams();
       if (statusFilter !== 'all') params.append('status', statusFilter);
       if (sourceFilter !== 'all') params.append('source', sourceFilter);
 
-      const response = await fetch(`/api/admin/bookings?${params}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await authenticatedFetch(`/api/admin/bookings?${params}`);
 
       if (!response.ok) throw new Error('Failed to fetch bookings');
 
@@ -108,12 +121,10 @@ export default function AdminBookingsPage() {
     if (!confirm(t('confirmCancel'))) return;
 
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`/api/admin/bookings/${bookingId}`, {
+      const response = await authenticatedFetch(`/api/admin/bookings/${bookingId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ status: 'cancelled' }),
       });
@@ -164,7 +175,7 @@ export default function AdminBookingsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">{t('loading')}</p>
@@ -174,73 +185,67 @@ export default function AdminBookingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="md:flex md:items-center md:justify-between">
-            <div className="flex-1 min-w-0">
-              <h1 className="text-3xl font-bold text-gray-900">
-                {t('title')}
-              </h1>
-              <p className="mt-1 text-sm text-gray-500">{t('subtitle')}</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
+          <p className="mt-1 text-sm text-gray-500">{t('subtitle')}</p>
+        </div>
+        <button
+          onClick={fetchBookings}
+          className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+        >
+          <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          {t('refresh')}
+        </button>
+      </div>
+
+      {/* Stats Cards */}
+      {stats && (
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="text-sm font-medium text-gray-500">
+              {t('stats.total')}
             </div>
-            <div className="mt-4 flex md:mt-0 md:ml-4">
-              <button
-                onClick={fetchBookings}
-                className="ml-3 inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
-              >
-                {t('refresh')}
-              </button>
+            <div className="mt-2 text-3xl font-bold text-gray-900">
+              {stats.totalBookings}
+            </div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="text-sm font-medium text-gray-500">
+              {t('stats.confirmed')}
+            </div>
+            <div className="mt-2 text-3xl font-bold text-green-600">
+              {stats.confirmedBookings}
+            </div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="text-sm font-medium text-gray-500">
+              {t('stats.pending')}
+            </div>
+            <div className="mt-2 text-3xl font-bold text-yellow-600">
+              {stats.pendingBookings}
+            </div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="text-sm font-medium text-gray-500">
+              {t('stats.revenue')}
+            </div>
+            <div className="mt-2 text-3xl font-bold text-primary-600">
+              {new Intl.NumberFormat('de-DE', {
+                style: 'currency',
+                currency: 'EUR',
+              }).format(stats.totalRevenue)}
             </div>
           </div>
         </div>
-      </div>
+      )}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Cards */}
-        {stats && (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="text-sm font-medium text-gray-500">
-                {t('stats.total')}
-              </div>
-              <div className="mt-2 text-3xl font-bold text-gray-900">
-                {stats.totalBookings}
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="text-sm font-medium text-gray-500">
-                {t('stats.confirmed')}
-              </div>
-              <div className="mt-2 text-3xl font-bold text-green-600">
-                {stats.confirmedBookings}
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="text-sm font-medium text-gray-500">
-                {t('stats.pending')}
-              </div>
-              <div className="mt-2 text-3xl font-bold text-yellow-600">
-                {stats.pendingBookings}
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="text-sm font-medium text-gray-500">
-                {t('stats.revenue')}
-              </div>
-              <div className="mt-2 text-3xl font-bold text-primary-600">
-                {new Intl.NumberFormat('de-DE', {
-                  style: 'currency',
-                  currency: 'EUR',
-                }).format(stats.totalRevenue)}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Filters */}
-        <div className="bg-white rounded-lg shadow p-6 mb-6">
+      {/* Filters */}
+      <div className="bg-white rounded-lg shadow p-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -394,7 +399,6 @@ export default function AdminBookingsPage() {
             </table>
           </div>
         </div>
-      </div>
     </div>
   );
 }
