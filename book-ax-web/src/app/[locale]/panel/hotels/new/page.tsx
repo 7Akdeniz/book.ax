@@ -1,13 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import toast from 'react-hot-toast';
 import { HotelBasicInfoForm } from '@/components/panel/HotelBasicInfoForm';
 import { HotelAddressForm } from '@/components/panel/HotelAddressForm';
 import { HotelTranslationsForm } from '@/components/panel/HotelTranslationsForm';
 import { HotelImagesForm } from '@/components/panel/HotelImagesForm';
 import { HotelReviewSubmit } from '@/components/panel/HotelReviewSubmit';
+import { HotelJourneyStorage } from '@/utils/hotelJourneyStorage';
+import { JourneyTimer } from '@/components/panel/JourneyTimer';
 
 type Step = 'basic' | 'address' | 'translations' | 'images' | 'review';
 
@@ -71,6 +74,50 @@ export default function NewHotelPage() {
     translations: {},
     images: [],
   });
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Load saved journey on mount
+  useEffect(() => {
+    const savedJourney = HotelJourneyStorage.load();
+    
+    if (savedJourney) {
+      const timeRemaining = HotelJourneyStorage.getTimeRemaining();
+      
+      toast.success(
+        `Fortschritt wiederhergestellt! Noch ${timeRemaining} Min. gültig`,
+        { duration: 4000 }
+      );
+      
+      setFormData(savedJourney.data);
+      setCurrentStep(savedJourney.currentStep as Step);
+    }
+    
+    setIsLoaded(true);
+  }, []);
+
+  // Save journey whenever data or step changes
+  useEffect(() => {
+    if (isLoaded && formData) {
+      HotelJourneyStorage.save(formData, currentStep);
+    }
+  }, [formData, currentStep, isLoaded]);
+
+  // Refresh timer on user activity
+  useEffect(() => {
+    const handleActivity = () => {
+      HotelJourneyStorage.refreshTimer();
+    };
+
+    window.addEventListener('click', handleActivity);
+    window.addEventListener('keypress', handleActivity);
+    window.addEventListener('scroll', handleActivity);
+
+    return () => {
+      window.removeEventListener('click', handleActivity);
+      window.removeEventListener('keypress', handleActivity);
+      window.removeEventListener('scroll', handleActivity);
+    };
+  }, []);
 
   const currentStepIndex = STEPS.indexOf(currentStep);
   const progress = ((currentStepIndex + 1) / STEPS.length) * 100;
@@ -90,25 +137,62 @@ export default function NewHotelPage() {
     }
   };
 
+  const handleClearJourney = () => {
+    if (confirm('Möchten Sie wirklich von vorne beginnen? Alle Daten gehen verloren.')) {
+      HotelJourneyStorage.clear();
+      setFormData({
+        propertyType: 'hotel',
+        starRating: 3,
+        checkInTime: '14:00',
+        checkOutTime: '11:00',
+        totalRooms: 10,
+        commissionPercentage: 15,
+        translations: {},
+        images: [],
+      });
+      setCurrentStep('basic');
+      toast.success('Fortschritt gelöscht. Sie können neu beginnen.');
+    }
+  };
+
   const handleSubmit = async (finalData: HotelFormData) => {
     try {
       // Submit will be implemented in HotelReviewSubmit component
       console.log('Submitting hotel:', finalData);
+      
+      // Clear journey after successful submission
+      HotelJourneyStorage.clear();
+      toast.success('Hotel erfolgreich erstellt!');
+      
       // After successful submission, redirect to hotel dashboard
       router.push('/panel/hotels');
     } catch (error) {
       console.error('Error submitting hotel:', error);
+      toast.error('Fehler beim Erstellen des Hotels');
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
+      {/* Journey Timer */}
+      <JourneyTimer />
+      
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {t('title')}
-          </h1>
+          <div className="flex items-center justify-between mb-2">
+            <h1 className="text-3xl font-bold text-gray-900">
+              {t('title')}
+            </h1>
+            {HotelJourneyStorage.hasSaved() && (
+              <button
+                onClick={handleClearJourney}
+                className="text-sm text-red-600 hover:text-red-800 underline"
+              >
+                🗑️ Neu beginnen
+              </button>
+            )}
+          </div>
           <p className="text-gray-600">{t('subtitle')}</p>
 
           {/* Progress Bar */}
