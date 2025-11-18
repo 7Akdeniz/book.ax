@@ -39,10 +39,13 @@ function getAuthUser(req: NextRequest) {
 // =====================================================
 export async function POST(req: NextRequest) {
   try {
+    console.log('[Upload API] Starting image upload...');
     const user = getAuthUser(req);
+    console.log('[Upload API] User authenticated:', { userId: user.userId, role: user.role });
     
     // Check role
     if (user.role !== 'hotelier' && user.role !== 'admin') {
+      console.error('[Upload API] Authorization failed: invalid role', user.role);
       throw new AuthorizationError('Only hoteliers and admins can upload images');
     }
 
@@ -50,8 +53,15 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
     const file = formData.get('file') as File | null;
     const hotelId = formData.get('hotelId') as string | null;
+    console.log('[Upload API] File info:', { 
+      fileName: file?.name, 
+      fileSize: file?.size, 
+      fileType: file?.type,
+      hotelId 
+    });
 
     if (!file) {
+      console.error('[Upload API] No file provided');
       throw new ValidationError('No file provided');
     }
 
@@ -78,6 +88,7 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(arrayBuffer);
 
     // Upload to Supabase Storage
+    console.log('[Upload API] Uploading to Supabase Storage:', fileName);
     const { data, error } = await supabaseAdmin.storage
       .from('media')
       .upload(fileName, buffer, {
@@ -87,13 +98,16 @@ export async function POST(req: NextRequest) {
       });
 
     if (error) {
-      console.error('Supabase Storage error:', error);
+      console.error('[Upload API] Supabase Storage error:', error);
       throw new Error(`Failed to upload image: ${error.message}`);
     }
+
+    console.log('[Upload API] Upload successful:', data);
 
     // Generate media subdomain URL (media.book.ax)
     const mediaBaseUrl = process.env.NEXT_PUBLIC_MEDIA_URL || 'https://media.book.ax';
     const mediaUrl = `${mediaBaseUrl}/${fileName}`;
+    console.log('[Upload API] Generated URL:', mediaUrl);
 
     return NextResponse.json({
       message: 'Image uploaded successfully',
@@ -101,6 +115,7 @@ export async function POST(req: NextRequest) {
       fileName: data.path,
     }, { status: 201 });
   } catch (error) {
+    console.error('[Upload API] Error:', error);
     const { error: message, status } = handleApiError(error);
     return NextResponse.json({ error: message }, { status });
   }
