@@ -121,14 +121,17 @@ export async function POST(req: NextRequest) {
 
     console.log('[Upload API] Upload successful:', data);
 
-    // Generate media subdomain URL (media.book.ax)
-    const mediaBaseUrl = process.env.NEXT_PUBLIC_MEDIA_URL || 'https://media.book.ax';
-    const mediaUrl = `${mediaBaseUrl}/${fileName}`;
-    console.log('[Upload API] Generated URL:', mediaUrl);
+    // Get the public URL from Supabase Storage
+    const { data: urlData } = supabaseAdmin.storage
+      .from('media')
+      .getPublicUrl(fileName);
+    
+    const publicUrl = urlData.publicUrl;
+    console.log('[Upload API] Generated public URL:', publicUrl);
 
     return NextResponse.json({
       message: 'Image uploaded successfully',
-      url: mediaUrl,
+      url: publicUrl,
       fileName: data.path,
     }, { status: 201 });
   } catch (error) {
