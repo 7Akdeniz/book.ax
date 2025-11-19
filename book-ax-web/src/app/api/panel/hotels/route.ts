@@ -158,6 +158,7 @@ export const POST = requireHotelier(async (req) => {
 export const GET = requireHotelier(async (req) => {
   try {
     const userId = req.user!.userId;
+    console.log('[Hotels API GET] Fetching hotels for user:', userId);
 
     const { data: hotels, error } = await supabaseAdmin
       .from('hotels')
@@ -178,7 +179,16 @@ export const GET = requireHotelier(async (req) => {
       .eq('hotel_translations.language', 'de') // Default to German
       .order('created_at', { ascending: false });
 
-    if (error) throw error;
+    if (error) {
+      console.error('[Hotels API GET] Query error:', error);
+      throw error;
+    }
+
+    console.log('[Hotels API GET] Found hotels:', hotels?.length || 0);
+    console.log('[Hotels API GET] Raw data:', JSON.stringify(hotels, null, 2));
+
+    console.log('[Hotels API GET] Found hotels:', hotels?.length || 0);
+    console.log('[Hotels API GET] Raw data:', JSON.stringify(hotels, null, 2));
 
     // Format response
     const formattedHotels = hotels.map((hotel: any) => ({
@@ -194,7 +204,15 @@ export const GET = requireHotelier(async (req) => {
       commissionPercentage: hotel.commission_percentage,
       primaryImage: hotel.hotel_images?.find((img: any) => img.is_primary)?.url,
       createdAt: hotel.created_at,
+      images: hotel.hotel_images,
+      address_city: hotel.address_city,
+      address_country: hotel.address_country,
+      property_type: hotel.property_type,
+      star_rating: hotel.star_rating,
+      total_rooms: hotel.total_rooms,
     }));
+
+    console.log('[Hotels API GET] Formatted hotels:', formattedHotels.length);
 
     return NextResponse.json({
       hotels: formattedHotels,
@@ -202,7 +220,7 @@ export const GET = requireHotelier(async (req) => {
     });
 
   } catch (error) {
-    console.error('Error fetching hotels:', error);
+    console.error('[Hotels API GET] Fatal error:', error);
     const { error: message, status } = handleApiError(error);
     return NextResponse.json({ error: message }, { status });
   }

@@ -121,6 +121,9 @@
     "hotelierDashboard": "Hotelier Dashboard",
     "myHotels": "Meine Hotels",
     "reservations": "Reservierungen",
+    "common": {
+      "loading": "Wird geladen..."
+    },
     "calendar": {
       "title": "Calendar & Availability",
       "subtitle": "View bookings, check-ins, and occupancy in calendar view",
@@ -997,7 +1000,10 @@
     "hotelierTip": "Als Hotelier erhalten Sie vollen Zugang zu unserem PMS für 0€/Monat!",
     "viewPricing": "Preise & Funktionen ansehen",
     "noAccount": "Noch kein Konto?",
-    "loginFailed": "Anmeldung fehlgeschlagen"
+    "loginFailed": "Anmeldung fehlgeschlagen",
+    "loggingIn": "Anmeldung läuft...",
+    "notAuthenticated": "Nicht angemeldet",
+    "unauthorized": "Keine Berechtigung"
   },
   "errors": {
     "somethingWentWrong": "Etwas ist schiefgelaufen",

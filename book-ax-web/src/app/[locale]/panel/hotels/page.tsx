@@ -54,14 +54,19 @@ export default function PanelHotelsPage() {
 
   const loadHotels = async () => {
     try {
-      const response = await authenticatedFetch('/api/hotels');
+      console.log('[Hotels Page] Loading hotels...');
+      const response = await authenticatedFetch('/api/panel/hotels');
+      
+      console.log('[Hotels Page] Response status:', response.status);
       
       if (!response.ok) {
         const errorData = await response.json();
+        console.error('[Hotels Page] Error:', errorData);
         throw new Error(errorData.error || 'Failed to load hotels');
       }
 
       const data = await response.json();
+      console.log('[Hotels Page] Received data:', data);
       setHotels(data.hotels || []);
     } catch (error) {
       console.error('Error loading hotels:', error);
