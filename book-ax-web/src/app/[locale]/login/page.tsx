@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
@@ -10,6 +10,7 @@ import { useAuth } from '@/contexts/AuthContext';
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const params = useParams();
   const locale = params.locale as string;
   const t = useTranslations();
@@ -19,6 +20,16 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Get return URL from query params
+  const returnUrl = searchParams.get('returnUrl');
+
+  useEffect(() => {
+    // Show message if user was redirected due to auth requirement
+    if (returnUrl) {
+      setError('Bitte melden Sie sich an, um fortzufahren.');
+    }
+  }, [returnUrl]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,8 +59,11 @@ export default function LoginPage() {
         // Refresh user in AuthContext
         refreshUser();
         
-        // Redirect based on role
-        if (data.user.role === 'hotelier') {
+        // Redirect to return URL if provided, otherwise based on role
+        if (returnUrl) {
+          console.log('🔄 Redirecting to saved URL:', returnUrl);
+          router.push(returnUrl);
+        } else if (data.user.role === 'hotelier') {
           router.push(`/${locale}/panel`);
         } else if (data.user.role === 'admin') {
           router.push(`/${locale}/admin`);
@@ -71,7 +85,13 @@ export default function LoginPage() {
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
         <h1 className="text-3xl font-bold mb-6 text-center">{t('auth.login')}</h1>
         
-        {error && (
+        {returnUrl && (
+          <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded mb-4 text-sm">
+            ℹ️ Bitte melden Sie sich an, um fortzufahren.
+          </div>
+        )}
+
+        {error && !returnUrl && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             {error}
           </div>

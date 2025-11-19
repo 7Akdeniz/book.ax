@@ -26,8 +26,8 @@ export function PanelAuthGuard({ children, requiredRole = 'hotelier' }: PanelAut
       // Not authenticated at all
       if (!isAuthenticated) {
         console.log('🚫 PanelAuthGuard: User not authenticated, redirecting to login');
-        const currentPath = window.location.pathname;
-        router.push(`/${locale}/login?redirect=${encodeURIComponent(currentPath)}`);
+        const currentPath = window.location.pathname + window.location.search;
+        router.push(`/${locale}/login?returnUrl=${encodeURIComponent(currentPath)}`);
         return;
       }
 
