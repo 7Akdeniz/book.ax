@@ -74,7 +74,7 @@ export const POST = requireHotelier(async (req) => {
         hotelier_id: userId,
         property_type: data.propertyType,
         star_rating: data.starRating,
-        address_line1: data.addressStreet,
+        address_street: data.addressStreet,
         address_city: data.addressCity,
         address_state: data.addressState,
         address_postal_code: data.addressPostalCode,

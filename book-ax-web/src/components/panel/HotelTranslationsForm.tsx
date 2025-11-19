@@ -56,6 +56,13 @@ export function HotelTranslationsForm({ data, onNext, onBack }: HotelTranslation
       return;
     }
 
+    // Validate description length (min 50 characters)
+    if (translations.en.description.length < 50) {
+      alert(t('errors.descriptionTooShort') || 'Description must be at least 50 characters');
+      setSelectedLanguage('en');
+      return;
+    }
+
     onNext({ translations });
   };
 
@@ -151,6 +158,18 @@ export function HotelTranslationsForm({ data, onNext, onBack }: HotelTranslation
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             placeholder={t('description.placeholder')}
           />
+          {selectedLanguage === 'en' && currentTranslation.description && (
+            <p className={`mt-1 text-sm ${
+              currentTranslation.description.length >= 50 
+                ? 'text-green-600' 
+                : 'text-red-600'
+            }`}>
+              {currentTranslation.description.length} / 50 Zeichen
+              {currentTranslation.description.length < 50 && 
+                ` (noch ${50 - currentTranslation.description.length} Zeichen erforderlich)`
+              }
+            </p>
+          )}
         </div>
 
         {/* Check-in Instructions */}
