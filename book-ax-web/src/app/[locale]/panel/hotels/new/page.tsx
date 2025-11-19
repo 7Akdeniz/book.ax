@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import toast from 'react-hot-toast';
 import { HotelBasicInfoForm } from '@/components/panel/HotelBasicInfoForm';
@@ -62,6 +62,8 @@ const STEPS: Step[] = ['basic', 'address', 'translations', 'images', 'review'];
 export default function NewHotelPage() {
   const t = useTranslations('panel.hotels.new');
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale as string;
 
   const [currentStep, setCurrentStep] = useState<Step>('basic');
   const [formData, setFormData] = useState<Partial<HotelFormData>>({

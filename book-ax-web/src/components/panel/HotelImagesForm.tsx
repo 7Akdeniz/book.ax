@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useRouter, useParams } from 'next/navigation';
 import { authenticatedFetch } from '@/lib/auth/client';
+import toast from 'react-hot-toast';
 
 interface HotelImagesFormProps {
   data: any;
@@ -12,6 +14,9 @@ interface HotelImagesFormProps {
 
 export function HotelImagesForm({ data, onNext, onBack }: HotelImagesFormProps) {
   const t = useTranslations('panel.hotels.new.images');
+  const router = useRouter();
+  const params = useParams();
+  const locale = params.locale as string;
 
   const [images, setImages] = useState<any[]>(data.images || []);
   const [uploading, setUploading] = useState(false);
@@ -82,8 +87,20 @@ export function HotelImagesForm({ data, onNext, onBack }: HotelImagesFormProps) 
             altText: file.name.replace(/\.[^/.]+$/, ''),
           },
         ]);
-      } catch (error) {
-        alert(t('errors.uploadFailed'));
+        
+        toast.success(`${file.name} hochgeladen`);
+      } catch (error: any) {
+        // Check if it's an authentication error
+        if (error.message === 'Authentication required') {
+          toast.error('Ihre Session ist abgelaufen. Bitte melden Sie sich erneut an.');
+          // Redirect to login after a delay
+          setTimeout(() => {
+            router.push(`/${locale}/login?redirect=${encodeURIComponent(window.location.pathname)}`);
+          }, 2000);
+          break; // Stop processing more files
+        } else {
+          toast.error(`Fehler beim Hochladen von ${file.name}`);
+        }
       }
     }
 
