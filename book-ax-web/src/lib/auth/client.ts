@@ -143,8 +143,9 @@ export async function authenticatedFetch(
 ): Promise<Response> {
   let token = getAccessToken();
 
-  // First attempt: Try with cookies (for logged-in users)
-  // If no token in localStorage, cookies might still work
+  console.log('authenticatedFetch: Starting request to', url);
+  console.log('authenticatedFetch: Token from localStorage:', token ? 'present' : 'missing');
+
   const headers: Record<string, string> = {
     ...(options.headers as Record<string, string>),
   };
@@ -152,6 +153,9 @@ export async function authenticatedFetch(
   // Add Bearer token if available
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
+    console.log('authenticatedFetch: Adding Bearer token to headers');
+  } else {
+    console.log('authenticatedFetch: No token in localStorage, relying on cookies');
   }
 
   // Always include credentials for cookie-based auth
@@ -161,32 +165,40 @@ export async function authenticatedFetch(
     credentials: 'include', // Important: Include cookies!
   });
 
-  // If 401 and we have a token, try to refresh
-  if (response.status === 401 && token) {
-    console.log('authenticatedFetch: Token expired (401), attempting refresh...');
-    token = await refreshAccessToken();
+  console.log('authenticatedFetch: Response status:', response.status);
 
-    if (!token) {
-      console.error('authenticatedFetch: Token refresh failed');
-      throw new Error('Authentication failed');
+  // If 401, try different recovery strategies
+  if (response.status === 401) {
+    console.warn('authenticatedFetch: Got 401 Unauthorized');
+    
+    // Strategy 1: If we have a token, try to refresh it
+    if (token) {
+      console.log('authenticatedFetch: Attempting token refresh...');
+      token = await refreshAccessToken();
+
+      if (token) {
+        console.log('authenticatedFetch: Token refreshed, retrying request...');
+        
+        // Retry with new token
+        response = await fetch(url, {
+          ...options,
+          headers: {
+            ...(options.headers as Record<string, string>),
+            Authorization: `Bearer ${token}`,
+          },
+          credentials: 'include',
+        });
+
+        console.log('authenticatedFetch: Retry response status:', response.status);
+        
+        if (response.ok) {
+          return response;
+        }
+      }
     }
 
-    console.log('authenticatedFetch: Token refreshed successfully, retrying request...');
-    
-    // Retry with new token
-    response = await fetch(url, {
-      ...options,
-      headers: {
-        ...(options.headers as Record<string, string>),
-        Authorization: `Bearer ${token}`,
-      },
-      credentials: 'include',
-    });
-  }
-
-  // If still 401 and no token was in localStorage, cookies didn't work either
-  if (response.status === 401 && !token) {
-    console.warn('authenticatedFetch: Authentication required');
+    // If still 401, user needs to login again
+    console.error('authenticatedFetch: Authentication required - please login again');
     throw new Error('Authentication required');
   }
 

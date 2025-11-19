@@ -10,27 +10,44 @@ import { handleApiError, ValidationError, AuthorizationError, AuthenticationErro
 function getAuthUser(req: NextRequest) {
   let token: string | undefined;
 
+  console.log('[Upload API] Checking authentication...');
+  console.log('[Upload API] Headers:', {
+    authorization: req.headers.get('authorization') ? 'present' : 'missing',
+    cookie: req.headers.get('cookie') ? 'present' : 'missing',
+  });
+  console.log('[Upload API] Cookies:', {
+    accessToken: req.cookies.get('accessToken') ? 'present' : 'missing',
+    refreshToken: req.cookies.get('refreshToken') ? 'present' : 'missing',
+  });
+
   // 1. Try Authorization header first
   const authHeader = req.headers.get('authorization');
   if (authHeader && authHeader.startsWith('Bearer ')) {
     token = authHeader.substring(7);
+    console.log('[Upload API] Using Bearer token from header');
   }
 
   // 2. Fallback to cookie
   if (!token) {
     token = req.cookies.get('accessToken')?.value;
+    if (token) {
+      console.log('[Upload API] Using token from cookie');
+    }
   }
 
   if (!token) {
+    console.error('[Upload API] No token found in header or cookies');
     throw new AuthenticationError('No authentication token provided');
   }
 
   const decoded = verifyAccessToken(token);
   
   if (!decoded) {
+    console.error('[Upload API] Token verification failed');
     throw new AuthenticationError('Invalid or expired token');
   }
 
+  console.log('[Upload API] Token verified successfully');
   return decoded;
 }
 

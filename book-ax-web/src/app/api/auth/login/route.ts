@@ -112,10 +112,18 @@ export async function POST(req: NextRequest) {
     const isProduction = process.env.NODE_ENV === 'production';
     const cookieOptions = {
       httpOnly: true,
-      secure: isProduction,
-      sameSite: 'lax' as const,
+      secure: isProduction, // Only HTTPS in production
+      sameSite: 'lax' as const, // Allow cookies to be sent with navigation
       path: '/',
+      domain: isProduction ? '.book.ax' : undefined, // Share cookies across subdomains in prod
     };
+
+    console.log('🍪 Setting cookies with options:', {
+      isProduction,
+      secure: cookieOptions.secure,
+      sameSite: cookieOptions.sameSite,
+      domain: cookieOptions.domain,
+    });
 
     // Access token cookie (15 minutes)
     response.cookies.set('accessToken', tokens.accessToken, {
