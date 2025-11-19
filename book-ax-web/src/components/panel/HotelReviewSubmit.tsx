@@ -21,6 +21,8 @@ export function HotelReviewSubmit({ data, onBack, onSubmit }: HotelReviewSubmitP
 
   const handleSubmit = async () => {
     setSubmitting(true);
+    console.log('[Submit] Starting hotel creation...');
+    console.log('[Submit] Form data:', data);
 
     try {
       // Get first translation for hotel name and description
@@ -28,42 +30,55 @@ export function HotelReviewSubmit({ data, onBack, onSubmit }: HotelReviewSubmitP
       const hotelName = firstTranslation?.name || data.name;
       const hotelDescription = firstTranslation?.description || '';
 
+      console.log('[Submit] Using translation:', { hotelName, hotelDescription });
+
+      // Prepare payload
+      const payload = {
+        propertyType: data.propertyType,
+        name: hotelName,
+        description: hotelDescription,
+        starRating: data.starRating,
+        addressStreet: data.addressLine1,
+        addressCity: data.addressCity,
+        addressState: data.addressState,
+        addressPostalCode: data.addressPostalCode,
+        addressCountry: data.addressCountry,
+        phone: data.contactPhone,
+        email: data.contactEmail,
+        website: data.website || '',
+        latitude: data.latitude,
+        longitude: data.longitude,
+        checkInTime: data.checkInTime,
+        checkOutTime: data.checkOutTime,
+        totalRooms: data.totalRooms,
+        commissionPercentage: data.commissionPercentage,
+        locale: locale || 'de',
+      };
+
+      console.log('[Submit] API Payload:', payload);
+
       // 1. Create Hotel
+      console.log('[Submit] Calling POST /api/panel/hotels...');
       const hotelResponse = await authenticatedFetch('/api/panel/hotels', {
         method: 'POST',
-        body: JSON.stringify({
-          propertyType: data.propertyType,
-          name: hotelName,
-          description: hotelDescription,
-          starRating: data.starRating,
-          addressStreet: data.addressLine1,
-          addressCity: data.addressCity,
-          addressState: data.addressState,
-          addressPostalCode: data.addressPostalCode,
-          addressCountry: data.addressCountry,
-          phone: data.contactPhone,
-          email: data.contactEmail,
-          website: data.website,
-          latitude: data.latitude,
-          longitude: data.longitude,
-          checkInTime: data.checkInTime,
-          checkOutTime: data.checkOutTime,
-          totalRooms: data.totalRooms,
-          commissionPercentage: data.commissionPercentage,
-          locale: locale || 'de',
-        }),
+        body: JSON.stringify(payload),
       });
+
+      console.log('[Submit] Response status:', hotelResponse.status);
 
       if (!hotelResponse.ok) {
         const error = await hotelResponse.json();
+        console.error('[Submit] API Error:', error);
         throw new Error(error.error || 'Failed to create hotel');
       }
 
       const { hotel } = await hotelResponse.json();
       const hotelId = hotel.id;
+      console.log('[Submit] Hotel created with ID:', hotelId);
 
       // 2. Upload Images (if any)
       if (data.images && data.images.length > 0) {
+        console.log('[Submit] Uploading', data.images.length, 'images...');
         const imageUploadPromises = data.images.map((image: any, index: number) =>
           authenticatedFetch(`/api/panel/hotels/${hotelId}/images`, {
             method: 'POST',
@@ -77,14 +92,17 @@ export function HotelReviewSubmit({ data, onBack, onSubmit }: HotelReviewSubmitP
         );
 
         const imageResults = await Promise.allSettled(imageUploadPromises);
+        console.log('[Submit] Image uploads complete:', imageResults);
       }
 
       // TODO: Add additional translations (beyond the first one)
       // This would require a separate API endpoint for translations
 
+      console.log('[Submit] Success! Redirecting...');
       toast.success(t('success'));
       router.push(`/${locale}/panel`);
     } catch (error: any) {
+      console.error('[Submit] Fatal error:', error);
       toast.error(error.message || t('error'));
       setSubmitting(false);
     }
