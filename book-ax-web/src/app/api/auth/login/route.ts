@@ -94,8 +94,8 @@ export async function POST(req: NextRequest) {
       // Don't fail login if this fails
     }
 
-    // Return response (exclude password hash)
-    return NextResponse.json({
+    // Create response
+    const response = NextResponse.json({
       accessToken: tokens.accessToken,
       refreshToken: tokens.refreshToken,
       user: {
@@ -106,6 +106,32 @@ export async function POST(req: NextRequest) {
         role: user.role,
       },
     });
+
+    // Set HTTP-Only cookies for additional security
+    // This allows Cookie-based auth in addition to Bearer token
+    const isProduction = process.env.NODE_ENV === 'production';
+    const cookieOptions = {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: 'lax' as const,
+      path: '/',
+    };
+
+    // Access token cookie (15 minutes)
+    response.cookies.set('accessToken', tokens.accessToken, {
+      ...cookieOptions,
+      maxAge: 15 * 60, // 15 minutes
+    });
+
+    // Refresh token cookie (7 days)
+    response.cookies.set('refreshToken', tokens.refreshToken, {
+      ...cookieOptions,
+      maxAge: 7 * 24 * 60 * 60, // 7 days
+    });
+
+    console.log('✅ Cookies set successfully');
+
+    return response;
   } catch (error) {
     const { error: message, status } = handleApiError(error);
     return NextResponse.json({ error: message }, { status });

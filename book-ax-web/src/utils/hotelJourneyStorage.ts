@@ -98,7 +98,7 @@ function getCurrentUserId(): string | undefined {
       return authCookie.split('=')[1];
     }
   } catch (e) {
-    console.warn('Could not retrieve user ID:', e);
+    // Silent fail
   }
   
   return undefined;
@@ -110,7 +110,6 @@ export class HotelJourneyStorage {
    */
   static save(data: any, currentStep: string): boolean {
     if (!isStorageAvailable()) {
-      console.warn('LocalStorage not available');
       return false;
     }
 
@@ -121,7 +120,6 @@ export class HotelJourneyStorage {
       // Check size
       const jsonStr = JSON.stringify(sanitizedData);
       if (jsonStr.length > MAX_STORAGE_SIZE) {
-        console.error('Data too large for localStorage');
         return false;
       }
 
@@ -138,10 +136,8 @@ export class HotelJourneyStorage {
       // Also save current step separately for quick access
       localStorage.setItem(`${STORAGE_KEY}_step`, currentStep);
       
-      console.log('✅ Journey saved to localStorage');
       return true;
     } catch (error) {
-      console.error('Error saving journey:', error);
       return false;
     }
   }
@@ -166,7 +162,6 @@ export class HotelJourneyStorage {
 
       // Check expiry
       if (isExpired(journey.timestamp)) {
-        console.log('⏰ Journey expired, cleaning up');
         this.clear();
         return null;
       }
@@ -174,7 +169,6 @@ export class HotelJourneyStorage {
       // Verify checksum
       const calculatedChecksum = calculateChecksum(journey.data);
       if (calculatedChecksum !== journey.checksum) {
-        console.error('❌ Data integrity check failed');
         this.clear();
         return null;
       }
@@ -182,18 +176,15 @@ export class HotelJourneyStorage {
       // Verify user (optional but recommended)
       const currentUserId = getCurrentUserId();
       if (journey.userId && currentUserId && journey.userId !== currentUserId) {
-        console.warn('⚠️ User mismatch, clearing old journey');
         this.clear();
         return null;
-      }
+      };
 
-      console.log('✅ Journey loaded from localStorage');
       return {
         data: journey.data,
         currentStep: storedStep || 'basic',
       };
     } catch (error) {
-      console.error('Error loading journey:', error);
       this.clear(); // Clear corrupted data
       return null;
     }
@@ -210,9 +201,8 @@ export class HotelJourneyStorage {
     try {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem(`${STORAGE_KEY}_step`);
-      console.log('🧹 Journey cleared from localStorage');
     } catch (error) {
-      console.error('Error clearing journey:', error);
+      // Silent fail
     }
   }
 

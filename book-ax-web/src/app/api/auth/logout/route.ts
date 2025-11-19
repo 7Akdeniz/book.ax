@@ -8,8 +8,13 @@ import { handleApiError } from '@/utils/errors';
 
 async function logoutHandler(req: AuthenticatedRequest) {
   try {
-    const body = await req.json();
-    const { refreshToken } = body;
+    const body = await req.json().catch(() => ({}));
+    let refreshToken = body.refreshToken;
+
+    // Try to get refresh token from cookie if not in body
+    if (!refreshToken) {
+      refreshToken = req.cookies.get('refreshToken')?.value;
+    }
 
     if (refreshToken && req.user) {
       // Revoke refresh token
@@ -20,7 +25,14 @@ async function logoutHandler(req: AuthenticatedRequest) {
         .eq('user_id', req.user.userId);
     }
 
-    return NextResponse.json({ message: 'Logged out successfully' });
+    // Create response
+    const response = NextResponse.json({ message: 'Logged out successfully' });
+
+    // Clear cookies
+    response.cookies.delete('accessToken');
+    response.cookies.delete('refreshToken');
+
+    return response;
   } catch (error) {
     const { error: message, status } = handleApiError(error);
     return NextResponse.json({ error: message }, { status });

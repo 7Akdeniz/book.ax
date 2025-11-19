@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Journey Storage - Test</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background: #0052a3;
+        }
+        button.danger {
+            background: #dc2626;
+        }
+        button.danger:hover {
+            background: #b91c1c;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            border-left: 4px solid #ff9800;
+        }
+        .success {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            border-left: 4px solid #28a745;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .timer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .stat {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🏨 Hotel Journey Storage - Demo</h1>
+        <p>Test der LocalStorage-Funktionalität mit Security Features</p>
+    </div>
+
+    <div class="card">
+        <h2>📝 Hotel-Daten eingeben</h2>
+        <input type="text" id="hotelName" placeholder="Hotel Name" value="Grand Hotel">
+        <input type="text" id="hotelCity" placeholder="Stadt" value="München">
+        <input type="text" id="hotelEmail" placeholder="Email" value="info@hotel.com">
+        <textarea id="hotelDesc" placeholder="Beschreibung" rows="3">Ein luxuriöses Hotel im Herzen der Stadt</textarea>
+        
+        <button onclick="saveJourney()">💾 Speichern</button>
+        <button onclick="loadJourney()">📂 Laden</button>
+        <button onclick="clearJourney()" class="danger">🗑️ Löschen</button>
+    </div>
+
+    <div class="card">
+        <h2>🔒 Security Tests</h2>
+        <button onclick="testXSS()">Test XSS Prevention</button>
+        <button onclick="testChecksum()">Test Checksum</button>
+        <button onclick="testExpiry()">Test Expiry (30 Min)</button>
+        <button onclick="testUserMismatch()">Test User Mismatch</button>
+        <button onclick="testCorruption()">Test Corruption Handling</button>
+    </div>
+
+    <div class="card">
+        <h2>📊 Status</h2>
+        <div class="stats">
+            <div class="stat">
+                <strong>Gespeichert:</strong> <span id="hasSaved">❌</span>
+            </div>
+            <div class="stat">
+                <strong>Verbleibend:</strong> <span id="timeRemaining">-</span>
+            </div>
+            <div class="stat">
+                <strong>Storage Size:</strong> <span id="storageSize">-</span>
+            </div>
+            <div class="stat">
+                <strong>User ID:</strong> <span id="userId">-</span>
+            </div>
+        </div>
+        <div id="statusMessage"></div>
+    </div>
+
+    <div class="card">
+        <h2>🔍 Raw Data (LocalStorage)</h2>
+        <pre id="rawData">-</pre>
+    </div>
+
+    <div class="timer" id="timer" style="display: none;">
+        <div style="font-weight: bold; margin-bottom: 5px;">⏰ Auto-Save Timer</div>
+        <div id="timerText">30 Minuten verbleibend</div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'hotel_creation_journey';
+        const EXPIRY_TIME = 30 * 60 * 1000; // 30 minutes
+
+        function calculateChecksum(data) {
+            const str = JSON.stringify(data);
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return hash.toString(36);
+        }
+
+        function sanitizeData(data) {
+            if (typeof data === 'string') {
+                return data
+                    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                    .replace(/javascript:/gi, '')
+                    .replace(/on\w+\s*=/gi, '');
+            }
+            
+            if (Array.isArray(data)) {
+                return data.map(sanitizeData);
+            }
+            
+            if (data && typeof data === 'object') {
+                const sanitized = {};
+                for (const key in data) {
+                    sanitized[key] = sanitizeData(data[key]);
+                }
+                return sanitized;
+            }
+            
+            return data;
+        }
+
+        function getCurrentUserId() {
+            // Simulate user ID from cookie
+            return 'user_12345';
+        }
+
+        function saveJourney() {
+            const data = {
+                name: document.getElementById('hotelName').value,
+                city: document.getElementById('hotelCity').value,
+                email: document.getElementById('hotelEmail').value,
+                description: document.getElementById('hotelDesc').value,
+            };
+
+            const sanitizedData = sanitizeData(data);
+            
+            const journey = {
+                data: sanitizedData,
+                timestamp: Date.now(),
+                userId: getCurrentUserId(),
+                checksum: calculateChecksum(sanitizedData),
+                version: '1.0'
+            };
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(journey));
+            showStatus('✅ Erfolgreich gespeichert!', 'success');
+            updateStatus();
+        }
+
+        function loadJourney() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            
+            if (!stored) {
+                showStatus('❌ Keine gespeicherten Daten gefunden', 'warning');
+                return;
+            }
+
+            try {
+                const journey = JSON.parse(stored);
+
+                // Check expiry
+                if (Date.now() - journey.timestamp > EXPIRY_TIME) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    showStatus('⏰ Daten sind abgelaufen (> 30 Min)', 'warning');
+                    return;
+                }
+
+                // Verify checksum
+                const calculatedChecksum = calculateChecksum(journey.data);
+                if (calculatedChecksum !== journey.checksum) {
+                    showStatus('❌ Checksumme ungültig - Daten wurden manipuliert!', 'warning');
+                    return;
+                }
+
+                // Verify user
+                if (journey.userId && journey.userId !== getCurrentUserId()) {
+                    showStatus('⚠️ User-ID stimmt nicht überein', 'warning');
+                    return;
+                }
+
+                // Load data
+                document.getElementById('hotelName').value = journey.data.name || '';
+                document.getElementById('hotelCity').value = journey.data.city || '';
+                document.getElementById('hotelEmail').value = journey.data.email || '';
+                document.getElementById('hotelDesc').value = journey.data.description || '';
+
+                showStatus('✅ Daten erfolgreich geladen!', 'success');
+                updateStatus();
+            } catch (e) {
+                showStatus('❌ Fehler beim Laden: ' + e.message, 'warning');
+            }
+        }
+
+        function clearJourney() {
+            if (confirm('Wirklich löschen?')) {
+                localStorage.removeItem(STORAGE_KEY);
+                showStatus('🗑️ Daten gelöscht', 'success');
+                updateStatus();
+            }
+        }
+
+        function testXSS() {
+            const maliciousData = {
+                name: '<script>alert("XSS")</script>Hotel',
+                description: 'onclick=alert("XSS") test',
+            };
+
+            const sanitized = sanitizeData(maliciousData);
+            showStatus('🔒 XSS Test:\nVorher: ' + JSON.stringify(maliciousData, null, 2) + '\nNachher: ' + JSON.stringify(sanitized, null, 2), 'info');
+        }
+
+        function testChecksum() {
+            saveJourney();
+            const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            
+            // Manipulate data
+            stored.data.name = 'MANIPULATED';
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+            
+            showStatus('🔒 Daten manipuliert. Versuche zu laden...', 'info');
+            setTimeout(loadJourney, 1000);
+        }
+
+        function testExpiry() {
+            saveJourney();
+            const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            
+            // Set timestamp to 31 minutes ago
+            stored.timestamp = Date.now() - (31 * 60 * 1000);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+            
+            showStatus('⏰ Timestamp auf vor 31 Min gesetzt. Versuche zu laden...', 'info');
+            setTimeout(loadJourney, 1000);
+        }
+
+        function testUserMismatch() {
+            saveJourney();
+            const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            
+            // Change user ID
+            stored.userId = 'different_user_999';
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+            
+            showStatus('👤 User-ID geändert. Versuche zu laden...', 'info');
+            setTimeout(loadJourney, 1000);
+        }
+
+        function testCorruption() {
+            localStorage.setItem(STORAGE_KEY, '{invalid json!!!');
+            showStatus('💥 Korrupte Daten gespeichert. Versuche zu laden...', 'info');
+            setTimeout(loadJourney, 1000);
+        }
+
+        function showStatus(message, type) {
+            const div = document.getElementById('statusMessage');
+            div.className = type;
+            div.innerHTML = message.replace(/\n/g, '<br>');
+        }
+
+        function updateStatus() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            
+            document.getElementById('hasSaved').textContent = stored ? '✅' : '❌';
+            
+            if (stored) {
+                try {
+                    const journey = JSON.parse(stored);
+                    const elapsed = Date.now() - journey.timestamp;
+                    const remaining = EXPIRY_TIME - elapsed;
+                    const minutes = Math.max(0, Math.floor(remaining / 60000));
+                    
+                    document.getElementById('timeRemaining').textContent = minutes + ' Min';
+                    document.getElementById('storageSize').textContent = (stored.length / 1024).toFixed(2) + ' KB';
+                    document.getElementById('userId').textContent = journey.userId || '-';
+                    
+                    document.getElementById('timer').style.display = 'block';
+                    document.getElementById('timerText').textContent = minutes + ' Minuten verbleibend';
+                    
+                    if (minutes < 5) {
+                        document.getElementById('timer').style.background = '#fff3cd';
+                        document.getElementById('timer').style.borderLeft = '4px solid #ff9800';
+                    }
+                } catch (e) {
+                    document.getElementById('timeRemaining').textContent = 'Fehler';
+                }
+            } else {
+                document.getElementById('timeRemaining').textContent = '-';
+                document.getElementById('storageSize').textContent = '-';
+                document.getElementById('userId').textContent = '-';
+                document.getElementById('timer').style.display = 'none';
+            }
+
+            // Show raw data
+            document.getElementById('rawData').textContent = stored ? JSON.stringify(JSON.parse(stored), null, 2) : 'Keine Daten gespeichert';
+        }
+
+        // Update every second
+        setInterval(updateStatus, 1000);
+        updateStatus();
+    </script>
+</body>
+</html>

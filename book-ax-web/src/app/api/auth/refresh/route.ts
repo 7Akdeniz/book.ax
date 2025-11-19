@@ -8,8 +8,17 @@ import { handleApiError, AuthenticationError } from '@/utils/errors';
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { refreshToken } = body;
+    // Try to get refresh token from multiple sources
+    let refreshToken: string | undefined;
+
+    // 1. From request body
+    const body = await req.json().catch(() => ({}));
+    refreshToken = body.refreshToken;
+
+    // 2. Fallback to cookie
+    if (!refreshToken) {
+      refreshToken = req.cookies.get('refreshToken')?.value;
+    }
 
     if (!refreshToken) {
       throw new AuthenticationError('Refresh token is required');
@@ -53,9 +62,22 @@ export async function POST(req: NextRequest) {
     // Generate new access token
     const newAccessToken = generateAccessToken(user);
 
-    return NextResponse.json({
+    // Create response with new access token
+    const response = NextResponse.json({
       accessToken: newAccessToken,
     });
+
+    // Update access token cookie
+    const isProduction = process.env.NODE_ENV === 'production';
+    response.cookies.set('accessToken', newAccessToken, {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 15 * 60, // 15 minutes
+    });
+
+    return response;
   } catch (error) {
     const { error: message, status } = handleApiError(error);
     return NextResponse.json({ error: message }, { status });

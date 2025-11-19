@@ -77,11 +77,6 @@ export function HotelReviewSubmit({ data, onBack, onSubmit }: HotelReviewSubmitP
         );
 
         const imageResults = await Promise.allSettled(imageUploadPromises);
-        const failedImages = imageResults.filter(r => r.status === 'rejected');
-        
-        if (failedImages.length > 0) {
-          console.warn(`${failedImages.length} image(s) failed to upload`);
-        }
       }
 
       // TODO: Add additional translations (beyond the first one)
@@ -90,7 +85,6 @@ export function HotelReviewSubmit({ data, onBack, onSubmit }: HotelReviewSubmitP
       toast.success(t('success'));
       router.push(`/${locale}/panel`);
     } catch (error: any) {
-      console.error('Submit error:', error);
       toast.error(error.message || t('error'));
       setSubmitting(false);
     }

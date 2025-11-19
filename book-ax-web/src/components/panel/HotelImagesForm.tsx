@@ -83,7 +83,6 @@ export function HotelImagesForm({ data, onNext, onBack }: HotelImagesFormProps) 
           },
         ]);
       } catch (error) {
-        console.error('Upload error:', error);
         alert(t('errors.uploadFailed'));
       }
     }

@@ -176,194 +176,194 @@
     "revPAR": "RevPAR",
     "hotels": {
       "new": {
-        "title": "Register New Hotel",
-        "subtitle": "Complete the registration in 5 easy steps",
+        "title": "Neues Hotel registrieren",
+        "subtitle": "Schließen Sie die Registrierung in 5 einfachen Schritten ab",
         "steps": {
-          "basic": "Basic Info",
-          "address": "Address",
-          "translations": "Translations",
-          "images": "Images",
-          "review": "Review"
+          "basic": "Grundlagen",
+          "address": "Adresse",
+          "translations": "Übersetzungen",
+          "images": "Bilder",
+          "review": "Überprüfung"
         },
         "basic": {
-          "title": "Basic Information",
-          "subtitle": "Tell us about your property",
+          "title": "Grundinformationen",
+          "subtitle": "Erzählen Sie uns von Ihrer Unterkunft",
           "propertyType": {
-            "label": "Property Type"
+            "label": "Unterkunftsart"
           },
           "name": {
-            "label": "Hotel Name",
-            "placeholder": "e.g., Grand Hotel Berlin",
-            "hint": "Official name as it appears on documents"
+            "label": "Hotelname",
+            "placeholder": "z.B., Grand Hotel Berlin",
+            "hint": "Offizieller Name wie er in Dokumenten erscheint"
           },
           "starRating": {
-            "label": "Star Rating"
+            "label": "Sterne-Bewertung"
           },
           "checkInTime": {
-            "label": "Check-in Time"
+            "label": "Check-in Zeit"
           },
           "checkOutTime": {
-            "label": "Check-out Time"
+            "label": "Check-out Zeit"
           },
           "totalRooms": {
-            "label": "Total Rooms",
-            "hint": "Number of available rooms"
+            "label": "Anzahl Zimmer",
+            "hint": "Anzahl der verfügbaren Zimmer"
           },
           "commission": {
-            "label": "Commission Percentage",
-            "hint": "Commission per booking (min. 10%, max. 50%)",
-            "info": "Lower commission means higher visibility in search results!"
+            "label": "Provisionssatz",
+            "hint": "Provision pro Buchung (min. 10%, max. 50%)",
+            "info": "Niedrigere Provision bedeutet höhere Sichtbarkeit in den Suchergebnissen!"
           },
           "errors": {
-            "nameRequired": "Hotel name is required (min. 3 characters)",
-            "totalRoomsInvalid": "Total rooms must be between 1 and 1000",
-            "commissionInvalid": "Commission must be between 10% and 50%"
+            "nameRequired": "Hotelname ist erforderlich (min. 3 Zeichen)",
+            "totalRoomsInvalid": "Anzahl Zimmer muss zwischen 1 und 1000 sein",
+            "commissionInvalid": "Provision muss zwischen 10% und 50% liegen"
           },
-          "nextButton": "Next Step"
+          "nextButton": "Nächster Schritt"
         },
         "address": {
-          "title": "Address & Contact",
-          "subtitle": "Where is your property located?",
+          "title": "Adresse & Kontakt",
+          "subtitle": "Wo befindet sich Ihre Unterkunft?",
           "addressLine1": {
-            "label": "Address Line 1",
-            "placeholder": "Street name and number"
+            "label": "Adresszeile 1",
+            "placeholder": "Straße und Hausnummer"
           },
           "addressLine2": {
-            "label": "Address Line 2",
-            "placeholder": "Apartment, suite, unit, building, floor, etc."
+            "label": "Adresszeile 2",
+            "placeholder": "Wohnung, Suite, Gebäude, Etage, etc."
           },
           "city": {
-            "label": "City",
-            "placeholder": "e.g., Berlin"
+            "label": "Stadt",
+            "placeholder": "z.B., Berlin"
           },
           "state": {
-            "label": "State/Province",
+            "label": "Bundesland/Provinz",
             "placeholder": "Optional"
           },
           "postalCode": {
-            "label": "Postal Code",
-            "placeholder": "e.g., 10115"
+            "label": "Postleitzahl",
+            "placeholder": "z.B., 10115"
           },
           "country": {
-            "label": "Country"
+            "label": "Land"
           },
           "contactInfo": {
-            "title": "Contact Information"
+            "title": "Kontaktinformationen"
           },
           "phone": {
-            "label": "Phone Number",
+            "label": "Telefonnummer",
             "placeholder": "+49 30 12345678"
           },
           "email": {
-            "label": "Email Address",
+            "label": "E-Mail-Adresse",
             "placeholder": "info@hotel.com"
           },
           "website": {
-            "label": "Website",
+            "label": "Webseite",
             "placeholder": "https://hotel.com"
           },
           "coordinates": {
-            "title": "Coordinates (Optional)",
-            "subtitle": "For accurate map placement"
+            "title": "Koordinaten (Optional)",
+            "subtitle": "Für genaue Kartenplatzierung"
           },
           "latitude": {
-            "label": "Latitude"
+            "label": "Breitengrad"
           },
           "longitude": {
-            "label": "Longitude"
+            "label": "Längengrad"
           },
           "errors": {
-            "addressRequired": "Address is required (min. 5 characters)",
-            "cityRequired": "City is required",
-            "postalCodeRequired": "Postal code is required",
-            "phoneInvalid": "Phone number must be at least 8 characters",
-            "emailInvalid": "Valid email address is required",
-            "websiteInvalid": "Website must start with http:// or https://"
+            "addressRequired": "Adresse ist erforderlich (min. 5 Zeichen)",
+            "cityRequired": "Stadt ist erforderlich",
+            "postalCodeRequired": "Postleitzahl ist erforderlich",
+            "phoneInvalid": "Telefonnummer muss mindestens 8 Zeichen haben",
+            "emailInvalid": "Gültige E-Mail-Adresse erforderlich",
+            "websiteInvalid": "Webseite muss mit http:// oder https:// beginnen"
           },
-          "backButton": "Back",
-          "nextButton": "Next Step"
+          "backButton": "Zurück",
+          "nextButton": "Nächster Schritt"
         },
         "translations": {
-          "title": "Multi-Language Content",
-          "subtitle": "Add translations for international guests",
-          "selectLanguage": "Select Language",
-          "languagesCompleted": "languages completed",
-          "required": "Required",
+          "title": "Mehrsprachiger Inhalt",
+          "subtitle": "Fügen Sie Übersetzungen für internationale Gäste hinzu",
+          "selectLanguage": "Sprache auswählen",
+          "languagesCompleted": "Sprachen ausgefüllt",
+          "required": "Erforderlich",
           "name": {
-            "label": "Hotel Name",
-            "placeholder": "Translated hotel name"
+            "label": "Hotelname",
+            "placeholder": "Übersetzter Hotelname"
           },
           "description": {
-            "label": "Description",
-            "placeholder": "Describe your hotel, facilities, and what makes it special..."
+            "label": "Beschreibung",
+            "placeholder": "Beschreiben Sie Ihr Hotel, die Einrichtungen und was es besonders macht..."
           },
           "checkIn": {
-            "label": "Check-in Instructions",
-            "placeholder": "How guests can check in, where to find reception, etc."
+            "label": "Check-in Anweisungen",
+            "placeholder": "Wie Gäste einchecken können, wo die Rezeption ist, etc."
           },
           "checkOut": {
-            "label": "Check-out Instructions",
-            "placeholder": "Check-out process, key return, late check-out options, etc."
+            "label": "Check-out Anweisungen",
+            "placeholder": "Check-out Prozess, Schlüsselrückgabe, Spätes Check-out, etc."
           },
           "houseRules": {
-            "label": "House Rules",
-            "placeholder": "Smoking policy, pets, noise restrictions, etc."
+            "label": "Hausregeln",
+            "placeholder": "Rauchverbot, Haustiere, Lärmeinschränkungen, etc."
           },
           "errors": {
-            "englishRequired": "English translation is required (Name and Description)"
+            "englishRequired": "Englische Übersetzung erforderlich (Name und Beschreibung)"
           },
-          "info": "English is required. Add more languages to reach international guests!",
-          "backButton": "Back",
-          "nextButton": "Next Step"
+          "info": "Englisch ist erforderlich. Fügen Sie weitere Sprachen hinzu, um internationale Gäste zu erreichen!",
+          "backButton": "Zurück",
+          "nextButton": "Nächster Schritt"
         },
         "images": {
-          "title": "Hotel Images",
-          "subtitle": "Add photos to showcase your property",
-          "selectFiles": "Select Images",
-          "dragDropHint": "or drag and drop images here",
-          "maxSize": "Max 5MB per image • JPEG, PNG, WebP",
-          "uploading": "Uploading...",
-          "uploadedImages": "Uploaded Images",
-          "primary": "Primary",
-          "makePrimary": "Make Primary",
-          "remove": "Remove",
+          "title": "Hotelbilder",
+          "subtitle": "Fügen Sie Fotos hinzu, um Ihre Unterkunft zu präsentieren",
+          "selectFiles": "Bilder auswählen",
+          "dragDropHint": "oder Bilder hierhin ziehen und ablegen",
+          "maxSize": "Max 5MB pro Bild • JPEG, PNG, WebP",
+          "uploading": "Wird hochgeladen...",
+          "uploadedImages": "Hochgeladene Bilder",
+          "primary": "Hauptbild",
+          "makePrimary": "Als Hauptbild festlegen",
+          "remove": "Entfernen",
           "errors": {
-            "invalidFileType": "Only image files are allowed (JPEG, PNG, WebP)",
-            "fileTooLarge": "File is too large (max 5MB)",
-            "uploadFailed": "Upload failed. Please try again.",
-            "noImages": "Please upload at least one image"
+            "invalidFileType": "Nur Bilddateien sind erlaubt (JPEG, PNG, WebP)",
+            "fileTooLarge": "Datei ist zu groß (max 5MB)",
+            "uploadFailed": "Upload fehlgeschlagen. Bitte versuchen Sie es erneut.",
+            "noImages": "Bitte laden Sie mindestens ein Bild hoch"
           },
-          "info": "First image will be the primary image. You can change this later.",
-          "backButton": "Back",
-          "nextButton": "Next Step"
+          "info": "Das erste Bild wird das Hauptbild sein. Sie können dies später ändern.",
+          "backButton": "Zurück",
+          "nextButton": "Nächster Schritt"
         },
         "review": {
-          "title": "Review & Submit",
-          "subtitle": "Please review all information before submitting",
+          "title": "Überprüfen & Absenden",
+          "subtitle": "Bitte überprüfen Sie alle Informationen vor dem Absenden",
           "sections": {
-            "basic": "Basic Information",
-            "address": "Address & Contact",
-            "translations": "Translations",
-            "images": "Images"
+            "basic": "Grundinformationen",
+            "address": "Adresse & Kontakt",
+            "translations": "Übersetzungen",
+            "images": "Bilder"
           },
           "fields": {
-            "name": "Hotel Name",
-            "starRating": "Star Rating",
-            "totalRooms": "Total Rooms",
-            "commission": "Commission",
+            "name": "Hotelname",
+            "starRating": "Sternebewertung",
+            "totalRooms": "Anzahl Zimmer",
+            "commission": "Provision",
             "checkIn": "Check-in",
             "checkOut": "Check-out",
-            "phone": "Phone",
-            "email": "Email",
-            "website": "Website"
+            "phone": "Telefon",
+            "email": "E-Mail",
+            "website": "Webseite"
           },
-          "noImages": "No images uploaded",
-          "warning": "Your hotel will be submitted for review. Our team will verify the information within 24-48 hours.",
-          "backButton": "Back",
-          "submitButton": "Submit Hotel",
-          "submitting": "Submitting...",
-          "success": "Hotel registered successfully! Redirecting...",
-          "error": "Failed to register hotel. Please try again."
+          "noImages": "Keine Bilder hochgeladen",
+          "warning": "Ihr Hotel wird zur Überprüfung eingereicht. Unser Team wird die Informationen innerhalb von 24-48 Stunden verifizieren.",
+          "backButton": "Zurück",
+          "submitButton": "Hotel einreichen",
+          "submitting": "Wird eingereicht...",
+          "success": "Hotel erfolgreich registriert! Weiterleitung...",
+          "error": "Fehler bei der Registrierung. Bitte versuchen Sie es erneut."
         }
       },
       "rooms": {

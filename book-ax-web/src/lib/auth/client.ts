@@ -135,6 +135,7 @@ export async function refreshAccessToken(): Promise<string | null> {
 
 /**
  * Make authenticated API request with automatic token refresh
+ * Supports both Cookie-based auth and Bearer token auth
  */
 export async function authenticatedFetch(
   url: string,
@@ -142,22 +143,26 @@ export async function authenticatedFetch(
 ): Promise<Response> {
   let token = getAccessToken();
 
-  if (!token) {
-    console.warn('authenticatedFetch: No access token available');
-    throw new Error('No access token available');
+  // First attempt: Try with cookies (for logged-in users)
+  // If no token in localStorage, cookies might still work
+  const headers: Record<string, string> = {
+    ...(options.headers as Record<string, string>),
+  };
+
+  // Add Bearer token if available
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
   }
 
-  // First attempt with current token
+  // Always include credentials for cookie-based auth
   let response = await fetch(url, {
     ...options,
-    headers: {
-      ...options.headers,
-      Authorization: `Bearer ${token}`,
-    },
+    headers,
+    credentials: 'include', // Important: Include cookies!
   });
 
-  // If 401, try to refresh and retry once
-  if (response.status === 401) {
+  // If 401 and we have a token, try to refresh
+  if (response.status === 401 && token) {
     console.log('authenticatedFetch: Token expired (401), attempting refresh...');
     token = await refreshAccessToken();
 
@@ -172,10 +177,17 @@ export async function authenticatedFetch(
     response = await fetch(url, {
       ...options,
       headers: {
-        ...options.headers,
+        ...(options.headers as Record<string, string>),
         Authorization: `Bearer ${token}`,
       },
+      credentials: 'include',
     });
+  }
+
+  // If still 401 and no token was in localStorage, cookies didn't work either
+  if (response.status === 401 && !token) {
+    console.warn('authenticatedFetch: Authentication required');
+    throw new Error('Authentication required');
   }
 
   return response;

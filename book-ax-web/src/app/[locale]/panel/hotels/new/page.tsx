@@ -158,7 +158,6 @@ export default function NewHotelPage() {
   const handleSubmit = async (finalData: HotelFormData) => {
     try {
       // Submit will be implemented in HotelReviewSubmit component
-      console.log('Submitting hotel:', finalData);
       
       // Clear journey after successful submission
       HotelJourneyStorage.clear();
@@ -167,7 +166,6 @@ export default function NewHotelPage() {
       // After successful submission, redirect to hotel dashboard
       router.push('/panel/hotels');
     } catch (error) {
-      console.error('Error submitting hotel:', error);
       toast.error('Fehler beim Erstellen des Hotels');
     }
   };
