@@ -62,11 +62,7 @@ class SupabaseHotelService {
       return null;
     }
 
-    const {data, error} = await supabase
-      .from('hotels')
-      .select('*')
-      .eq('id', id)
-      .single();
+    const {data, error} = await supabase.from('hotels').select('*').eq('id', id).single();
 
     if (error) {
       throw new Error('Hotel nicht gefunden: ' + error.message);
@@ -103,7 +99,7 @@ class SupabaseHotelService {
   async getHotelsNearLocation(
     latitude: number,
     longitude: number,
-    radiusKm: number = 50
+    radiusKm: number = 50,
   ): Promise<Hotel[]> {
     if (!isSupabaseConfigured()) {
       return [];
@@ -167,18 +163,36 @@ class SupabaseHotelService {
 
     const updateData: any = {updated_at: new Date().toISOString()};
 
-    if (updates.name) updateData.name = updates.name;
-    if (updates.description) updateData.description = updates.description;
+    if (updates.name) {
+      updateData.name = updates.name;
+    }
+    if (updates.description) {
+      updateData.description = updates.description;
+    }
     if (updates.city || updates.country) {
       updateData.location = `${updates.city || ''}, ${updates.country || ''}`.trim();
     }
-    if (updates.pricePerNight !== undefined) updateData.price_per_night = updates.pricePerNight;
-    if (updates.rating !== undefined) updateData.rating = updates.rating;
-    if (updates.reviewCount !== undefined) updateData.review_count = updates.reviewCount;
-    if (updates.amenities) updateData.amenities = updates.amenities;
-    if (updates.images) updateData.images = updates.images;
-    if (updates.latitude !== undefined) updateData.latitude = updates.latitude;
-    if (updates.longitude !== undefined) updateData.longitude = updates.longitude;
+    if (updates.pricePerNight !== undefined) {
+      updateData.price_per_night = updates.pricePerNight;
+    }
+    if (updates.rating !== undefined) {
+      updateData.rating = updates.rating;
+    }
+    if (updates.reviewCount !== undefined) {
+      updateData.review_count = updates.reviewCount;
+    }
+    if (updates.amenities) {
+      updateData.amenities = updates.amenities;
+    }
+    if (updates.images) {
+      updateData.images = updates.images;
+    }
+    if (updates.latitude !== undefined) {
+      updateData.latitude = updates.latitude;
+    }
+    if (updates.longitude !== undefined) {
+      updateData.longitude = updates.longitude;
+    }
 
     const {data, error} = await supabase
       .from('hotels')

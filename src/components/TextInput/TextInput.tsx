@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, TextInput as RNTextInput, StyleSheet, TextInputProps, TextStyle} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput as RNTextInput,
+  StyleSheet,
+  TextInputProps,
+  TextStyle,
+} from 'react-native';
 import {colors, spacing, borderRadius, typography} from '@utils/theme';
 
 interface CustomTextInputProps extends TextInputProps {
@@ -7,24 +14,19 @@ interface CustomTextInputProps extends TextInputProps {
   error?: string;
 }
 
-export const TextInput: React.FC<CustomTextInputProps> = ({
-  label,
-  error,
-  style,
-  ...props
-}) => {
+export const TextInput: React.FC<CustomTextInputProps> = ({label, error, style, ...props}) => {
   const inputStyles: TextStyle[] = [styles.input];
-  if (error) inputStyles.push(styles.inputError);
-  if (style) inputStyles.push(style as TextStyle);
+  if (error) {
+    inputStyles.push(styles.inputError);
+  }
+  if (style) {
+    inputStyles.push(style as TextStyle);
+  }
 
   return (
     <View style={styles.container}>
       {label && <Text style={styles.label}>{label}</Text>}
-      <RNTextInput
-        style={inputStyles}
-        placeholderTextColor={colors.gray500}
-        {...props}
-      />
+      <RNTextInput style={inputStyles} placeholderTextColor={colors.gray500} {...props} />
       {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );

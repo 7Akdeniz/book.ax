@@ -1,6 +1,6 @@
 /**
  * Booking Service - Supabase Integration
- * 
+ *
  * Service für Buchungsverwaltung mit Supabase
  */
 

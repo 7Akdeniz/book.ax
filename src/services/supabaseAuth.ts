@@ -199,8 +199,10 @@ class SupabaseAuthService {
    * Update user profile
    */
   async updateProfile(updates: {firstName?: string; lastName?: string}) {
-    const {data: {user}} = await supabase.auth.getUser();
-    
+    const {
+      data: {user},
+    } = await supabase.auth.getUser();
+
     if (!user) {
       throw new Error('Nicht angemeldet');
     }

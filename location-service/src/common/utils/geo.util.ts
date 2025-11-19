@@ -52,8 +52,9 @@ export class GeoUtil {
   /**
    * Create PostGIS Point from lat/lng
    */
-  static createPoint(latitude: number, longitude: number): string {
-    return `SRID=4326;POINT(${longitude} ${latitude})`;
+  static createPoint(latitude: number, longitude: number, precision = 4): string {
+    const format = (value: number) => value.toFixed(precision);
+    return `SRID=4326;POINT(${format(longitude)} ${format(latitude)})`;
   }
 
   /**

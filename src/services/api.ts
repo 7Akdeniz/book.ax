@@ -1,9 +1,7 @@
 import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_BASE_URL = __DEV__
-  ? 'http://localhost:3000/api'
-  : 'https://api.production.com';
+const API_BASE_URL = __DEV__ ? 'http://localhost:3000/api' : 'https://api.production.com';
 
 class ApiService {
   private client: AxiosInstance;

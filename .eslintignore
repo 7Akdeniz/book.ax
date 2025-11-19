@@ -1,4 +1,8 @@
 book-ax-web/
+location-service/
+content-automation/
+content/
+docs/
 node_modules/
 .next/
 .expo/

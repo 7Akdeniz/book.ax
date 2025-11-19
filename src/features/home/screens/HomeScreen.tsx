@@ -21,10 +21,30 @@ type Props = NativeStackScreenProps<SearchStackParamList, 'SearchHome'>;
 const {width} = Dimensions.get('window');
 
 const POPULAR_DESTINATIONS = [
-  {id: '1', name: 'Berlin', image: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?w=800', hotels: 2543},
-  {id: '2', name: 'München', image: 'https://images.unsplash.com/photo-1595867818082-083862f3d630?w=800', hotels: 1876},
-  {id: '3', name: 'Hamburg', image: 'https://images.unsplash.com/photo-1562832135-14a35d25edef?w=800', hotels: 1432},
-  {id: '4', name: 'Köln', image: 'https://images.unsplash.com/photo-1605641646959-f048910812ba?w=800', hotels: 987},
+  {
+    id: '1',
+    name: 'Berlin',
+    image: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?w=800',
+    hotels: 2543,
+  },
+  {
+    id: '2',
+    name: 'München',
+    image: 'https://images.unsplash.com/photo-1595867818082-083862f3d630?w=800',
+    hotels: 1876,
+  },
+  {
+    id: '3',
+    name: 'Hamburg',
+    image: 'https://images.unsplash.com/photo-1562832135-14a35d25edef?w=800',
+    hotels: 1432,
+  },
+  {
+    id: '4',
+    name: 'Köln',
+    image: 'https://images.unsplash.com/photo-1605641646959-f048910812ba?w=800',
+    hotels: 987,
+  },
 ];
 
 const PROPERTY_TYPES = [
@@ -194,10 +214,7 @@ export const HomeScreen: React.FC<Props> = ({navigation}) => {
               key={hotel.id}
               style={styles.hotelCard}
               onPress={() => handleHotelPress(hotel.id)}>
-              <Image
-                source={{uri: hotel.images[0]}}
-                style={styles.hotelImage}
-              />
+              <Image source={{uri: hotel.images[0]}} style={styles.hotelImage} />
               <View style={styles.hotelInfo}>
                 <Text style={styles.hotelName} numberOfLines={1}>
                   {hotel.name}
@@ -209,9 +226,7 @@ export const HomeScreen: React.FC<Props> = ({navigation}) => {
                   <View style={styles.ratingBadge}>
                     <Text style={styles.ratingText}>⭐ {hotel.rating.toFixed(1)}</Text>
                   </View>
-                  <Text style={styles.hotelPrice}>
-                    ab {hotel.pricePerNight}€
-                  </Text>
+                  <Text style={styles.hotelPrice}>ab {hotel.pricePerNight}€</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -222,9 +237,7 @@ export const HomeScreen: React.FC<Props> = ({navigation}) => {
       {/* Promo Banner */}
       <View style={styles.promoBanner}>
         <Text style={styles.promoTitle}>🎉 Spare bis zu 30% bei deiner ersten Buchung!</Text>
-        <Text style={styles.promoText}>
-          Melde dich jetzt an und sichere dir exklusive Angebote
-        </Text>
+        <Text style={styles.promoText}>Melde dich jetzt an und sichere dir exklusive Angebote</Text>
         <Button
           title="Jetzt anmelden"
           variant="secondary"
@@ -241,7 +254,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
-  
+
   // Hero Section
   heroSection: {
     height: 520,

@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  ViewStyle,
-  TextStyle,
-} from 'react-native';
-import {colors, spacing, borderRadius, typography} from '@utils/theme';
+import {TouchableOpacity, Text, StyleSheet, ActivityIndicator, ViewStyle} from 'react-native';
+import {colors, spacing, borderRadius} from '@utils/theme';
 
 interface ButtonProps {
   title: string;
@@ -50,9 +43,7 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled || loading}
       activeOpacity={0.7}>
       {loading ? (
-        <ActivityIndicator
-          color={variant === 'outline' ? colors.primary : colors.white}
-        />
+        <ActivityIndicator color={variant === 'outline' ? colors.primary : colors.white} />
       ) : (
         <Text style={textStyle}>{title}</Text>
       )}

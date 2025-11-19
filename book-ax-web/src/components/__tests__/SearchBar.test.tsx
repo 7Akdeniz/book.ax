@@ -6,7 +6,21 @@ import { SearchBar } from '../common/SearchBar';
 
 // Mock next-intl
 jest.mock('next-intl', () => ({
-  useTranslations: () => (key) => key,
+  useTranslations: () => (key: string) => {
+    const messages: Record<string, string> = {
+      searchPlaceholder: 'Where are you going?',
+      searchPlaceholderExample: 'e.g. Berlin, Germany',
+      destination: 'Destination',
+      checkIn: 'Check-in',
+      checkOut: 'Check-out',
+      guests: 'Guests',
+      numberOfGuests: 'Number of guests',
+      searchHotels: 'Search hotels',
+      searchHotelsButton: 'Search hotels',
+      searchButton: 'Search',
+    };
+    return messages[key] ?? key;
+  },
   useLocale: () => 'en',
 }));
 

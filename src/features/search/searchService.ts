@@ -1,6 +1,6 @@
 /**
  * Search Service - Supabase Integration
- * 
+ *
  * Dieser Service wrapped die Supabase Hotels API und bietet eine
  * einheitliche Schnittstelle für Hotel-Suche und -Verwaltung.
  */
@@ -43,7 +43,11 @@ export const searchService = {
   /**
    * Hotels in der Nähe einer Location finden
    */
-  async getNearbyHotels(latitude: number, longitude: number, radiusKm: number = 10): Promise<Hotel[]> {
+  async getNearbyHotels(
+    latitude: number,
+    longitude: number,
+    radiusKm: number = 10,
+  ): Promise<Hotel[]> {
     return await supabaseHotelService.getHotelsNearLocation(latitude, longitude, radiusKm);
   },
 };

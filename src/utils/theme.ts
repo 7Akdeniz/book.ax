@@ -4,19 +4,19 @@ export const colors = {
   primary: '#9C27B0',
   primaryDark: '#7B1FA2',
   primaryLight: '#BA68C8',
-  
+
   // Secondary colors - Complementary Gold
   secondary: '#FFB300',
-  
+
   // Accent color
   accent: '#FF6B35',
-  
+
   // Status colors
   success: '#4CAF50',
   error: '#F44336',
   warning: '#FF9800',
   info: '#2196F3',
-  
+
   // Neutral colors
   white: '#FFFFFF',
   black: '#000000',
@@ -29,13 +29,13 @@ export const colors = {
   gray700: '#616161',
   gray800: '#424242',
   gray900: '#212121',
-  
+
   // Text colors
   textPrimary: '#212121',
   textSecondary: '#757575',
   textDisabled: '#BDBDBD',
   textWhite: '#FFFFFF',
-  
+
   // Background colors
   background: '#FFFFFF',
   backgroundSecondary: '#F5F5F5',

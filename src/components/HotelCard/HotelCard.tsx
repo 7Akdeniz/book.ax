@@ -11,15 +11,8 @@ interface HotelCardProps {
 
 export const HotelCard: React.FC<HotelCardProps> = ({hotel, onPress}) => {
   return (
-    <TouchableOpacity
-      style={styles.card}
-      onPress={onPress}
-      activeOpacity={0.8}>
-      <Image
-        source={{uri: hotel.images[0]}}
-        style={styles.image}
-        resizeMode="cover"
-      />
+    <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.8}>
+      <Image source={{uri: hotel.images[0]}} style={styles.image} resizeMode="cover" />
       <View style={styles.content}>
         <Text style={styles.name} numberOfLines={1}>
           {hotel.name}

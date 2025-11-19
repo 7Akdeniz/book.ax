@@ -1,4 +1,4 @@
-import { SlugGenerator } from '../common/utils/slug.util';
+import { SlugGenerator } from './slug.util';
 
 describe('SlugGenerator', () => {
   describe('generate', () => {

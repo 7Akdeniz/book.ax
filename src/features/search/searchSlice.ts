@@ -58,13 +58,7 @@ const searchSlice = createSlice({
   },
 });
 
-export const {
-  setFilters,
-  searchStart,
-  searchSuccess,
-  searchFailure,
-  clearResults,
-  resetFilters,
-} = searchSlice.actions;
+export const {setFilters, searchStart, searchSuccess, searchFailure, clearResults, resetFilters} =
+  searchSlice.actions;
 
 export default searchSlice.reducer;

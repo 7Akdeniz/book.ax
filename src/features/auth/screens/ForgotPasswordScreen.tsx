@@ -39,7 +39,9 @@ export const ForgotPasswordScreen: React.FC<Props> = ({navigation}) => {
   };
 
   const handleResetPassword = async () => {
-    if (!validateEmail()) return;
+    if (!validateEmail()) {
+      return;
+    }
 
     setIsLoading(true);
     try {
@@ -47,7 +49,9 @@ export const ForgotPasswordScreen: React.FC<Props> = ({navigation}) => {
         redirectTo: 'bookax://reset-password', // Deep Link
       });
 
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
 
       setEmailSent(true);
       Alert.alert(
@@ -68,12 +72,11 @@ export const ForgotPasswordScreen: React.FC<Props> = ({navigation}) => {
           <Text style={styles.successIcon}>📧</Text>
           <Text style={styles.successTitle}>E-Mail gesendet!</Text>
           <Text style={styles.successMessage}>
-            Wir haben Ihnen eine E-Mail an{' '}
-            <Text style={styles.emailText}>{email}</Text> gesendet.
+            Wir haben Ihnen eine E-Mail an <Text style={styles.emailText}>{email}</Text> gesendet.
           </Text>
           <Text style={styles.successSubMessage}>
-            Bitte überprüfen Sie Ihr Postfach und folgen Sie den Anweisungen zum
-            Zurücksetzen Ihres Passworts.
+            Bitte überprüfen Sie Ihr Postfach und folgen Sie den Anweisungen zum Zurücksetzen Ihres
+            Passworts.
           </Text>
 
           <View style={styles.successActions}>
@@ -98,9 +101,7 @@ export const ForgotPasswordScreen: React.FC<Props> = ({navigation}) => {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.content}>
           {/* Back Button */}
-          <TouchableOpacity
-            style={styles.backButtonContainer}
-            onPress={() => navigation.goBack()}>
+          <TouchableOpacity style={styles.backButtonContainer} onPress={() => navigation.goBack()}>
             <Text style={styles.backArrow}>←</Text>
             <Text style={styles.backText}>Zurück</Text>
           </TouchableOpacity>
@@ -110,8 +111,8 @@ export const ForgotPasswordScreen: React.FC<Props> = ({navigation}) => {
             <Text style={styles.icon}>🔑</Text>
             <Text style={styles.title}>Passwort vergessen?</Text>
             <Text style={styles.subtitle}>
-              Kein Problem! Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen
-              einen Link zum Zurücksetzen Ihres Passworts.
+              Kein Problem! Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum
+              Zurücksetzen Ihres Passworts.
             </Text>
           </View>
 
@@ -149,8 +150,8 @@ export const ForgotPasswordScreen: React.FC<Props> = ({navigation}) => {
               <View style={styles.infoTextContainer}>
                 <Text style={styles.infoTitle}>Hinweis</Text>
                 <Text style={styles.infoText}>
-                  Falls Sie keine E-Mail erhalten, überprüfen Sie bitte Ihren
-                  Spam-Ordner oder versuchen Sie es erneut.
+                  Falls Sie keine E-Mail erhalten, überprüfen Sie bitte Ihren Spam-Ordner oder
+                  versuchen Sie es erneut.
                 </Text>
               </View>
             </View>
@@ -266,7 +267,7 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     lineHeight: 20,
   },
-  
+
   // Success State
   successContainer: {
     flex: 1,

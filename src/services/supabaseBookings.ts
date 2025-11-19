@@ -19,7 +19,9 @@ class SupabaseBookingService {
     }
 
     // Get current user
-    const {data: {user}} = await supabase.auth.getUser();
+    const {
+      data: {user},
+    } = await supabase.auth.getUser();
     if (!user) {
       throw new Error('Nicht angemeldet');
     }
@@ -35,10 +37,12 @@ class SupabaseBookingService {
         total_price: bookingData.totalPrice,
         status: 'pending',
       })
-      .select(`
+      .select(
+        `
         *,
         hotels (*)
-      `)
+      `,
+      )
       .single();
 
     if (error) {
@@ -56,17 +60,21 @@ class SupabaseBookingService {
       return [];
     }
 
-    const {data: {user}} = await supabase.auth.getUser();
+    const {
+      data: {user},
+    } = await supabase.auth.getUser();
     if (!user) {
       return [];
     }
 
     const {data, error} = await supabase
       .from('bookings')
-      .select(`
+      .select(
+        `
         *,
         hotels (*)
-      `)
+      `,
+      )
       .eq('user_id', user.id)
       .order('created_at', {ascending: false});
 
@@ -87,10 +95,12 @@ class SupabaseBookingService {
 
     const {data, error} = await supabase
       .from('bookings')
-      .select(`
+      .select(
+        `
         *,
         hotels (*)
-      `)
+      `,
+      )
       .eq('id', id)
       .single();
 
@@ -151,17 +161,21 @@ class SupabaseBookingService {
       return [];
     }
 
-    const {data: {user}} = await supabase.auth.getUser();
+    const {
+      data: {user},
+    } = await supabase.auth.getUser();
     if (!user) {
       return [];
     }
 
     const {data, error} = await supabase
       .from('bookings')
-      .select(`
+      .select(
+        `
         *,
         hotels (*)
-      `)
+      `,
+      )
       .eq('user_id', user.id)
       .gte('check_in', new Date().toISOString())
       .order('check_in', {ascending: true});
@@ -181,17 +195,21 @@ class SupabaseBookingService {
       return [];
     }
 
-    const {data: {user}} = await supabase.auth.getUser();
+    const {
+      data: {user},
+    } = await supabase.auth.getUser();
     if (!user) {
       return [];
     }
 
     const {data, error} = await supabase
       .from('bookings')
-      .select(`
+      .select(
+        `
         *,
         hotels (*)
-      `)
+      `,
+      )
       .eq('user_id', user.id)
       .lt('check_out', new Date().toISOString())
       .order('check_out', {ascending: false});

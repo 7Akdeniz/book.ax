@@ -1,4 +1,4 @@
-import { LanguageUtil } from '../common/utils/language.util';
+import { LanguageUtil } from './language.util';
 
 describe('LanguageUtil', () => {
   describe('getLocalizedName', () => {

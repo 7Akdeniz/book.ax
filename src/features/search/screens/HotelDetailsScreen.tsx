@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -24,13 +24,9 @@ export const HotelDetailsScreen: React.FC<Props> = ({navigation, route}) => {
   const {hotelId} = route.params;
   const [hotel, setHotel] = useState<Hotel | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImageIndex] = useState(0);
 
-  useEffect(() => {
-    loadHotelDetails();
-  }, [hotelId]);
-
-  const loadHotelDetails = async () => {
+  const loadHotelDetails = useCallback(async () => {
     try {
       setIsLoading(true);
       const data = await searchService.getHotelById(hotelId);
@@ -40,7 +36,11 @@ export const HotelDetailsScreen: React.FC<Props> = ({navigation, route}) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [hotelId]);
+
+  useEffect(() => {
+    loadHotelDetails();
+  }, [loadHotelDetails]);
 
   const handleBookNow = () => {
     if (hotel) {
@@ -126,9 +126,7 @@ export const HotelDetailsScreen: React.FC<Props> = ({navigation, route}) => {
         <View style={styles.priceSection}>
           <View>
             <Text style={styles.priceLabel}>Preis pro Nacht</Text>
-            <Text style={styles.price}>
-              {formatCurrency(hotel.pricePerNight, hotel.currency)}
-            </Text>
+            <Text style={styles.price}>{formatCurrency(hotel.pricePerNight, hotel.currency)}</Text>
           </View>
           <Button title="Jetzt buchen" onPress={handleBookNow} style={styles.bookButton} />
         </View>

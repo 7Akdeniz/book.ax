@@ -38,7 +38,7 @@ export const mockHotels: Hotel[] = [
     city: 'München',
     country: 'Deutschland',
     latitude: 48.1522,
-    longitude: 11.6130,
+    longitude: 11.613,
     rating: 4.6,
     reviewCount: 892,
     images: [

@@ -1,4 +1,4 @@
-import { GeoUtil } from '../common/utils/geo.util';
+import { GeoUtil } from './geo.util';
 
 describe('GeoUtil', () => {
   describe('calculateDistance', () => {
@@ -66,6 +66,14 @@ describe('GeoUtil', () => {
     it('should create PostGIS point string', () => {
       const point = GeoUtil.createPoint(52.5200, 13.4050);
       expect(point).toBe('SRID=4326;POINT(13.4050 52.5200)');
+    });
+
+    it('should respect custom precision values', () => {
+      const highPrecision = GeoUtil.createPoint(52.5200123, 13.4050456, 6);
+      const lowPrecision = GeoUtil.createPoint(52.5200123, 13.4050456, 2);
+
+      expect(highPrecision).toBe('SRID=4326;POINT(13.405046 52.520012)');
+      expect(lowPrecision).toBe('SRID=4326;POINT(13.41 52.52)');
     });
   });
 

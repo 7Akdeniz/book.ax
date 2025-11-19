@@ -1,6 +1,6 @@
 /**
  * Authentication Service - Supabase Integration
- * 
+ *
  * Dieser Service wrapped die Supabase Auth API und bietet eine
  * einheitliche Schnittstelle für die App.
  */
@@ -83,7 +83,7 @@ export const authService = {
       firstName: updates.firstName,
       lastName: updates.lastName,
     });
-    
+
     // Aktualisiertes Profil abrufen
     const user = await supabaseAuthService.getCurrentUser();
     if (!user) {

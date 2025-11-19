@@ -12,9 +12,7 @@ import {SearchFilters} from '../../../types/models';
 
 export const useSearch = () => {
   const dispatch = useAppDispatch();
-  const {filters, results, isLoading, error, hasSearched} = useAppSelector(
-    state => state.search,
-  );
+  const {filters, results, isLoading, error, hasSearched} = useAppSelector(state => state.search);
 
   const setFilters = (newFilters: Partial<SearchFilters>) => {
     dispatch(setFiltersAction(newFilters));

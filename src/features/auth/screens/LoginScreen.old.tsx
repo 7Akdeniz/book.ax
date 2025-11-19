@@ -54,7 +54,9 @@ export const LoginScreen: React.FC<Props> = ({navigation}) => {
   };
 
   const handleLogin = async () => {
-    if (!validateForm()) return;
+    if (!validateForm()) {
+      return;
+    }
 
     const result = await login(email, password);
     if (!result.success) {
@@ -77,7 +79,9 @@ export const LoginScreen: React.FC<Props> = ({navigation}) => {
               <TextInput
                 style={(() => {
                   const inputStyles: TextStyle[] = [styles.input];
-                  if (emailError) inputStyles.push(styles.inputError);
+                  if (emailError) {
+                    inputStyles.push(styles.inputError);
+                  }
                   return inputStyles;
                 })()}
                 placeholder="ihre@email.com"
@@ -98,7 +102,9 @@ export const LoginScreen: React.FC<Props> = ({navigation}) => {
               <TextInput
                 style={(() => {
                   const inputStyles: TextStyle[] = [styles.input];
-                  if (passwordError) inputStyles.push(styles.inputError);
+                  if (passwordError) {
+                    inputStyles.push(styles.inputError);
+                  }
                   return inputStyles;
                 })()}
                 placeholder="••••••••"

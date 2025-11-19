@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Alert,
-} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Alert} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {SearchStackParamList} from '@navigation/types';
 import {Button} from '@components/Button';
@@ -15,7 +9,7 @@ import {formatCurrency, formatDate, calculateNights} from '@utils/helpers';
 type Props = NativeStackScreenProps<SearchStackParamList, 'BookingConfirm'>;
 
 export const BookingConfirmScreen: React.FC<Props> = ({navigation, route}) => {
-  const {hotelId, roomId, checkIn, checkOut, guests} = route.params;
+  const {checkIn, checkOut, guests} = route.params;
   const [isLoading, setIsLoading] = useState(false);
 
   // Mock data - würde normalerweise vom Backend kommen
@@ -35,7 +29,7 @@ export const BookingConfirmScreen: React.FC<Props> = ({navigation, route}) => {
 
   const handleConfirmBooking = async () => {
     setIsLoading(true);
-    
+
     // Simuliere API-Call
     setTimeout(() => {
       setIsLoading(false);
@@ -67,7 +61,7 @@ export const BookingConfirmScreen: React.FC<Props> = ({navigation, route}) => {
       {/* Booking Details */}
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Buchungsdetails</Text>
-        
+
         <View style={styles.detailRow}>
           <Text style={styles.detailLabel}>Check-in</Text>
           <Text style={styles.detailValue}>
@@ -96,7 +90,7 @@ export const BookingConfirmScreen: React.FC<Props> = ({navigation, route}) => {
       {/* Price Breakdown */}
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Preisübersicht</Text>
-        
+
         <View style={styles.priceRow}>
           <Text style={styles.priceLabel}>
             {formatCurrency(room.pricePerNight)} × {nights} Nächte

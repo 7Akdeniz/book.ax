@@ -1,6 +1,6 @@
 /**
  * useBooking Hook
- * 
+ *
  * Custom Hook für Buchungsverwaltung
  */
 
@@ -21,9 +21,7 @@ import {bookingService, CreateBookingData} from '../bookingService';
 
 export const useBooking = () => {
   const dispatch = useAppDispatch();
-  const {bookings, currentBooking, isLoading, error} = useAppSelector(
-    state => state.booking,
-  );
+  const {bookings, currentBooking, isLoading, error} = useAppSelector(state => state.booking);
 
   /**
    * Neue Buchung erstellen
@@ -47,9 +45,9 @@ export const useBooking = () => {
   const loadUserBookings = async () => {
     try {
       dispatch(loadBookingsStart());
-      const bookings = await bookingService.getUserBookings();
-      dispatch(loadBookingsSuccess(bookings));
-      return {success: true, bookings};
+      const fetchedBookings = await bookingService.getUserBookings();
+      dispatch(loadBookingsSuccess(fetchedBookings));
+      return {success: true, bookings: fetchedBookings};
     } catch (err: any) {
       const errorMessage = err.message || 'Fehler beim Laden der Buchungen';
       dispatch(loadBookingsFailure(errorMessage));
@@ -79,9 +77,9 @@ export const useBooking = () => {
   const loadUpcomingBookings = async () => {
     try {
       dispatch(loadBookingsStart());
-      const bookings = await bookingService.getUpcomingBookings();
-      dispatch(loadBookingsSuccess(bookings));
-      return {success: true, bookings};
+      const fetchedBookings = await bookingService.getUpcomingBookings();
+      dispatch(loadBookingsSuccess(fetchedBookings));
+      return {success: true, bookings: fetchedBookings};
     } catch (err: any) {
       const errorMessage = err.message || 'Fehler beim Laden der Buchungen';
       dispatch(loadBookingsFailure(errorMessage));
@@ -95,9 +93,9 @@ export const useBooking = () => {
   const loadPastBookings = async () => {
     try {
       dispatch(loadBookingsStart());
-      const bookings = await bookingService.getPastBookings();
-      dispatch(loadBookingsSuccess(bookings));
-      return {success: true, bookings};
+      const fetchedBookings = await bookingService.getPastBookings();
+      dispatch(loadBookingsSuccess(fetchedBookings));
+      return {success: true, bookings: fetchedBookings};
     } catch (err: any) {
       const errorMessage = err.message || 'Fehler beim Laden der Buchungen';
       dispatch(loadBookingsFailure(errorMessage));

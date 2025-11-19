@@ -57,7 +57,9 @@ export const LoginScreen: React.FC<Props> = ({navigation}) => {
   };
 
   const handleLogin = async () => {
-    if (!validateForm()) return;
+    if (!validateForm()) {
+      return;
+    }
 
     const result = await login(email, password);
     if (!result.success) {
@@ -84,9 +86,7 @@ export const LoginScreen: React.FC<Props> = ({navigation}) => {
           {/* Header */}
           <View style={styles.header}>
             <Text style={styles.title}>Anmelden</Text>
-            <Text style={styles.subtitle}>
-              Willkommen zurück! Melde dich an, um fortzufahren.
-            </Text>
+            <Text style={styles.subtitle}>Willkommen zurück! Melde dich an, um fortzufahren.</Text>
           </View>
 
           {/* Form */}
@@ -97,7 +97,9 @@ export const LoginScreen: React.FC<Props> = ({navigation}) => {
               <TextInput
                 style={(() => {
                   const inputStyles: TextStyle[] = [styles.input];
-                  if (emailError) inputStyles.push(styles.inputError);
+                  if (emailError) {
+                    inputStyles.push(styles.inputError);
+                  }
                   return inputStyles;
                 })()}
                 placeholder="ihre@email.com"
@@ -121,7 +123,9 @@ export const LoginScreen: React.FC<Props> = ({navigation}) => {
                 <TextInput
                   style={(() => {
                     const inputStyles: TextStyle[] = [styles.input, styles.passwordInput];
-                    if (passwordError) inputStyles.push(styles.inputError);
+                    if (passwordError) {
+                      inputStyles.push(styles.inputError);
+                    }
                     return inputStyles;
                   })()}
                   placeholder="••••••••"
@@ -208,8 +212,7 @@ export const LoginScreen: React.FC<Props> = ({navigation}) => {
 
             {/* Terms */}
             <Text style={styles.termsText}>
-              Mit der Anmeldung akzeptieren Sie unsere{' '}
-              <Text style={styles.termsLink}>AGB</Text> und{' '}
+              Mit der Anmeldung akzeptieren Sie unsere <Text style={styles.termsLink}>AGB</Text> und{' '}
               <Text style={styles.termsLink}>Datenschutzerklärung</Text>
             </Text>
           </View>

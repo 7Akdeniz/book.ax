@@ -27,12 +27,7 @@ export const useAuth = () => {
     }
   };
 
-  const register = async (
-    email: string,
-    password: string,
-    firstName: string,
-    lastName: string,
-  ) => {
+  const register = async (email: string, password: string, firstName: string, lastName: string) => {
     try {
       dispatch(registerStart());
       const response = await authService.register({email, password, firstName, lastName});

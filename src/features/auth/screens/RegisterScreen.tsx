@@ -14,14 +14,16 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackParamList} from '@navigation/types';
 import {Button} from '@components/Button';
 import {useAuth} from '../hooks/useAuth';
-import {colors, spacing, borderRadius, typography} from '@utils/theme';
+import {colors, spacing, borderRadius} from '@utils/theme';
 import {isValidEmail} from '@utils/helpers';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 
 const getInputStyle = (hasError: boolean | string | undefined): TextStyle[] => {
   const inputStyles: TextStyle[] = [styles.input];
-  if (hasError) inputStyles.push(styles.inputError);
+  if (hasError) {
+    inputStyles.push(styles.inputError);
+  }
   return inputStyles;
 };
 
@@ -105,9 +107,7 @@ export const RegisterScreen: React.FC<Props> = ({navigation}) => {
                   onChangeText={setFirstName}
                   autoCapitalize="words"
                 />
-                {errors.firstName ? (
-                  <Text style={styles.errorText}>{errors.firstName}</Text>
-                ) : null}
+                {errors.firstName ? <Text style={styles.errorText}>{errors.firstName}</Text> : null}
               </View>
 
               <View style={[styles.inputContainer, styles.halfWidth]}>
@@ -119,9 +119,7 @@ export const RegisterScreen: React.FC<Props> = ({navigation}) => {
                   onChangeText={setLastName}
                   autoCapitalize="words"
                 />
-                {errors.lastName ? (
-                  <Text style={styles.errorText}>{errors.lastName}</Text>
-                ) : null}
+                {errors.lastName ? <Text style={styles.errorText}>{errors.lastName}</Text> : null}
               </View>
             </View>
 

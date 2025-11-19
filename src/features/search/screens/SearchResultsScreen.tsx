@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Text, FlatList, StyleSheet, ActivityIndicator} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {SearchStackParamList} from '@navigation/types';
@@ -26,6 +26,7 @@ export const SearchResultsScreen: React.FC<Props> = ({navigation, route}) => {
       <Text style={styles.resultCount}>
         {results.length} {results.length === 1 ? 'Hotel' : 'Hotels'} gefunden
       </Text>
+      <Text style={styles.guestsText}>Für {guests} Gäste</Text>
     </View>
   );
 
@@ -37,9 +38,7 @@ export const SearchResultsScreen: React.FC<Props> = ({navigation, route}) => {
     <View style={styles.emptyContainer}>
       <Text style={styles.emptyText}>😔</Text>
       <Text style={styles.emptyTitle}>Keine Hotels gefunden</Text>
-      <Text style={styles.emptySubtitle}>
-        Versuchen Sie es mit anderen Suchkriterien
-      </Text>
+      <Text style={styles.emptySubtitle}>Versuchen Sie es mit anderen Suchkriterien</Text>
     </View>
   );
 
@@ -88,6 +87,10 @@ const styles = StyleSheet.create({
     marginBottom: spacing.sm,
   },
   resultCount: {
+    ...typography.bodySmall,
+    color: colors.textSecondary,
+  },
+  guestsText: {
     ...typography.bodySmall,
     color: colors.textSecondary,
   },

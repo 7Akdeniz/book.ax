@@ -1,5 +1,7 @@
 import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import type {BottomTabNavigationOptions} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {MainTabParamList, SearchStackParamList} from './types';
 import {SearchHomeScreen} from '@features/search/screens/SearchHomeScreen';
@@ -7,6 +9,8 @@ import {SearchResultsScreen} from '@features/search/screens/SearchResultsScreen'
 import {HotelDetailsScreen} from '@features/search/screens/HotelDetailsScreen';
 import {BookingConfirmScreen} from '@features/search/screens/BookingConfirmScreen';
 import {colors} from '@utils/theme';
+import {Button} from '@components/Button';
+import {useAuth} from '@features/auth/hooks/useAuth';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const SearchStack = createNativeStackNavigator<SearchStackParamList>();
@@ -44,10 +48,18 @@ const SearchNavigator = () => {
   );
 };
 
-// Placeholder components
-import {View, Text, StyleSheet} from 'react-native';
-import {Button} from '@components/Button';
-import {useAuth} from '@features/auth/hooks/useAuth';
+const TabBarIcon: React.FC<{emoji: string}> = ({emoji}) => (
+  <Text style={styles.tabIcon}>{emoji}</Text>
+);
+
+const createTabIcon =
+  (emoji: string): BottomTabNavigationOptions['tabBarIcon'] =>
+  () =>
+    <TabBarIcon emoji={emoji} />;
+
+const searchTabIcon = createTabIcon('🔍');
+const bookingsTabIcon = createTabIcon('📋');
+const profileTabIcon = createTabIcon('👤');
 
 const BookingsScreen = () => {
   return (
@@ -64,10 +76,8 @@ const ProfileScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>👤 Profil</Text>
-      <Text style={styles.subtext}>
-        Willkommen, {user?.firstName || 'Gast'}!
-      </Text>
-      <Button title="Abmelden" onPress={logout} style={{marginTop: 24}} />
+      <Text style={styles.subtext}>Willkommen, {user?.firstName || 'Gast'}!</Text>
+      <Button title="Abmelden" onPress={logout} style={styles.profileLogoutButton} />
     </View>
   );
 };
@@ -90,7 +100,7 @@ export const MainNavigator: React.FC = () => {
         component={SearchNavigator}
         options={{
           tabBarLabel: 'Suche',
-          tabBarIcon: () => <Text style={{fontSize: 24}}>🔍</Text>,
+          tabBarIcon: searchTabIcon,
         }}
       />
       <Tab.Screen
@@ -98,7 +108,7 @@ export const MainNavigator: React.FC = () => {
         component={BookingsScreen}
         options={{
           tabBarLabel: 'Buchungen',
-          tabBarIcon: () => <Text style={{fontSize: 24}}>📋</Text>,
+          tabBarIcon: bookingsTabIcon,
         }}
       />
       <Tab.Screen
@@ -106,7 +116,7 @@ export const MainNavigator: React.FC = () => {
         component={ProfileScreen}
         options={{
           tabBarLabel: 'Profil',
-          tabBarIcon: () => <Text style={{fontSize: 24}}>👤</Text>,
+          tabBarIcon: profileTabIcon,
         }}
       />
     </Tab.Navigator>
@@ -129,5 +139,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
     textAlign: 'center',
+  },
+  tabIcon: {
+    fontSize: 24,
+  },
+  profileLogoutButton: {
+    marginTop: 24,
   },
 });

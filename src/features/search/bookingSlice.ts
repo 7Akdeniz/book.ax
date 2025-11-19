@@ -1,6 +1,6 @@
 /**
  * Booking Redux Slice
- * 
+ *
  * State Management für Buchungen
  */
 
