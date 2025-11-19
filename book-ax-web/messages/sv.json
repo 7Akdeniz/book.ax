@@ -1332,5 +1332,31 @@
       "email": "Email: i@book.ax"
     },
     "footer": "By using Book.ax, you agree to these Terms and Conditions."
+  },
+  "reviews": {
+    "title": "Gästrecensioner",
+    "writeReview": "Skriv en recension",
+    "submitReview": "Skicka recension",
+    "submitSuccess": "Tack för din recension!",
+    "submitError": "Det gick inte att skicka recensionen. Försök igen.",
+    "submitting": "Skickar...",
+    "loginRequired": "Logga in för att skriva en recension",
+    "commentTooShort": "Skriv minst 10 tecken",
+    "yourReview": "Din recension",
+    "commentPlaceholder": "Dela din upplevelse med detta hotell...",
+    "characters": "tecken",
+    "overallRating": "Totalt betyg",
+    "cleanliness": "Renlighet",
+    "location": "Läge",
+    "service": "Service",
+    "value": "Valuta för pengarna",
+    "categories": "Betygskategorier",
+    "noReviews": "Inga recensioner än",
+    "noReviewsDescription": "Bli den första att recensera detta hotell!",
+    "basedOn": "{count} recensioner",
+    "loading": "Laddar recensioner...",
+    "loadMore": "Ladda fler recensioner",
+    "verified": "Verifierad bokning",
+    "hotelResponse": "Hotellets svar"
   }
 }

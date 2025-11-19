@@ -7,6 +7,7 @@ import { BookingCard } from '@/components/hotel/BookingCard';
 import { HotelStructuredData } from '@/components/seo/StructuredData';
 import { formatCurrency } from '@/utils/formatting';
 import { BookNowButton } from '@/components/hotel/BookNowButton';
+import ReviewsList from '@/components/reviews/ReviewsList';
 
 interface PageProps {
   params: {
@@ -155,22 +156,9 @@ export default async function HotelPage({ params }: PageProps) {
             </div>
 
             {hotel.reviews.length > 0 && (
-              <div>
+              <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">{t('hotel.guestReviews')}</h2>
-                <div className="space-y-4">
-                  {hotel.reviews.slice(0, 5).map((review) => (
-                    <div key={review.id} className="border-b pb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <div>
-                          <p className="font-semibold">{review.guestName}</p>
-                          <p className="text-sm text-gray-500">{new Date(review.created_at).toLocaleDateString(params.locale)}</p>
-                        </div>
-                        <span className="bg-primary-600 text-white px-3 py-1 rounded font-bold">{review.rating.toFixed(1)}</span>
-                      </div>
-                      {review.comment && <p className="text-gray-700">{review.comment}</p>}
-                    </div>
-                  ))}
-                </div>
+                <ReviewsList hotelId={params.id} locale={params.locale} />
               </div>
             )}
           </div>

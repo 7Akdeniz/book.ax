@@ -1187,5 +1187,31 @@
     "faq": "Frequently Asked Questions",
     "guides": "User Guides",
     "documentation": "Documentation"
+  },
+  "reviews": {
+    "title": "Avis des clients",
+    "writeReview": "Écrire un avis",
+    "submitReview": "Soumettre l'avis",
+    "submitSuccess": "Merci pour votre avis !",
+    "submitError": "Échec de l'envoi de l'avis. Veuillez réessayer.",
+    "submitting": "Envoi en cours...",
+    "loginRequired": "Veuillez vous connecter pour écrire un avis",
+    "commentTooShort": "Veuillez écrire au moins 10 caractères",
+    "yourReview": "Votre avis",
+    "commentPlaceholder": "Partagez votre expérience avec cet hôtel...",
+    "characters": "caractères",
+    "overallRating": "Note globale",
+    "cleanliness": "Propreté",
+    "location": "Emplacement",
+    "service": "Service",
+    "value": "Rapport qualité-prix",
+    "categories": "Catégories d'évaluation",
+    "noReviews": "Aucun avis pour le moment",
+    "noReviewsDescription": "Soyez le premier à donner votre avis sur cet hôtel !",
+    "basedOn": "{count} avis",
+    "loading": "Chargement des avis...",
+    "loadMore": "Charger plus d'avis",
+    "verified": "Réservation vérifiée",
+    "hotelResponse": "Réponse de l'hôtel"
   }
 }

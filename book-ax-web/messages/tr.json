@@ -1187,5 +1187,31 @@
     "faq": "Frequently Asked Questions",
     "guides": "User Guides",
     "documentation": "Documentation"
+  },
+  "reviews": {
+    "title": "Misafir Yorumları",
+    "writeReview": "Yorum Yaz",
+    "submitReview": "Yorumu Gönder",
+    "submitSuccess": "Yorumunuz için teşekkür ederiz!",
+    "submitError": "Yorum gönderilemedi. Lütfen tekrar deneyin.",
+    "submitting": "Gönderiliyor...",
+    "loginRequired": "Yorum yazmak için lütfen giriş yapın",
+    "commentTooShort": "Lütfen en az 10 karakter yazın",
+    "yourReview": "Yorumunuz",
+    "commentPlaceholder": "Bu otel ile ilgili deneyiminizi paylaşın...",
+    "characters": "karakter",
+    "overallRating": "Genel Değerlendirme",
+    "cleanliness": "Temizlik",
+    "location": "Konum",
+    "service": "Hizmet",
+    "value": "Fiyat-Performans",
+    "categories": "Değerlendirme Kategorileri",
+    "noReviews": "Henüz yorum yok",
+    "noReviewsDescription": "Bu oteli ilk değerlendiren siz olun!",
+    "basedOn": "{count} yorum",
+    "loading": "Yorumlar yükleniyor...",
+    "loadMore": "Daha Fazla Yorum Yükle",
+    "verified": "Onaylanmış Rezervasyon",
+    "hotelResponse": "Otel Yanıtı"
   }
 }

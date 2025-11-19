@@ -1,4 +1,4 @@
- on{
+{
   "common": {
     "appName": "Book.ax",
     "search": "Search",
@@ -1396,5 +1396,31 @@
       "email": "Email: i@book.ax"
     },
     "footer": "By using Book.ax, you agree to these Terms and Conditions."
+  },
+  "reviews": {
+    "title": "Guest Reviews",
+    "writeReview": "Write a Review",
+    "submitReview": "Submit Review",
+    "submitSuccess": "Thank you for your review!",
+    "submitError": "Failed to submit review. Please try again.",
+    "submitting": "Submitting...",
+    "loginRequired": "Please login to write a review",
+    "commentTooShort": "Please write at least 10 characters",
+    "yourReview": "Your Review",
+    "commentPlaceholder": "Share your experience with this hotel...",
+    "characters": "characters",
+    "overallRating": "Overall Rating",
+    "cleanliness": "Cleanliness",
+    "location": "Location",
+    "service": "Service",
+    "value": "Value for Money",
+    "categories": "Rating Categories",
+    "noReviews": "No Reviews Yet",
+    "noReviewsDescription": "Be the first to review this hotel!",
+    "basedOn": "{count} reviews",
+    "loading": "Loading reviews...",
+    "loadMore": "Load More Reviews",
+    "verified": "Verified Booking",
+    "hotelResponse": "Hotel Response"
   }
 }

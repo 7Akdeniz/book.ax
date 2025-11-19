@@ -1332,5 +1332,31 @@
       "email": "Email: i@book.ax"
     },
     "footer": "By using Book.ax, you agree to these Terms and Conditions."
+  },
+  "reviews": {
+    "title": "Gjesteanmeldelser",
+    "writeReview": "Skriv en anmeldelse",
+    "submitReview": "Send anmeldelse",
+    "submitSuccess": "Takk for din anmeldelse!",
+    "submitError": "Kunne ikke sende anmeldelse. Vennligst prøv igjen.",
+    "submitting": "Sender...",
+    "loginRequired": "Vennligst logg inn for å skrive en anmeldelse",
+    "commentTooShort": "Vennligst skriv minst 10 tegn",
+    "yourReview": "Din anmeldelse",
+    "commentPlaceholder": "Del din opplevelse med dette hotellet...",
+    "characters": "tegn",
+    "overallRating": "Samlet vurdering",
+    "cleanliness": "Renslighet",
+    "location": "Beliggenhet",
+    "service": "Service",
+    "value": "Valuta for pengene",
+    "categories": "Vurderingskategorier",
+    "noReviews": "Ingen anmeldelser ennå",
+    "noReviewsDescription": "Bli den første til å anmelde dette hotellet!",
+    "basedOn": "{count} anmeldelser",
+    "loading": "Laster anmeldelser...",
+    "loadMore": "Last flere anmeldelser",
+    "verified": "Verifisert booking",
+    "hotelResponse": "Hotellets svar"
   }
 }

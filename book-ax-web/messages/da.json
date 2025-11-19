@@ -1332,5 +1332,31 @@
       "email": "Email: i@book.ax"
     },
     "footer": "By using Book.ax, you agree to these Terms and Conditions."
+  },
+  "reviews": {
+    "title": "Gæsteanmeldelser",
+    "writeReview": "Skriv en anmeldelse",
+    "submitReview": "Indsend anmeldelse",
+    "submitSuccess": "Tak for din anmeldelse!",
+    "submitError": "Det lykkedes ikke at sende anmeldelse. Prøv venligst igen.",
+    "submitting": "Sender...",
+    "loginRequired": "Log ind for at skrive en anmeldelse",
+    "commentTooShort": "Skriv venligst mindst 10 tegn",
+    "yourReview": "Din anmeldelse",
+    "commentPlaceholder": "Del din oplevelse med dette hotel...",
+    "characters": "tegn",
+    "overallRating": "Samlet bedømmelse",
+    "cleanliness": "Renlighed",
+    "location": "Beliggenhed",
+    "service": "Service",
+    "value": "Pris-kvalitetsforhold",
+    "categories": "Bedømmelseskategorier",
+    "noReviews": "Ingen anmeldelser endnu",
+    "noReviewsDescription": "Vær den første til at anmelde dette hotel!",
+    "basedOn": "{count} anmeldelser",
+    "loading": "Indlæser anmeldelser...",
+    "loadMore": "Indlæs flere anmeldelser",
+    "verified": "Verificeret booking",
+    "hotelResponse": "Hotellets svar"
   }
 }

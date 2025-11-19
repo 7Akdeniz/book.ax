@@ -1328,5 +1328,31 @@
       "email": "E-Mail: i@book.ax"
     },
     "footer": "Mit der Nutzung von Book.ax stimmen Sie diesen Allgemeinen Geschäftsbedingungen zu."
+  },
+  "reviews": {
+    "title": "Gästebewertungen",
+    "writeReview": "Bewertung schreiben",
+    "submitReview": "Bewertung absenden",
+    "submitSuccess": "Vielen Dank für Ihre Bewertung!",
+    "submitError": "Bewertung konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+    "submitting": "Wird gesendet...",
+    "loginRequired": "Bitte melden Sie sich an, um eine Bewertung zu schreiben",
+    "commentTooShort": "Bitte schreiben Sie mindestens 10 Zeichen",
+    "yourReview": "Ihre Bewertung",
+    "commentPlaceholder": "Teilen Sie Ihre Erfahrungen mit diesem Hotel...",
+    "characters": "Zeichen",
+    "overallRating": "Gesamtbewertung",
+    "cleanliness": "Sauberkeit",
+    "location": "Lage",
+    "service": "Service",
+    "value": "Preis-Leistungs-Verhältnis",
+    "categories": "Bewertungskategorien",
+    "noReviews": "Noch keine Bewertungen",
+    "noReviewsDescription": "Seien Sie der Erste, der dieses Hotel bewertet!",
+    "basedOn": "{count} Bewertungen",
+    "loading": "Bewertungen werden geladen...",
+    "loadMore": "Weitere Bewertungen laden",
+    "verified": "Verifizierte Buchung",
+    "hotelResponse": "Antwort des Hotels"
   }
 }
