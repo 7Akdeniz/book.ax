@@ -680,7 +680,33 @@
         "checkIn": "Check In",
         "checkOut": "Check Out",
         "cancel": "Cancel",
-        "viewDetails": "View Details"
+        "viewDetails": "View Details",
+        "confirm": "Confirm",
+        "markNoShow": "Mark No-Show",
+        "updateStatus": "Update Status"
+      },
+      "details": {
+        "createdAt": "Created",
+        "updatedAt": "Last Updated",
+        "subtotal": "Subtotal",
+        "taxes": "Taxes",
+        "commission": "Commission",
+        "payout": "Hotel Payout",
+        "noSpecialRequests": "No special requests provided",
+        "nights": "{count, plural, one {# night} other {# nights}}",
+        "guestsRooms": "{guests} guests • {rooms} rooms"
+      },
+      "statusModal": {
+        "title": "Update Booking Status",
+        "description": "Choose the new status for booking {reference}",
+        "statusLabel": "Status",
+        "reasonLabel": "Reason",
+        "reasonPlaceholder": "Add a note for this change",
+        "reasonRequired": "Please provide a reason for this update",
+        "submit": "Update Status",
+        "success": "Booking status updated successfully",
+        "error": "Failed to update booking status",
+        "noAvailableActions": "No available actions for this booking"
       }
     },
     "dashboard": {

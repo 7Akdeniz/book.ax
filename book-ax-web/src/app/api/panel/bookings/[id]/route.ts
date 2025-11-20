@@ -24,7 +24,7 @@ export async function PATCH(
     }
 
     const body = await req.json();
-    const { status } = body;
+    const { status, reason } = body;
 
     // Validate status
     const validStatuses = ['pending', 'confirmed', 'checked_in', 'checked_out', 'cancelled', 'no_show'];
@@ -51,15 +51,45 @@ export async function PATCH(
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
+    const currentStatus: string = booking.status;
+    const transitionMap: Record<string, string[]> = {
+      pending: ['confirmed', 'cancelled'],
+      confirmed: ['checked_in', 'cancelled', 'no_show'],
+      checked_in: ['checked_out'],
+      checked_out: [],
+      cancelled: [],
+      no_show: [],
+    };
+
+    const allowedTransitions = transitionMap[currentStatus] || [];
+    if (!allowedTransitions.includes(status)) {
+      return NextResponse.json(
+        { error: `Cannot change status from ${currentStatus} to ${status}` },
+        { status: 400 }
+      );
+    }
+
+    const cleanedReason = typeof reason === 'string' ? reason.trim() : undefined;
+    const nowIso = new Date().toISOString();
+
     // Update booking status
     const updateData: any = {
       status,
-      updated_at: new Date().toISOString(),
+      updated_at: nowIso,
     };
 
-    // If cancelling, add cancellation date
     if (status === 'cancelled') {
-      updateData.cancellation_date = new Date().toISOString();
+      if (!cleanedReason) {
+        return NextResponse.json({ error: 'Cancellation reason is required.' }, { status: 400 });
+      }
+      updateData.cancellation_date = nowIso;
+      updateData.cancellation_reason = cleanedReason;
+    } else if (status === 'no_show') {
+      updateData.cancellation_date = nowIso;
+      updateData.cancellation_reason = cleanedReason || null;
+    } else {
+      updateData.cancellation_date = null;
+      updateData.cancellation_reason = null;
     }
 
     const { data: updatedBooking, error: updateError } = await supabaseAdmin

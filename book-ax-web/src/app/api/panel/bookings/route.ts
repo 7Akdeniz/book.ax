@@ -35,6 +35,8 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const status = searchParams.get('status');
     const dateFilter = searchParams.get('dateFilter');
+    const requestedLocale = (searchParams.get('locale') || 'en').toLowerCase();
+    const fallbackLocale = 'en';
 
     // Build query
     let query = supabaseAdmin
@@ -68,36 +70,71 @@ export async function GET(req: NextRequest) {
       throw bookingsError;
     }
 
-    // Fetch room category translations for German (de)
-    const bookings = await Promise.all(
-      (bookingsData || []).map(async (booking: any) => {
-        // Get room category name
-        const { data: roomTranslation } = await supabaseAdmin
-          .from('room_category_translations')
-          .select('name')
-          .eq('room_category_id', booking.room_category_id)
-          .eq('language', 'de')
-          .single();
+    const bookingsList = bookingsData || [];
 
-        return {
-          id: booking.id,
-          booking_reference: booking.booking_reference,
-          room_category_name: roomTranslation?.name || 'Unknown Room',
-          guest_name: `${booking.guest_first_name} ${booking.guest_last_name}`,
-          guest_email: booking.guest_email,
-          guest_phone: booking.guest_phone,
-          check_in_date: booking.check_in_date,
-          check_out_date: booking.check_out_date,
-          num_guests: booking.num_guests,
-          num_rooms: booking.num_rooms,
-          total_amount: booking.total_amount,
-          status: booking.status,
-          source: booking.source,
-          special_requests: booking.special_requests,
-          created_at: booking.created_at,
-        };
-      })
-    );
+    // Prefetch room category translations for requested locale (fallback to English)
+    const translationsMap = new Map<string, string>();
+    if (bookingsList.length > 0) {
+      const roomCategoryIds = Array.from(
+        new Set(bookingsList.map((booking: any) => booking.room_category_id))
+      );
+
+      if (roomCategoryIds.length > 0) {
+        const languages = requestedLocale === fallbackLocale
+          ? [fallbackLocale]
+          : [requestedLocale, fallbackLocale];
+
+        const { data: translationsData, error: translationsError } = await supabaseAdmin
+          .from('room_category_translations')
+          .select('room_category_id, language, name')
+          .in('room_category_id', roomCategoryIds)
+          .in('language', languages);
+
+        if (translationsError) {
+          console.error('Room translation error:', translationsError);
+        } else {
+          (translationsData || []).forEach((translation) => {
+            translationsMap.set(
+              `${translation.room_category_id}-${translation.language}`,
+              translation.name
+            );
+          });
+        }
+      }
+    }
+
+    const bookings = bookingsList.map((booking: any) => {
+      const localizedRoomName =
+        translationsMap.get(`${booking.room_category_id}-${requestedLocale}`) ||
+        translationsMap.get(`${booking.room_category_id}-${fallbackLocale}`) ||
+        'Unknown Room';
+
+      return {
+        id: booking.id,
+        booking_reference: booking.booking_reference,
+        room_category_name: localizedRoomName,
+        guest_name: `${booking.guest_first_name} ${booking.guest_last_name}`,
+        guest_email: booking.guest_email,
+        guest_phone: booking.guest_phone,
+        check_in_date: booking.check_in_date,
+        check_out_date: booking.check_out_date,
+        num_guests: booking.num_guests,
+        num_rooms: booking.num_rooms,
+        subtotal: booking.subtotal,
+        tax_amount: booking.tax_amount,
+        total_amount: booking.total_amount,
+        commission_percentage: booking.commission_percentage,
+        commission_amount: booking.commission_amount,
+        hotel_payout: booking.hotel_payout,
+        status: booking.status,
+        source: booking.source,
+        special_requests: booking.special_requests,
+        cancellation_reason: booking.cancellation_reason,
+        cancellation_date: booking.cancellation_date,
+        created_at: booking.created_at,
+        updated_at: booking.updated_at,
+      };
+    });
 
     // Calculate statistics
     const totalBookings = bookings.length;
@@ -122,6 +159,7 @@ export async function GET(req: NextRequest) {
       todayCheckIns,
       todayCheckOuts,
       totalRevenue,
+      currency: 'EUR',
     };
 
     return NextResponse.json({ bookings, stats });

@@ -1,7 +1,7 @@
 # 🏨 Panel Bookings Management (Hotelier)
 
-**Status:** ✅ Complete (API) | 🚧 Partial (UI)  
-**Last Updated:** 19. November 2025
+**Status:** ✅ Complete (API) | 🚧 In Progress (UI)  
+**Last Updated:** 20. November 2025
 
 ## Backend APIs
 
@@ -62,42 +62,42 @@
 
 ### Panel Bookings Page
 - ✅ Page exists at `/[locale]/panel/bookings`
-- ⏳ List view with booking cards
-- ⏳ Status badges (color-coded)
-- ⏳ Filter by status
-- ⏳ Filter by date range
-- ⏳ Search by guest name or booking reference
+- ✅ List view with bookings overview
+- ✅ Status badges (color-coded)
+- ✅ Filter by status
+- ✅ Filter by date range
+- ✅ Search by guest name or booking reference
 - ⏳ Sort options (date, status, guest name)
 - ⏳ Pagination controls
-- ⏳ Quick actions (confirm, check-in, check-out)
-- ⏳ Status update modal
-- ⏳ Booking details view
-- ⏳ Guest contact information
-- ⏳ Special requests display
-- ⏳ Cancellation flow
-- ⏳ No-show marking
-- ⏳ Loading states
-- ⏳ Error handling
-- ⏳ Responsive design
+- ✅ Quick actions (confirm, check-in, check-out)
+- ✅ Status update modal
+- ✅ Booking details view
+- ✅ Guest contact information
+- ✅ Special requests display
+- ✅ Cancellation flow (with reason capture)
+- ✅ No-show marking
+- ✅ Loading states
+- ✅ Error handling
+- ✅ Responsive design
 
 ### Status Update Component
-- ⏳ Status dropdown/buttons
-- ⏳ Confirmation dialog
-- ⏳ Loading state during update
-- ⏳ Success/Error notifications
+- ✅ Status dropdown/buttons
+- ✅ Confirmation dialog (modal + prompts)
+- ✅ Loading state during update
+- ✅ Success/Error notifications
 - ⏳ Optimistic UI updates
-- ⏳ Reason field for cancellations
+- ✅ Reason field for cancellations / no-shows
 - ⏳ Timestamp display
 
 ### Booking Detail View
-- ⏳ Full guest information
-- ⏳ Room category details
-- ⏳ Pricing breakdown
-- ⏳ Commission amount display
-- ⏳ Hotel payout display
+- ✅ Full guest information
+- ✅ Room category details
+- ✅ Pricing breakdown
+- ✅ Commission amount display
+- ✅ Hotel payout display
 - ⏳ Status history/timeline
-- ⏳ Special requests
-- ⏳ Contact guest button (email/phone)
+- ✅ Special requests
+- ✅ Contact guest button (email/phone)
 - ⏳ Print booking confirmation
 - ⏳ Export to PDF
 
@@ -105,25 +105,24 @@
 
 ### Hotelier Workflow
 - ✅ Login → Dashboard → Bookings
-- ⏳ View all bookings in list format
-- ⏳ Filter bookings by status/date
-- ⏳ Click booking to view details
-- ⏳ Update booking status
-- ⏳ View guest contact info
-- ⏳ See financial breakdown
+- ✅ View all bookings in list format
+- ✅ Filter bookings by status/date
+- ✅ Click booking to view details
+- ✅ Update booking status
+- ✅ View guest contact info
+- ✅ See financial breakdown
 - ⏳ Manage special requests
 
 ### Status Change Flow
-- ⏳ Select booking
-- ⏳ Click status change button
-- ⏳ Choose new status
-- ⏳ Confirm action
-- ⏳ See success message
+- ✅ Select booking
+- ✅ Click status change button
+- ✅ Choose new status
+- ✅ Confirm action
+- ✅ See success message
 - ⏳ Booking updated in real-time
 
 ## Internationalization
 
-### Translation Keys (Panel Bookings)
 - ✅ `panel.bookings.title`
 - ✅ `panel.bookings.allBookings`
 - ✅ `panel.bookings.filter`
@@ -134,7 +133,7 @@
 - ✅ `panel.bookings.total`
 - ✅ `panel.bookings.actions`
 - ✅ Status labels (pending, confirmed, etc.)
-- ⏳ Additional UI text keys needed
+- ✅ Additional UI text keys for details & modal
 
 ### Supported Languages
 - ✅ 10 languages (da, de, en, es, fr, it, no, pl, sv, tr)
@@ -162,7 +161,7 @@
 - ✅ Booking must exist
 - ✅ User must own hotel
 - ✅ Booking must be in valid state for transition
-- ⏳ Status transition rules (e.g., can't check-in cancelled booking)
+- ✅ Status transition rules (enforced server-side)
 - ⏳ Date validation (check-in date must be today or past)
 
 ## Performance
@@ -202,8 +201,7 @@
 
 ## Known Issues / TODO
 
-- ⏳ Complete frontend UI implementation
-- ⏳ Status transition validation rules
+- ⏳ Complete frontend UI implementation (sorting, pagination, exports)
 - ⏳ Booking modification (change dates/room)
 - ⏳ Partial refund calculation
 - ⏳ Cancellation policy enforcement
@@ -221,14 +219,14 @@
 ## Next Steps
 
 1. **Complete UI Implementation**
-   - Build booking list component
-   - Add status update modal
-   - Implement filters and sorting
+   - Add sorting & pagination controls
+   - Provide print / PDF export options
+   - Surface booking notes / internal comments
    
-2. **Add Status Transition Rules**
-   - Define valid status transitions
-   - Add validation logic
-   - Show only valid actions to user
+2. **Enhance Status Management**
+   - Add status history/timeline UI
+   - Implement optimistic updates for quick actions
+   - Surface timestamp log per change
 
 3. **Implement Analytics Dashboard**
    - Create visualization components
