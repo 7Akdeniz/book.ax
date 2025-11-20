@@ -3,7 +3,8 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/db/supabase';
-import { handleApiError, NotFoundError } from '@/utils/errors';
+import { handleApiError, NotFoundError, AuthenticationError } from '@/utils/errors';
+import { verifyAccessToken } from '@/lib/auth/jwt';
 
 // ✅ PERFORMANCE: Cache individual hotel details for 10 minutes
 // Hotel details change even less frequently than search results
@@ -18,8 +19,10 @@ export async function GET(
     const { searchParams } = new URL(req.url);
     const locale = searchParams.get('locale') || 'en';
 
+    const authUser = getOptionalAuthUser(req);
+
     // Get hotel with all related data
-    const { data: hotel, error } = await supabaseAdmin
+    let query = supabaseAdmin
       .from('hotels')
       .select(`
         *,
@@ -81,11 +84,24 @@ export async function GET(
           )
         )
       `)
-      .eq('id', id)
-      .eq('status', 'approved')
-      .single();
+      .eq('id', id);
+
+    if (!authUser) {
+      query = query.eq('status', 'approved');
+    }
+
+    const { data: hotel, error } = await query.single();
 
     if (error || !hotel) {
+      throw new NotFoundError('Hotel');
+    }
+
+    const isPrivilegedViewer = authUser && (
+      authUser.role === 'admin' ||
+      (authUser.role === 'hotelier' && hotel.owner_id === authUser.userId)
+    );
+
+    if (!isPrivilegedViewer && hotel.status !== 'approved') {
       throw new NotFoundError('Hotel');
     }
 
@@ -175,4 +191,25 @@ export async function GET(
     const { error: message, status } = handleApiError(error);
     return NextResponse.json({ error: message }, { status });
   }
+}
+
+function getOptionalAuthUser(req: NextRequest) {
+  const authHeader = req.headers.get('authorization');
+  const bearerToken = authHeader && authHeader.startsWith('Bearer ')
+    ? authHeader.substring(7)
+    : undefined;
+
+  const token = bearerToken || req.cookies.get('accessToken')?.value;
+
+  if (!token) {
+    return null;
+  }
+
+  const decoded = verifyAccessToken(token);
+
+  if (!decoded) {
+    throw new AuthenticationError('Invalid or expired token');
+  }
+
+  return decoded;
 }

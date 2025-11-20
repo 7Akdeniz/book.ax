@@ -178,6 +178,21 @@
     "averageDailyRate": "Durchschnittlicher Tagespreis",
     "revPAR": "RevPAR",
     "hotels": {
+      "title": "Meine Hotels",
+      "subtitle": "Verwalten Sie Ihre registrierten Unterkünfte",
+      "addNew": "Neues Hotel hinzufügen",
+      "noHotels": "Noch keine Hotels",
+      "noHotelsDescription": "Registrieren Sie Ihr erstes Hotel, um Buchungen zu erhalten",
+      "registerFirst": "Erstes Hotel registrieren",
+      "loadError": "Hotels konnten nicht geladen werden",
+      "roomsCount": "Zimmer",
+      "status": {
+        "active": "Aktiv",
+        "pending": "In Prüfung",
+        "inactive": "Inaktiv",
+        "suspended": "Gesperrt",
+        "approved": "Freigeschaltet"
+      },
       "new": {
         "title": "Neues Hotel registrieren",
         "subtitle": "Schließen Sie die Registrierung in 5 einfachen Schritten ab",
@@ -689,6 +704,9 @@
     },
     "dashboard": {
       "subtitle": "Willkommen in Ihrem Hotelier-Dashboard",
+      "loading": "Dashboard wird geladen...",
+      "fetchError": "Dashboard-Daten konnten nicht geladen werden",
+      "accessDenied": "Zugriff verweigert. Hotelier-Rolle erforderlich.",
       "actions": {
         "viewBookings": "Alle Buchungen ansehen"
       },
