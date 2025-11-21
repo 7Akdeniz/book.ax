@@ -11,16 +11,18 @@
 | **Booking System** | [booking.md](./booking.md) | ✅ Complete | P0 |
 | **Reviews System** | [reviews.md](./reviews.md) | ✅ Complete | P1 |
 | **Panel Bookings** | [panel-bookings.md](./panel-bookings.md) | 🚧 Partial | P1 |
+| **Hotel Approval** | [hotel-approval.md](./hotel-approval.md) | 🚧 Partial | P0 |
 
 ## 📊 Overall Progress
 
-### ✅ Completed Features (3/4)
+### ✅ Completed Features (3/5)
 1. **Authentication System** - JWT auth with refresh tokens, role-based access
 2. **Booking System** - Complete guest booking flow with availability checks
 3. **Reviews System** - Multi-dimensional ratings, statistics, hotel responses
 
-### 🚧 In Progress (1/4)
+### 🚧 In Progress (2/5)
 1. **Panel Bookings** - API complete, UI implementation pending
+2. **Hotel Approval** - Backend APIs 90% complete, critical gaps in email notifications and search filtering
 
 ### ⏳ Planned Features (Not Yet Started)
 - Hotel Management (CRUD operations)

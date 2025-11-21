@@ -18,7 +18,7 @@ import type { CMSPageWithTranslation, CreatePageRequest, ListPagesRequest } from
 export const GET = verifyAuth(async (req: AuthenticatedRequest) => {
   try {
     const { searchParams } = new URL(req.url);
-    
+
     const filters: ListPagesRequest = {
       type: searchParams.get('type') as any || undefined,
       status: searchParams.get('status') as any || undefined,
@@ -30,6 +30,8 @@ export const GET = verifyAuth(async (req: AuthenticatedRequest) => {
       sort: searchParams.get('sort') as any || 'updated_at',
       order: searchParams.get('order') as any || 'desc',
     };
+
+    const languageCode = filters.language_code || 'en';
 
     // Base query
     let query = supabaseAdmin
@@ -52,6 +54,41 @@ export const GET = verifyAuth(async (req: AuthenticatedRequest) => {
     }
     if (filters.category_id) {
       query = query.eq('category_id', filters.category_id);
+    }
+
+    // Search by slug/title
+    if (filters.search?.trim()) {
+      const normalizedSearch = filters.search.trim();
+      const searchValue = `%${normalizedSearch.replace(/[%_]/g, '\\$&')}%`;
+      const [slugMatches, translationMatches] = await Promise.all([
+        supabaseAdmin
+          .from('cms_pages')
+          .select('id')
+          .ilike('slug', searchValue),
+        supabaseAdmin
+          .from('cms_page_translations')
+          .select('page_id')
+          .ilike('title', searchValue),
+      ]);
+
+      if (slugMatches.error) throw slugMatches.error;
+      if (translationMatches.error) throw translationMatches.error;
+
+      const searchIds = new Set<string>();
+      slugMatches.data?.forEach((row) => row.id && searchIds.add(row.id));
+      translationMatches.data?.forEach((row) => row.page_id && searchIds.add(row.page_id));
+
+      if (searchIds.size === 0) {
+        return NextResponse.json({
+          pages: [],
+          total: 0,
+          page: filters.page!,
+          limit: filters.limit!,
+          total_pages: 0,
+        });
+      }
+
+      query = query.in('id', Array.from(searchIds));
     }
 
     // Sorting
@@ -79,28 +116,17 @@ export const GET = verifyAuth(async (req: AuthenticatedRequest) => {
     const pagesWithTranslations: CMSPageWithTranslation[] = (pages || []).map(page => ({
       ...page,
       translations: translations?.filter(t => t.page_id === page.id) || [],
-      translation: filters.language_code
-        ? translations?.find(t => t.page_id === page.id && t.language_code === filters.language_code)
-        : translations?.find(t => t.page_id === page.id), // First available
+      translation: translations?.find(
+        t => t.page_id === page.id && t.language_code === languageCode
+      ) || translations?.find(t => t.page_id === page.id),
     }));
 
-    // Search filter (client-side for simplicity)
-    let filteredPages = pagesWithTranslations;
-    if (filters.search) {
-      const searchLower = filters.search.toLowerCase();
-      filteredPages = pagesWithTranslations.filter(page => 
-        page.slug.toLowerCase().includes(searchLower) ||
-        page.translation?.title?.toLowerCase().includes(searchLower) ||
-        page.translation?.content?.toLowerCase().includes(searchLower)
-      );
-    }
-
     return NextResponse.json({
-      pages: filteredPages,
+      pages: pagesWithTranslations,
       total: count || 0,
       page: filters.page!,
       limit: filters.limit!,
-      total_pages: Math.ceil((count || 0) / filters.limit!),
+      total_pages: filters.limit ? Math.ceil((count || 0) / filters.limit) : 0,
     });
   } catch (error) {
     const { error: message, status } = handleApiError(error);

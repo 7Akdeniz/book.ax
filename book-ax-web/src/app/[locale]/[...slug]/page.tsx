@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { supabaseAdmin } from '@/lib/db/supabase';
 import type { CMSPageWithTranslation } from '@/types/cms';
@@ -135,11 +136,26 @@ export default async function CMSPage({ params }: PageProps) {
       {/* Featured Image */}
       {page.featured_image && (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <img
-            src={page.featured_image.cdn_url || page.featured_image.storage_path}
-            alt={page.featured_image.alt_text || translation.title}
-            className="w-full h-auto rounded-lg shadow-lg"
-          />
+          {page.featured_image.width && page.featured_image.height ? (
+            <Image
+              src={page.featured_image.cdn_url || page.featured_image.storage_path}
+              alt={page.featured_image.alt_text || translation.title}
+              width={page.featured_image.width}
+              height={page.featured_image.height}
+              className="w-full h-auto rounded-lg shadow-lg"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+            />
+          ) : (
+            <div className="relative w-full h-[400px]">
+              <Image
+                src={page.featured_image.cdn_url || page.featured_image.storage_path}
+                alt={page.featured_image.alt_text || translation.title}
+                fill
+                className="object-cover rounded-lg shadow-lg"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+              />
+            </div>
+          )}
           {page.featured_image.caption && (
             <p className="text-sm text-gray-500 text-center mt-2">
               {page.featured_image.caption}
@@ -197,22 +213,29 @@ export default async function CMSPage({ params }: PageProps) {
 export async function generateStaticParams() {
   const { data: pages } = await supabaseAdmin
     .from('cms_pages')
-    .select('slug')
+    .select('slug, translations:cms_page_translations(language_code)')
     .eq('status', 'published');
 
   if (!pages) return [];
 
-  // Return all slug combinations with locales
-  const locales = ['de', 'en', 'fr', 'es', 'it', 'tr'];
   const params: { locale: string; slug: string[] }[] = [];
 
-  pages.forEach((page) => {
+  const pagesTyped = pages as unknown as {
+    slug: string;
+    translations: { language_code: string }[];
+  }[];
+
+  pagesTyped.forEach((page) => {
     const slugParts = page.slug.split('/');
-    locales.forEach((locale) => {
-      params.push({
-        locale,
-        slug: slugParts,
-      });
+    const languages = page.translations || [];
+
+    languages.forEach((translation) => {
+      if (translation?.language_code) {
+        params.push({
+          locale: translation.language_code,
+          slug: slugParts,
+        });
+      }
     });
   });
 
